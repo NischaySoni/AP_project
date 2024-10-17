@@ -11,19 +11,18 @@ public class Screen {
     public Screen() {
 
         ImageIcon imageIcon1 = new ImageIcon("openingscreen.png");
-//        ImageIcon imageIcon2 = new ImageIcon("logo.png");
         ImageIcon imageIcon2 = new ImageIcon("logo2.png");
         Border border = BorderFactory.createLineBorder(Color.black, 3);
-        
-        JLabel label = new JLabel(); 
-        label.setBorder(border); 
-        label.setVerticalAlignment(JLabel.CENTER); 
-        label.setHorizontalAlignment(JLabel.CENTER); 
+
+        JLabel label = new JLabel();
+        label.setBorder(border);
+        label.setVerticalAlignment(JLabel.CENTER);
+        label.setHorizontalAlignment(JLabel.CENTER);
 
         JFrame frame = new JFrame();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setExtendedState(JFrame.MAXIMIZED_BOTH); 
-        frame.setLayout(null); 
+        frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        frame.setLayout(null);
 
         frame.setTitle("ANGRY BIRDS");
         frame.setIconImage(imageIcon2.getImage());
@@ -57,9 +56,9 @@ public class Screen {
                 int width = frame.getWidth();
                 int height = frame.getHeight();
                 label.setBounds(0, 0, width, height);
-                
+
                 Image img = imageIcon1.getImage().getScaledInstance(width, height, Image.SCALE_SMOOTH);
-                label.setIcon(new ImageIcon(img)); 
+                label.setIcon(new ImageIcon(img));
                 }
             }
         );
