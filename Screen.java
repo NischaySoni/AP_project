@@ -10,8 +10,9 @@ public class Screen {
 
     public Screen() {
 
-        ImageIcon imageIcon1 = new ImageIcon("openingscreen.png"); 
-        ImageIcon imageIcon2 = new ImageIcon("logo.png");
+        ImageIcon imageIcon1 = new ImageIcon("openingscreen.png");
+//        ImageIcon imageIcon2 = new ImageIcon("logo.png");
+        ImageIcon imageIcon2 = new ImageIcon("logo2.png");
         Border border = BorderFactory.createLineBorder(Color.black, 3);
         
         JLabel label = new JLabel(); 
