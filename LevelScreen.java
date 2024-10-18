@@ -1,7 +1,6 @@
 import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.*;
-import javax.swing.JButton;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ComponentAdapter;
@@ -13,6 +12,13 @@ public class LevelScreen {
 
     public LevelScreen(JFrame pvrframe){
         this.pvrframe = pvrframe;
+        ImageIcon imageIcon1 = new ImageIcon("space.png");
+        Border border = BorderFactory.createLineBorder(Color.black, 3);
+
+        JLabel label = new JLabel();
+        label.setBorder(border);
+        label.setVerticalAlignment(JLabel.CENTER);
+        label.setHorizontalAlignment(JLabel.CENTER);
 
         JFrame levelscreen = new JFrame("Levels");
         levelscreen.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -41,7 +47,21 @@ public class LevelScreen {
         });
 
 
+        levelscreen.addComponentListener(new ComponentAdapter() {
+            @Override
+            public void componentResized(ComponentEvent e) {
+                int width = levelscreen.getWidth();
+                int height = levelscreen.getHeight();
+                label.setBounds(0, 0, width, height);
+
+                Image img = imageIcon1.getImage().getScaledInstance(width, height, Image.SCALE_SMOOTH);
+                label.setIcon(new ImageIcon(img));
+            }
+        }
+        );
+
         levelscreen.add(button);
+        levelscreen.add(label);
         levelscreen.setVisible(true);
     }
 }
