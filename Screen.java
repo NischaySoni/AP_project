@@ -40,7 +40,9 @@ public class Screen {
             @Override
             public void actionPerformed(ActionEvent e) {
                 System.out.println("Game Started");
-                new LevelScreen();
+                new LevelScreen(frame);
+                frame.setVisible(false);
+
             }
         });
 
