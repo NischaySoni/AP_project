@@ -5,48 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="863df371-a590-483c-bde8-1ec5c37aa601" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.editorconfig" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitattributes" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BackHomeButton.java" beforeDir="false" afterPath="$PROJECT_DIR$/BackHomeButton.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameScreen.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LevelScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/LevelScreen.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyGame.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Screen$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/Screen$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Screen$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/Screen$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Screen.class" beforeDir="false" afterPath="$PROJECT_DIR$/Screen.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Screen.java" beforeDir="false" afterPath="$PROJECT_DIR$/Screen.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/StartButton.java" beforeDir="false" afterPath="$PROJECT_DIR$/StartButton.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/libgdx.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/build.gradle" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/io/github/ap/project/Main.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradlew" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradlew.bat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/logo.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lwjgl3/build.gradle" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lwjgl3/icons/logo.icns" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lwjgl3/icons/logo.ico" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lwjgl3/icons/logo.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lwjgl3/nativeimage.gradle" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lwjgl3/src/main/java/io/github/ap/project/lwjgl3/Lwjgl3Launcher.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lwjgl3/src/main/java/io/github/ap/project/lwjgl3/StartupHelper.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lwjgl3/src/main/resources/libgdx128.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lwjgl3/src/main/resources/libgdx16.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lwjgl3/src/main/resources/libgdx32.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lwjgl3/src/main/resources/libgdx64.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/openingscreen.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/settings.gradle" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/space.png" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,6 +15,7 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="UPDATE_TYPE" value="REBASE" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
   &quot;lastFilter&quot;: {
@@ -137,7 +98,8 @@
       <option name="presentableId" value="Default" />
       <updated>1729268642751</updated>
       <workItem from="1729268648758" duration="563000" />
-      <workItem from="1729269299302" duration="1127000" />
+      <workItem from="1729269299302" duration="2650000" />
+      <workItem from="1729272628598" duration="230000" />
     </task>
     <servers />
   </component>

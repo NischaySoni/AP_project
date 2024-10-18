@@ -16,18 +16,24 @@ public class LevelScreen {
         GraphicsDevice device = env.getDefaultScreenDevice();
         levelscreen.setUndecorated(true); 
         device.setFullScreenWindow(levelscreen);
-        levelscreen.setLayout(null); 
+        levelscreen.setLayout(new GridLayout()); 
 
-        ImageIcon windowIcon = new ImageIcon("windowIcon.png"); 
-        levelscreen.setIconImage(windowIcon.getImage()); 
-
+        ImageIcon logoIcon = new ImageIcon("logo2.png");
+        levelscreen.setIconImage(logoIcon.getImage());
     
         BackHomeButton button = new BackHomeButton("Back");
         button.setFont(new Font("Comic Sans", Font.BOLD, 25));
-        button.setForeground(Color.black);
-        button.setBackground(Color.green);
-        button.setBounds(100, 100, 200, 100); 
+        button.setForeground(Color.green);
+        button.setBackground(Color.black);
+        button.setPreferredSize(new Dimension(200, 100));
         button.setFocusable(false);
+
+        GridBagConstraints c = new GridBagConstraints();
+        c.gridx = 0;
+        c.gridy = GridBagConstraints.RELATIVE;
+        c.insets = new Insets(0, 0, 0, 0);
+        c.anchor = GridBagConstraints.PAGE_END;
+        levelscreen.add(button, c);
 
         button.addActionListener(new ActionListener() {
             @Override
