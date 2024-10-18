@@ -70,3 +70,4 @@ public class Screen {
         frame.setVisible(true);
     }
 }
+

@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="863df371-a590-483c-bde8-1ec5c37aa601" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.editorconfig" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitattributes" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BackHomeButton.java" beforeDir="false" afterPath="$PROJECT_DIR$/BackHomeButton.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GameScreen.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/LevelScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/LevelScreen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyGame.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Screen$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/Screen$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Screen$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/Screen$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Screen.class" beforeDir="false" afterPath="$PROJECT_DIR$/Screen.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Screen.java" beforeDir="false" afterPath="$PROJECT_DIR$/Screen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/StartButton.java" beforeDir="false" afterPath="$PROJECT_DIR$/StartButton.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/libgdx.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/build.gradle" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/io/github/ap/project/Main.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gradle.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gradlew" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gradlew.bat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logo.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lwjgl3/build.gradle" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lwjgl3/icons/logo.icns" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lwjgl3/icons/logo.ico" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lwjgl3/icons/logo.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lwjgl3/nativeimage.gradle" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lwjgl3/src/main/java/io/github/ap/project/lwjgl3/Lwjgl3Launcher.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lwjgl3/src/main/java/io/github/ap/project/lwjgl3/StartupHelper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lwjgl3/src/main/resources/libgdx128.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lwjgl3/src/main/resources/libgdx16.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lwjgl3/src/main/resources/libgdx32.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lwjgl3/src/main/resources/libgdx64.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/openingscreen.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/settings.gradle" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/space.png" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;NischaySoni&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/NischaySoni/AP_project.git&quot;,
+    &quot;accountId&quot;: &quot;6b5dc863-64d5-4afd-acf5-02e7bdce3ecd&quot;
+  }
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 4
+}</component>
+  <component name="ProjectId" id="2ncNtHOE1nTGNnFRpzC57PutcbN" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="RunManager">
+    <configuration default="true" type="JetRunConfigurationType">
+      <module name="AP_project.lwjgl3" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="PythonConfigurationType" factoryName="Python">
+      <module name="AP_project.lwjgl3" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9823dce3aa75-b114ca120d71-intellij.indexing.shared.core-IU-242.20224.387" />
+        <option value="bundled-js-predefined-d6986cc7102b-410509235cf1-JavaScript-IU-242.20224.387" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="863df371-a590-483c-bde8-1ec5c37aa601" name="Changes" comment="" />
+      <created>1729268642751</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1729268642751</updated>
+      <workItem from="1729268648758" duration="563000" />
+      <workItem from="1729269299302" duration="1127000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>
