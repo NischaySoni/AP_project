@@ -10,12 +10,9 @@ import java.awt.event.ComponentEvent;
 
 public class LevelScreen {
     private JFrame pvrframe;
+
     public LevelScreen(JFrame pvrframe){
         this.pvrframe = pvrframe;
-//        JLabel label = new JLabel();
-//        label.setBorder(border);
-//        label.setVerticalAlignment(JLabel.CENTER);
-//        label.setHorizontalAlignment(JLabel.CENTER);
 
         JFrame levelscreen = new JFrame("Levels");
         levelscreen.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -42,6 +39,7 @@ public class LevelScreen {
                 levelscreen.setVisible(false);
             }
         });
+
 
         levelscreen.add(button);
         levelscreen.setVisible(true);
