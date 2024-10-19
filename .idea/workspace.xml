@@ -4,16 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-<<<<<<< HEAD
-    <list default="true" id="d0c49e98-1c09-4427-8bf2-9c0cf6c18d26" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LevelScreen$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/LevelScreen$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LevelScreen.class" beforeDir="false" afterPath="$PROJECT_DIR$/LevelScreen.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/Main.java" afterDir="false" />
-=======
     <list default="true" id="2881b767-1a83-48c1-96da-9505f0184fab" name="Changes" comment="libGDX (again)">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
->>>>>>> 3a6c31dcba3cf68d2fd1a8027378bac218001558
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,26 +23,20 @@
   <component name="GitHubPullRequestSearchHistory">{
   &quot;lastFilter&quot;: {
     &quot;state&quot;: &quot;OPEN&quot;,
-    &quot;assignee&quot;: &quot;SARTHAKIIITD&quot;
+    &quot;assignee&quot;: &quot;NischaySoni&quot;
   }
 }</component>
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
     &quot;url&quot;: &quot;https://github.com/NischaySoni/AP_project.git&quot;,
-    &quot;accountId&quot;: &quot;babd784e-507b-43dd-bfba-e216587e880e&quot;
+    &quot;accountId&quot;: &quot;6b5dc863-64d5-4afd-acf5-02e7bdce3ecd&quot;
   }
 }</component>
   <component name="ProjectColorInfo">{
-<<<<<<< HEAD
-  &quot;associatedIndex&quot;: 6
-}</component>
-  <component name="ProjectId" id="2ndsS4JrJJJmnP1UWkJ7KAVDq9e" />
-=======
   &quot;associatedIndex&quot;: 5
 }</component>
   <component name="ProjectId" id="2ne6TO2CfNMZeLOsldT7bXSbWuM" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
->>>>>>> 3a6c31dcba3cf68d2fd1a8027378bac218001558
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -59,19 +45,6 @@
   &quot;keyToString&quot;: {
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-<<<<<<< HEAD
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;
-  }
-}</component>
-  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
-  <component name="TaskManager">
-    <task active="true" id="Default" summary="Default task">
-      <changelist id="d0c49e98-1c09-4427-8bf2-9c0cf6c18d26" name="Changes" comment="" />
-      <created>1729314284344</created>
-      <option name="number" value="Default" />
-      <option name="presentableId" value="Default" />
-      <updated>1729314284344</updated>
-=======
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
     &quot;last_opened_file_path&quot;: &quot;C:/AP_AngryBirds&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
@@ -196,7 +169,6 @@
       <updated>1729321210557</updated>
       <workItem from="1729321212761" duration="2831000" />
       <workItem from="1729324362394" duration="349000" />
->>>>>>> 3a6c31dcba3cf68d2fd1a8027378bac218001558
     </task>
     <task id="LOCAL-00001" summary="libGDX (again)">
       <option name="closed" value="true" />
@@ -209,8 +181,6 @@
     <option name="localTasksCounter" value="2" />
     <servers />
   </component>
-<<<<<<< HEAD
-=======
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
@@ -229,5 +199,4 @@
     <MESSAGE value="libGDX (again)" />
     <option name="LAST_COMMIT_MESSAGE" value="libGDX (again)" />
   </component>
->>>>>>> 3a6c31dcba3cf68d2fd1a8027378bac218001558
 </project>

@@ -21,14 +21,52 @@ public class LevelScreen {
         ImageIcon logoIcon = new ImageIcon("logo2.png");
         levelscreen.setIconImage(logoIcon.getImage());
 
-        BackHomeButton button = new BackHomeButton("Back");
-        button.setFont(new Font("Comic Sans", Font.BOLD, 25));
-        button.setForeground(Color.green);
-        button.setBackground(Color.black);
-        button.setPreferredSize(new Dimension(200, 100));
-        button.setFocusable(false);
+        JPanel levelPanel = new JPanel();
+        levelPanel.setLayout(new GridLayout(9, 9, 50, 50)); 
 
-        button.addActionListener(new ActionListener() {
+        JButton level1Button = new JButton("Level 1");
+        JButton level2Button = new JButton("Level 2");
+        JButton level3Button = new JButton("Level 3");
+
+        customizeLevelButton(level1Button);
+        customizeLevelButton(level2Button);
+        customizeLevelButton(level3Button);
+
+        level1Button.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.out.println("Level 1 selected");
+            }
+        });
+
+        level2Button.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.out.println("Level 2 selected");
+            }
+        });
+
+        level3Button.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.out.println("Level 3 selected");
+            }
+        });
+
+        levelPanel.add(level1Button);
+        levelPanel.add(level2Button);
+        levelPanel.add(level3Button);
+
+        levelscreen.add(levelPanel, BorderLayout.CENTER);
+
+        JButton backButton = new JButton("Back");
+        backButton.setFont(new Font("Comic Sans", Font.BOLD, 20));
+        backButton.setForeground(Color.green);
+        backButton.setBackground(Color.black);
+        backButton.setPreferredSize(new Dimension(100, 50)); 
+        backButton.setFocusable(false);
+
+        backButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 System.out.println("Back to main screen");
@@ -37,7 +75,15 @@ public class LevelScreen {
             }
         });
 
-        levelscreen.add(button, BorderLayout.SOUTH);
+        levelscreen.add(backButton, BorderLayout.SOUTH);
         levelscreen.setVisible(true);
+    }
+
+    private void customizeLevelButton(JButton button) {
+        button.setFont(new Font("Comic Sans", Font.BOLD, 15)); 
+        button.setForeground(Color.white);
+        button.setBackground(Color.blue);
+        button.setFocusable(false);
+        button.setPreferredSize(new Dimension(5, 5)); 
     }
 }
