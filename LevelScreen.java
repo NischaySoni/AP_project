@@ -63,7 +63,7 @@ public class LevelScreen {
         backButton.setFont(new Font("Comic Sans", Font.BOLD, 20));
         backButton.setForeground(Color.green);
         backButton.setBackground(Color.black);
-        backButton.setPreferredSize(new Dimension(150, 50)); // Reasonable size for the back button
+        backButton.setPreferredSize(new Dimension(150, 50)); 
         backButton.setFocusable(false);
 
         backButton.addActionListener(new ActionListener() {
