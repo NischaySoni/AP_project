@@ -41,7 +41,6 @@ public class Screen {
             public void actionPerformed(ActionEvent e) {
                 System.out.println("Game Started");
                 new LevelScreen(frame);
-//                frame.dispose();
                 frame.setVisible(false);
 
             }

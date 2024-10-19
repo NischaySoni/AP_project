@@ -1,4 +1,5 @@
 import javax.swing.*;
+import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -10,7 +11,7 @@ public class LevelScreen {
         this.pvrframe = pvrframe;
 
         JFrame levelscreen = new JFrame("Levels");
-        levelscreen.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        levelscreen.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         GraphicsEnvironment env = GraphicsEnvironment.getLocalGraphicsEnvironment();
         GraphicsDevice device = env.getDefaultScreenDevice();
@@ -21,8 +22,13 @@ public class LevelScreen {
         ImageIcon logoIcon = new ImageIcon("logo2.png");
         levelscreen.setIconImage(logoIcon.getImage());
 
-        JPanel levelPanel = new JPanel();
-        levelPanel.setLayout(new GridLayout(9, 9, 50, 50)); 
+        Border border = BorderFactory.createLineBorder(Color.BLACK);
+
+        JLabel label = new JLabel();
+        label.setBorder(border);
+        label.setVerticalAlignment(JLabel.CENTER);
+        label.setHorizontalAlignment(JLabel.CENTER);
+        label.setLayout(new GridBagLayout()); 
 
         JButton level1Button = new JButton("Level 1");
         JButton level2Button = new JButton("Level 2");
@@ -53,17 +59,11 @@ public class LevelScreen {
             }
         });
 
-        levelPanel.add(level1Button);
-        levelPanel.add(level2Button);
-        levelPanel.add(level3Button);
-
-        levelscreen.add(levelPanel, BorderLayout.CENTER);
-
         JButton backButton = new JButton("Back");
         backButton.setFont(new Font("Comic Sans", Font.BOLD, 20));
         backButton.setForeground(Color.green);
         backButton.setBackground(Color.black);
-        backButton.setPreferredSize(new Dimension(100, 50)); 
+        backButton.setPreferredSize(new Dimension(150, 50)); // Reasonable size for the back button
         backButton.setFocusable(false);
 
         backButton.addActionListener(new ActionListener() {
@@ -71,11 +71,20 @@ public class LevelScreen {
             public void actionPerformed(ActionEvent e) {
                 System.out.println("Back to main screen");
                 pvrframe.setVisible(true);
-                levelscreen.setVisible(false);
+                levelscreen.setVisible(false); 
             }
         });
 
-        levelscreen.add(backButton, BorderLayout.SOUTH);
+        GridBagConstraints c = new GridBagConstraints();
+        c.gridx = 0; 
+        c.gridy = GridBagConstraints.RELATIVE;
+        c.insets = new Insets(10, 10, 10, 10); 
+
+        label.add(level1Button, c);
+        label.add(level2Button, c);
+        label.add(level3Button, c);
+        label.add(backButton, c);
+        levelscreen.add(label, BorderLayout.CENTER);
         levelscreen.setVisible(true);
     }
 
@@ -84,6 +93,6 @@ public class LevelScreen {
         button.setForeground(Color.white);
         button.setBackground(Color.blue);
         button.setFocusable(false);
-        button.setPreferredSize(new Dimension(5, 5)); 
+        button.setPreferredSize(new Dimension(150, 50)); 
     }
 }
