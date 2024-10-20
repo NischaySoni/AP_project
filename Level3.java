@@ -8,7 +8,7 @@ import com.badlogic.gdx.game;
 //import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 //import com.badlogic.gdx.graphics.g2d.GlyphLayout;
 
-public class Level1 implements Screen {
+public class Level3 implements Screen {
 
     public void show(){
 
