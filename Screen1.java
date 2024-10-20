@@ -7,9 +7,9 @@ import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 
 
-public class Screen {
+public class Screen1 {
 
-    public Screen() {
+    public Screen1() {
 
         ImageIcon imageIcon1 = new ImageIcon("cover.png");
         ImageIcon imageIcon2 = new ImageIcon("logo2.png");
