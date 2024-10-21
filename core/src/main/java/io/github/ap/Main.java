@@ -183,10 +183,13 @@ public class Main extends ApplicationAdapter {
     ScreenViewport viewport;
     SpriteBatch spriteBatch;
     Texture playButtonTexture;
+    Texture exitButtonTexture;
     float playButtonX, playButtonY, playButtonWidth, playButtonHeight;
+    float exitButtonX, exitButtonY, exitButtonWidth, exitButtonHeight;
 
     @Override
     public void create() {
+        Gdx.graphics.setFullscreenMode(Gdx.graphics.getDisplayMode());
         backgroundTexture = new Texture("cover.png");
         music = Gdx.audio.newMusic(Gdx.files.internal("bgm.wav"));
         viewport = new ScreenViewport();
@@ -194,11 +197,19 @@ public class Main extends ApplicationAdapter {
         music.setLooping(true);
         music.setVolume(.5f);
         music.play();
+
         playButtonTexture = new Texture("play.png");
         playButtonWidth = 200;
         playButtonHeight = 100;
         playButtonX = (float) (Gdx.graphics.getWidth()) / 2;
         playButtonY = (float) (Gdx.graphics.getHeight()) / 2;
+
+        exitButtonTexture = new Texture("Exit.png");
+        exitButtonWidth = 200;
+        exitButtonHeight = 100;
+        exitButtonX = (Gdx.graphics.getWidth() - exitButtonWidth) / 2; // Centered
+        exitButtonY = playButtonY - 120;
+
     }
 
     @Override
@@ -223,6 +234,11 @@ public class Main extends ApplicationAdapter {
                 System.out.println("Play button clicked!");
                 startGame();  // A method to transition to the gameplay, if applicable
             }
+            if (mouseX >= exitButtonX && mouseX <= exitButtonX + exitButtonWidth &&
+                mouseY >= exitButtonY && mouseY <= exitButtonY + exitButtonHeight) {
+                Gdx.app.exit();
+                System.out.println("Game exit");
+            }
         }
     }
 
@@ -242,6 +258,7 @@ public class Main extends ApplicationAdapter {
 
         spriteBatch.draw(backgroundTexture, 0, 0, screenWidth, screenHeight);
         spriteBatch.draw(playButtonTexture, playButtonX, playButtonY, playButtonWidth, playButtonHeight);
+        spriteBatch.draw(exitButtonTexture, exitButtonX, exitButtonY, exitButtonWidth, exitButtonHeight);
 
         spriteBatch.end();
     }
