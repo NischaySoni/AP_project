@@ -8,11 +8,13 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.ScreenUtils;
 
 public class LevelScreen implements Screen {
-    private SpriteBatch spriteBatch;
-    private Texture gameBackgroundTexture;
+    private final SpriteBatch spriteBatch;
+    private final Texture gameBackgroundTexture;
+
+    float backButtonX, backButtonY, backButtonWidth, backButtonHeight;
 
     public LevelScreen(SpriteBatch spriteBatch) {
-        System.out.println("Hello World");
+//        System.out.println("Hello World");
         this.spriteBatch = spriteBatch;
         gameBackgroundTexture = new Texture("levelScreenImg.png"); // Replace with your game background image
     }
@@ -32,7 +34,7 @@ public class LevelScreen implements Screen {
 
     @Override
     public void resize(int width, int height) {
-        // Handle resizing if needed
+
     }
 
     @Override
@@ -49,3 +51,15 @@ public class LevelScreen implements Screen {
         gameBackgroundTexture.dispose();
     }
 }
+
+
+//TextButton backButton = new TextButton("Back", skin);
+//        backButton.setPosition(100, 400); // Adjust position as needed
+//        backButton.addListener(new ClickListener() {
+//    @Override
+//    public void clicked(InputEvent event, float x, float y) {
+//        game.setScreen(new PreviousScreen(game)); // Replace with your actual previous screen
+//    }
+//});
+
+

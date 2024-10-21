@@ -267,6 +267,8 @@ public class Main extends Game {    // change from ApplicationAdapter to Game
 
     private void startGame() {
         System.out.println("Starting the game...");
+
+//        LevelScreen levelScreen = new LevelScreen(this,spriteBatch);
         LevelScreen levelScreen = new LevelScreen(spriteBatch);
         setScreen(levelScreen);
 //        setScreen(new LevelScreen(spriteBatch));
@@ -288,6 +290,7 @@ public class Main extends Game {    // change from ApplicationAdapter to Game
         music.dispose();
         spriteBatch.dispose();
         playButtonTexture.dispose();
+        exitButtonTexture.dispose();
     }
 }
 
