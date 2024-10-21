@@ -177,7 +177,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 
-public class Main extends Game {
+public class Main extends Game {    // change from ApplicationAdapter to Game
     Texture backgroundTexture;
     Music music;
     ScreenViewport viewport;
@@ -211,8 +211,6 @@ public class Main extends Game {
         exitButtonX = (Gdx.graphics.getWidth() - exitButtonWidth) / 2; // Centered
         exitButtonY = playButtonY - 120;
 
-//        setScreen(this);
-
     }
 
     @Override
@@ -220,6 +218,7 @@ public class Main extends Game {
         input();
         logic();
         draw();
+        super.render();
     }
 
     private void input() {
@@ -268,6 +267,8 @@ public class Main extends Game {
 
     private void startGame() {
         System.out.println("Starting the game...");
+        LevelScreen levelScreen = new LevelScreen(spriteBatch);
+        setScreen(levelScreen);
 //        setScreen(new LevelScreen(spriteBatch));
     }
 

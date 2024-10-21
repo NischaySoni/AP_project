@@ -1,31 +1,51 @@
 package io.github.ap;
 
-import com.badlogic.gdx.ApplicationAdapter;
-import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
-import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.ScreenUtils;
-import com.badlogic.gdx.utils.viewport.ScreenViewport;
 
-public class LevelScreen extends Game {
-//    private final SpriteBatch spriteBatch;
-//    private final Texture levelTexture;
-//
-//    public LevelScreen(SpriteBatch spriteBatch) {
-//        this.spriteBatch = spriteBatch;
-//        levelTexture = new Texture("levelScreenImg.png"); // Load your level background
-//    }
+public class LevelScreen implements Screen {
+    private SpriteBatch spriteBatch;
+    private Texture gameBackgroundTexture;
 
-    public LevelScreen() {
-        super();
+    public LevelScreen(SpriteBatch spriteBatch) {
+        System.out.println("Hello World");
+        this.spriteBatch = spriteBatch;
+        gameBackgroundTexture = new Texture("levelScreenImg.png"); // Replace with your game background image
     }
 
     @Override
-    public void create() {
+    public void show() {
 
+    }
+
+    @Override
+    public void render(float delta) {
+        ScreenUtils.clear(Color.BLACK); // Clear the screen to black
+        spriteBatch.begin();
+        spriteBatch.draw(gameBackgroundTexture, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+        spriteBatch.end();
+    }
+
+    @Override
+    public void resize(int width, int height) {
+        // Handle resizing if needed
+    }
+
+    @Override
+    public void pause() {}
+
+    @Override
+    public void resume() {}
+
+    @Override
+    public void hide() {}
+
+    @Override
+    public void dispose() {
+        gameBackgroundTexture.dispose();
     }
 }
