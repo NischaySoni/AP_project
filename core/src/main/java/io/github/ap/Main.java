@@ -168,6 +168,7 @@ import com.badlogic.gdx.Application;
 
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.Color;
@@ -176,7 +177,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 
-public class Main extends ApplicationAdapter {
+public class Main extends Game {
     Texture backgroundTexture;
     Music music;
     ScreenViewport viewport;
@@ -200,14 +201,17 @@ public class Main extends ApplicationAdapter {
         playButtonTexture = new Texture("play.png");
         playButtonWidth = 200;
         playButtonHeight = 100;
-        playButtonX = (float) (Gdx.graphics.getWidth()) / 2;
+        playButtonX = (Gdx.graphics.getWidth() - playButtonWidth) / 2; // Centered
+//        playButtonX = (float) (Gdx.graphics.getWidth()) / 2;
         playButtonY = (float) (Gdx.graphics.getHeight()) / 2;
 
         exitButtonTexture = new Texture("Exit.png");
-        exitButtonWidth = 200;
-        exitButtonHeight = 100;
+        exitButtonWidth = 50;
+        exitButtonHeight = 50;
         exitButtonX = (Gdx.graphics.getWidth() - exitButtonWidth) / 2; // Centered
         exitButtonY = playButtonY - 120;
+
+//        setScreen(this);
 
     }
 
@@ -264,6 +268,7 @@ public class Main extends ApplicationAdapter {
 
     private void startGame() {
         System.out.println("Starting the game...");
+//        setScreen(new LevelScreen(spriteBatch));
     }
 
     @Override
