@@ -1,4 +1,4 @@
-package ExternalLibraries;
+package com.gamefromscratch.graphicsdemo;
 
 import com.badlogic.gdx.game;
 //import com.badlogic.gdx.Screen;

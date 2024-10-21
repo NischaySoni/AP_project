@@ -7,9 +7,9 @@ import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 
 
-public class Screen1 {
+public class Screen {
 
-    public Screen1() {
+    public Screen() {
 
         ImageIcon imageIcon1 = new ImageIcon("cover.png");
         ImageIcon imageIcon2 = new ImageIcon("logo2.png");
@@ -42,7 +42,7 @@ public class Screen1 {
             public void actionPerformed(ActionEvent e) {
                 System.out.println("Game Started");
                 new LevelScreen(frame);
-                frame.setVisible(false);
+//                frame.setVisible(false);
 
             }
         });
