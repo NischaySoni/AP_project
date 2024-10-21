@@ -16,7 +16,6 @@ package io.github.ap;
  import com.badlogic.gdx.audio.Sound;
  import com.badlogic.gdx.utils.viewport.FitViewport;
  **/
-
 /** {@link com.badlogic.gdx.ApplicationListener} implementation shared by all platforms. */
 
 import com.badlogic.gdx.Application;
