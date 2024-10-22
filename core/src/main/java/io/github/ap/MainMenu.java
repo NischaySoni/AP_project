@@ -18,6 +18,7 @@ public class MainMenu implements Screen {
         this.spriteBatch = spriteBatch;
         backgroundTexture = new Texture("cover.png");
         playButtonTexture = new Texture("play.png");
+//        playButtonTexture = new Texture("play Button.png");
         exitButtonTexture = new Texture("exit.png");
     }
 
@@ -32,7 +33,12 @@ public class MainMenu implements Screen {
         spriteBatch.draw(backgroundTexture, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         spriteBatch.draw(playButtonTexture, 770, 420, 400, 200);
         spriteBatch.draw(exitButtonTexture, 925, 200, 100, 100);
+
+//        spriteBatch.draw(playButtonTexture, 860, 510, 200, 100);
+//        spriteBatch.draw(exitButtonTexture, 925, 200, 100, 100);
+
         spriteBatch.end();
+
 
         if (Gdx.input.isButtonJustPressed(Input.Buttons.LEFT)) {
             float mouseX = Gdx.input.getX();
