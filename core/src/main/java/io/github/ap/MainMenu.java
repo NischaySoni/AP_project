@@ -16,7 +16,8 @@ public class MainMenu implements Screen {
 
     public MainMenu(SpriteBatch spriteBatch) {
         this.spriteBatch = spriteBatch;
-        backgroundTexture = new Texture("cover.png");
+//        backgroundTexture = new Texture("cover.png");
+        backgroundTexture = new Texture("starting.jpg");
         playButtonTexture = new Texture("play.png");
 //        playButtonTexture = new Texture("play Button.png");
         exitButtonTexture = new Texture("exit.png");

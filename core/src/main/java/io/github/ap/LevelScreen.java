@@ -26,7 +26,8 @@ public class LevelScreen implements Screen {
     public LevelScreen(SpriteBatch spriteBatch, Main main) {
         this.main = main;
         this.spriteBatch = spriteBatch;
-        gameBackgroundTexture = new Texture("level.jpg");
+//        gameBackgroundTexture = new Texture("level.jpg");
+        gameBackgroundTexture = new Texture("Space.jpg");
         backButtonTexture = new Texture("BackButton.png");
         level1Texture = new Texture("LevelButton.png");
         level2Texture = new Texture("LevelButton.png");
