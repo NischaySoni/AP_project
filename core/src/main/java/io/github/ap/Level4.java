@@ -21,7 +21,13 @@ public class Level4 extends Levels {
         ScreenUtils.clear(Color.BLACK);
         spriteBatch.begin();
         spriteBatch.draw(levelTexture, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-        spriteBatch.draw(backButtonTexture, 20, Gdx.graphics.getHeight() - 70, 150, 50);
+        spriteBatch.draw(backButtonTexture, 20, Gdx.graphics.getHeight() - 150, 150, 150);
+        spriteBatch.draw(slingShotTexture, 400, 200, 150, 300);
+        spriteBatch.draw(redTexture, 100, 200, 70, 70);
+        spriteBatch.draw(chuckTexture, 200, 200, 70, 70);
+        spriteBatch.draw(bluesTexture, 300, 200, 50, 50);
+        spriteBatch.draw(bombTexture, 200, 400, 90, 90);
+        spriteBatch.draw(kingPigTexture, 1000, 200, 120, 120);
         spriteBatch.end();
         input();
     }
@@ -31,7 +37,7 @@ public class Level4 extends Levels {
             float mouseX = Gdx.input.getX();
             float mouseY = Gdx.graphics.getHeight() - Gdx.input.getY();
 
-            if (mouseX >= 20 && mouseX <= 170 && mouseY >= Gdx.graphics.getHeight() - 70 && mouseY <= Gdx.graphics.getHeight()) {
+            if (mouseX >= 20 && mouseX <= 170 && mouseY >= Gdx.graphics.getHeight() - 150 && mouseY <= Gdx.graphics.getHeight()) {
                 main.setScreen(new LevelScreen(spriteBatch, main));
             }
         }

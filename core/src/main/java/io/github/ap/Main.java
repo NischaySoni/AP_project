@@ -24,7 +24,7 @@ public class Main extends Game {
     public void create() {
         Gdx.graphics.setFullscreenMode(Gdx.graphics.getDisplayMode());
         backgroundTexture = new Texture("cover.png");
-        music = Gdx.audio.newMusic(Gdx.files.internal("bgm.wav"));
+        music = Gdx.audio.newMusic(Gdx.files.internal("music.mp3"));
         viewport = new ScreenViewport();
         spriteBatch = new SpriteBatch();
         music.setLooping(true);

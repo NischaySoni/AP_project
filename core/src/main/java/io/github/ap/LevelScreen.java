@@ -48,11 +48,11 @@ public class LevelScreen implements Screen {
         spriteBatch.begin();
         spriteBatch.draw(gameBackgroundTexture, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         spriteBatch.draw(backButtonTexture, backButtonX, backButtonY, backButtonWidth, backButtonHeight);
-        spriteBatch.draw(level1Texture, 300, 300, 200, 200);
-        spriteBatch.draw(level2Texture, 500, 500, 200, 200);
-        spriteBatch.draw(level3Texture, 700, 300, 200, 200);
-        spriteBatch.draw(level4Texture, 900, 500, 200, 200);
-        spriteBatch.draw(level5Texture, 1100, 300, 200, 200);
+        spriteBatch.draw(level1Texture, 300, 300, 300, 300);
+        spriteBatch.draw(level2Texture, 500, 500, 300, 300);
+        spriteBatch.draw(level3Texture, 700, 300, 300, 300);
+        spriteBatch.draw(level4Texture, 900, 500, 300, 300);
+        spriteBatch.draw(level5Texture, 1100, 300, 300, 300);
         spriteBatch.end();
 
         input();

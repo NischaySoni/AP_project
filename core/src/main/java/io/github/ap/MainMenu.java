@@ -30,7 +30,7 @@ public class MainMenu implements Screen {
         ScreenUtils.clear(Color.BLACK); // Clear the screen to black
         spriteBatch.begin();
         spriteBatch.draw(backgroundTexture, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-        spriteBatch.draw(playButtonTexture, 770, 450, 400, 200);
+        spriteBatch.draw(playButtonTexture, 770, 420, 400, 200);
         spriteBatch.draw(exitButtonTexture, 925, 200, 100, 100);
         spriteBatch.end();
 
@@ -38,7 +38,7 @@ public class MainMenu implements Screen {
             float mouseX = Gdx.input.getX();
             float mouseY = Gdx.graphics.getHeight() - Gdx.input.getY();
 
-            if (mouseX >= 770 && mouseX <= 1170 && mouseY >= 450 && mouseY <= 650) {
+            if (mouseX >= 770 && mouseX <= 1170 && mouseY >= 420 && mouseY <= 620) {
                 ((Main) Gdx.app.getApplicationListener()).startGame();
             }
         }
