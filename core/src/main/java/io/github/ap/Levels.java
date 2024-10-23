@@ -20,6 +20,10 @@ public class Levels extends ScreenAdapter {
     protected final Texture bombTexture;
     protected final Texture slingShotTexture;
     protected final Texture kingPigTexture;
+    protected final Texture wood;
+    protected final Texture stone;
+    protected final Texture glass;
+    protected final Texture tnt;
 
 
     public Levels(Main main, SpriteBatch spriteBatch) {
@@ -33,7 +37,10 @@ public class Levels extends ScreenAdapter {
         this.bombTexture = new Texture("bomb.png");
         this.slingShotTexture = new Texture("slingShot.png");
         this.kingPigTexture = new Texture("kingPig.png");
-
+        this.wood = new Texture("wood.png");
+        this.stone = new Texture("stone.png");
+        this.glass = new Texture("glass.png");
+        this.tnt = new Texture("TNT.png");
     }
 
     @Override
@@ -73,5 +80,9 @@ public class Levels extends ScreenAdapter {
         bombTexture.dispose();
         slingShotTexture.dispose();
         kingPigTexture.dispose();
+        wood.dispose();
+        stone.dispose();
+        glass.dispose();
+        tnt.dispose();
     }
 }

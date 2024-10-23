@@ -26,8 +26,12 @@ public class Level3 extends Levels {
         spriteBatch.draw(redTexture, 100, 200, 100, 100);
         spriteBatch.draw(chuckTexture, 200, 200, 100, 100);
         spriteBatch.draw(bluesTexture, 300, 200, 70, 70);
-        spriteBatch.draw(bombTexture, 200, 400, 130, 130);
-        spriteBatch.draw(kingPigTexture, 1000, 200, 160, 160);
+        spriteBatch.draw(bombTexture, 370, 400, 130, 130);
+        spriteBatch.draw(kingPigTexture, 1300, 200, 160, 160);
+        spriteBatch.draw(wood, 1020, 400, 700, 50);
+        spriteBatch.draw(glass, 1200, 200,50,200);
+        spriteBatch.draw(stone, 1500, 200, 50, 200);
+        spriteBatch.draw(tnt, 1300, 450, 150, 70);
         spriteBatch.end();
         input();
     }

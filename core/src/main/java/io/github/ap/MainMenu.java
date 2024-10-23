@@ -31,12 +31,10 @@ public class MainMenu implements Screen {
     public void render(float delta) {
         ScreenUtils.clear(Color.BLACK); // Clear the screen to black
         spriteBatch.begin();
-        spriteBatch.draw(backgroundTexture, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-        spriteBatch.draw(playButtonTexture, 770, 420, 400, 200);
-        spriteBatch.draw(exitButtonTexture, 925, 200, 100, 100);
 
-//        spriteBatch.draw(playButtonTexture, 860, 510, 200, 100);
-//        spriteBatch.draw(exitButtonTexture, 925, 200, 100, 100);
+        spriteBatch.draw(backgroundTexture, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+        spriteBatch.draw(playButtonTexture, 720, 420, 500, 250);
+        spriteBatch.draw(exitButtonTexture, 925, 200, 100, 100);
 
         spriteBatch.end();
 
