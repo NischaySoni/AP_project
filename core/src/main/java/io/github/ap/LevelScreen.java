@@ -36,7 +36,7 @@ public class LevelScreen implements Screen {
         level5Texture = new Texture("LevelButton.png");
 
         backButtonX = 20;
-        backButtonY = Gdx.graphics.getHeight() - backButtonHeight - 20; // 20 pixels from the top
+        backButtonY = Gdx.graphics.getHeight() - backButtonHeight - 20;
     }
 
     @Override
