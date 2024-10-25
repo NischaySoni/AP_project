@@ -29,7 +29,7 @@ public class Pause implements Screen {
         backgroundTexture = new Texture("Space.jpg");
         backButtonTexture = new Texture("ingameplay.png");
         restartTexture = new Texture("again.png");
-        playTexture = new Texture("back1.png");
+        playTexture = new Texture("menu.png");
     }
 
     public void setVisible(boolean visible) {
@@ -47,7 +47,6 @@ public class Pause implements Screen {
         spriteBatch.begin();
         spriteBatch.draw(backgroundTexture, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 
-        // Button dimensions (assuming all buttons have the same size)
         float buttonWidth = 200;
         float buttonHeight = 100;
 
@@ -62,7 +61,7 @@ public class Pause implements Screen {
 
         spriteBatch.end();
 
-        input(); // Handle input
+        input();
     }
 
     public void input() {
@@ -77,7 +76,7 @@ public class Pause implements Screen {
 
                 // Calculate button positions
                 float centerX = (Gdx.graphics.getWidth() - buttonWidth) / 2;
-                float centerY = (Gdx.graphics.getHeight() - (3 * buttonHeight + 40)) / 2; // Center Y calculation
+                float centerY = (Gdx.graphics.getHeight() - (3 * buttonHeight + 40)) / 2;
 
                 // Check if the back button is clicked
                 if (mouseX >= centerX && mouseX <= centerX + buttonWidth && mouseY >= centerY + 2 * (buttonHeight + 20) && mouseY <= centerY + 2 * (buttonHeight + 20) + buttonHeight) {
@@ -90,15 +89,14 @@ public class Pause implements Screen {
                 }
 
 
-                if (mouseX >= centerX && mouseX <= centerX + buttonWidth &&
-                    mouseY >= centerY + buttonHeight + 20 && mouseY <= centerY + buttonHeight + 20 + buttonHeight) {
+                if (mouseX >= centerX && mouseX <= centerX + buttonWidth && mouseY >= centerY + buttonHeight + 20 && mouseY <= centerY + buttonHeight + 20 + buttonHeight) {
                     System.out.println("Restart button clicked");
                     main.setScreen(currentLevel);
+//                    Screen newlevel = new (currentLevel);
 
                 }
 
-                if (mouseX >= centerX && mouseX <= centerX + buttonWidth &&
-                    mouseY >= centerY && mouseY <= centerY + buttonHeight) {
+                if (mouseX >= centerX && mouseX <= centerX + buttonWidth && mouseY >= centerY && mouseY <= centerY + buttonHeight) {
                     System.out.println("Play button clicked");
                     setVisible(false); // Hide the pause menu
                     main.setScreen(currentLevel);
