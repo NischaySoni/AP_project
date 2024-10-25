@@ -4,7 +4,9 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.utils.ScreenUtils;
+
 
 public class Level1 extends Levels {
     public Level1(Main main, SpriteBatch spriteBatch) {
@@ -32,6 +34,10 @@ public class Level1 extends Levels {
         spriteBatch.draw(glass, 1200, 200,50,200);
         spriteBatch.draw(stone, 1500, 200, 50, 200);
         spriteBatch.draw(tnt, 1300, 450, 150, 70);
+
+        float pauseX = (Gdx.graphics.getWidth() - 50) / 2f;
+        float pauseY = Gdx.graphics.getHeight() - 70;
+        spriteBatch.draw(pause, pauseX, pauseY, 50, 50);
         spriteBatch.end();
         input();
     }
