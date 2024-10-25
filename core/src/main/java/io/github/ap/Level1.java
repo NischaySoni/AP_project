@@ -6,11 +6,17 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.utils.ScreenUtils;
+import javax.lang.model.util.SimpleElementVisitor14;
 
 
 public class Level1 extends Levels {
+
+    private boolean isPaused = false;
+//    private final Pause pauseMenu;
+
     public Level1(Main main, SpriteBatch spriteBatch) {
         super(main, spriteBatch);
+
     }
 
     @Override
@@ -39,6 +45,11 @@ public class Level1 extends Levels {
         float pauseY = Gdx.graphics.getHeight() - 70;
         spriteBatch.draw(pause, pauseX, pauseY, 50, 50);
         spriteBatch.end();
+//        if (isPaused) {
+//            Pause pauseMenu = new Pause(main, spriteBatch, this); // Handle input for the pause menu
+//        } else {
+//            input(); // Handle input for the game
+//        }
         input();
     }
 
@@ -50,6 +61,24 @@ public class Level1 extends Levels {
             if (mouseX >= 20 && mouseX <= 270 && mouseY >= Gdx.graphics.getHeight() - 150 && mouseY <= Gdx.graphics.getHeight()) {
                 main.setScreen(new LevelScreen(spriteBatch, main));
             }
+
+            float pauseX = (Gdx.graphics.getWidth() - 50) / 2f;
+            float pauseY = Gdx.graphics.getHeight() - 70;
+            if (mouseX >= pauseX && mouseX <= pauseX + 50 && mouseY >= pauseY && mouseY <= pauseY + 50) {
+                isPaused = !isPaused; // Toggle pause state
+                if (isPaused) {
+                    System.out.println("Game is paused");
+                    Pause pauseMenu = new Pause(main, spriteBatch, this);
+                    pauseMenu.setVisible(true);
+                    main.setScreen(pauseMenu);
+//                    pause();
+                }
+//                else {
+//                    System.out.println("Game is resumed");
+//                }
+            }
+
+
         }
     }
 
@@ -61,6 +90,7 @@ public class Level1 extends Levels {
 
     @Override
     public void pause() {
+//        new Pause(main, spriteBatch),this;
     }
 
     @Override

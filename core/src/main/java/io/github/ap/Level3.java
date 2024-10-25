@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.ScreenUtils;
 
 public class Level3 extends Levels {
+    private boolean isPaused = false;
     public Level3(Main main, SpriteBatch spriteBatch) {
         super(main, spriteBatch);
     }
@@ -47,6 +48,17 @@ public class Level3 extends Levels {
 
             if (mouseX >= 20 && mouseX <= 270 && mouseY >= Gdx.graphics.getHeight() - 150 && mouseY <= Gdx.graphics.getHeight()) {
                 main.setScreen(new LevelScreen(spriteBatch, main));
+            }
+            float pauseX = (Gdx.graphics.getWidth() - 50) / 2f;
+            float pauseY = Gdx.graphics.getHeight() - 70;
+            if (mouseX >= pauseX && mouseX <= pauseX + 50 && mouseY >= pauseY && mouseY <= pauseY + 50) {
+                isPaused = !isPaused; // Toggle pause state
+                if (isPaused) {
+                    System.out.println("Game is paused");
+                }
+//                else {
+//                    System.out.println("Game is resumed");
+//                }
             }
         }
     }
