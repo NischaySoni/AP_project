@@ -50,11 +50,9 @@ public class Pause implements Screen {
         float buttonWidth = 200;
         float buttonHeight = 100;
 
-        // Calculate button positions
         float centerX = (Gdx.graphics.getWidth() - buttonWidth) / 2;
         float centerY = (Gdx.graphics.getHeight() - (3 * buttonHeight + 40)) / 2;
 
-        // Draw buttons
         spriteBatch.draw(backButtonTexture, centerX, centerY + 2 * (buttonHeight + 20), buttonWidth, buttonHeight);
         spriteBatch.draw(restartTexture, centerX, centerY + buttonHeight + 20, buttonWidth, buttonHeight);
         spriteBatch.draw(playTexture, centerX, centerY, buttonWidth, buttonHeight);
@@ -82,27 +80,21 @@ public class Pause implements Screen {
                     setVisible(false);
                     Screen Levelscreen = new LevelScreen(spriteBatch, main);
                     main.setScreen(Levelscreen);
-
-
                 }
 
 
                 if (mouseX >= centerX && mouseX <= centerX + buttonWidth && mouseY >= centerY + buttonHeight + 20 && mouseY <= centerY + buttonHeight + 20 + buttonHeight) {
                     System.out.println("Restart button clicked");
                     main.setScreen(currentLevel);
-//                    Screen newlevel = new (currentLevel);
-
                 }
 
                 if (mouseX >= centerX && mouseX <= centerX + buttonWidth && mouseY >= centerY && mouseY <= centerY + buttonHeight) {
                     System.out.println("Play button clicked");
-                    setVisible(false); // Hide the pause menu
+                    setVisible(false);
                     main.setScreen(currentLevel);
                 }
             }
         }
-
-
     }
 
     @Override
