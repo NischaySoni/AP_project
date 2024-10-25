@@ -3,13 +3,20 @@ package io.github.ap;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.ScreenUtils;
 
 public class Level3 extends Levels {
+
     private boolean isPaused = false;
+    private BitmapFont font;
+
     public Level3(Main main, SpriteBatch spriteBatch) {
         super(main, spriteBatch);
+        font = new BitmapFont();
+        font.setColor(Color.WHITE);
+        font.getData().setScale(3);
     }
 
     @Override
@@ -37,7 +44,14 @@ public class Level3 extends Levels {
         float pauseX = (Gdx.graphics.getWidth() - 50) / 2f;
         float pauseY = Gdx.graphics.getHeight() - 70;
         spriteBatch.draw(pause, pauseX, pauseY, 50, 50);
+
+        String text = "Score: 0";
+        float textX = Gdx.graphics.getWidth() - font.getRegion().getRegionWidth() - 20;
+        float textY = Gdx.graphics.getHeight() - 20;
+        font.draw(spriteBatch, text, textX, textY);
+
         spriteBatch.end();
+
         input();
     }
 
@@ -49,6 +63,7 @@ public class Level3 extends Levels {
             if (mouseX >= 20 && mouseX <= 270 && mouseY >= Gdx.graphics.getHeight() - 150 && mouseY <= Gdx.graphics.getHeight()) {
                 main.setScreen(new LevelScreen(spriteBatch, main));
             }
+
             float pauseX = (Gdx.graphics.getWidth() - 50) / 2f;
             float pauseY = Gdx.graphics.getHeight() - 70;
             if (mouseX >= pauseX && mouseX <= pauseX + 50 && mouseY >= pauseY && mouseY <= pauseY + 50) {
@@ -58,10 +73,10 @@ public class Level3 extends Levels {
                     Pause pauseMenu = new Pause(main, spriteBatch, this);
                     main.setScreen(pauseMenu);
                 }
-//                else {
-//                    System.out.println("Game is resumed");
-//                }
+
             }
+
+
         }
     }
 
@@ -86,5 +101,6 @@ public class Level3 extends Levels {
     @Override
     public void dispose() {
         super.dispose();
+        font.dispose();
     }
 }

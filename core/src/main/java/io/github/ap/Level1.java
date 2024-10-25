@@ -3,22 +3,20 @@ package io.github.ap;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.utils.ScreenUtils;
-import javax.lang.model.util.SimpleElementVisitor14;
-
-
 
 public class Level1 extends Levels {
 
     private boolean isPaused = false;
-
-
+    private BitmapFont font;
 
     public Level1(Main main, SpriteBatch spriteBatch) {
         super(main, spriteBatch);
-
+        font = new BitmapFont();
+        font.setColor(Color.WHITE);
+        font.getData().setScale(3);
     }
 
     @Override
@@ -46,6 +44,12 @@ public class Level1 extends Levels {
         float pauseX = (Gdx.graphics.getWidth() - 50) / 2f;
         float pauseY = Gdx.graphics.getHeight() - 70;
         spriteBatch.draw(pause, pauseX, pauseY, 50, 50);
+
+        String text = "Score: 0";
+        float textX = Gdx.graphics.getWidth() - font.getRegion().getRegionWidth() - 20;
+        float textY = Gdx.graphics.getHeight() - 20;
+        font.draw(spriteBatch, text, textX, textY);
+
         spriteBatch.end();
 
         input();
@@ -84,7 +88,6 @@ public class Level1 extends Levels {
 
     @Override
     public void pause() {
-//        new Pause(main, spriteBatch),this;
     }
 
     @Override
@@ -98,5 +101,6 @@ public class Level1 extends Levels {
     @Override
     public void dispose() {
         super.dispose();
+        font.dispose();
     }
 }
