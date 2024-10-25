@@ -55,6 +55,8 @@ public class Level4 extends Levels {
                 isPaused = !isPaused; // Toggle pause state
                 if (isPaused) {
                     System.out.println("Game is paused");
+                    Pause pauseMenu = new Pause(main, spriteBatch, this);
+                    main.setScreen(pauseMenu);
                 }
 //                else {
 //                    System.out.println("Game is resumed");

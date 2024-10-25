@@ -45,11 +45,7 @@ public class Level1 extends Levels {
         float pauseY = Gdx.graphics.getHeight() - 70;
         spriteBatch.draw(pause, pauseX, pauseY, 50, 50);
         spriteBatch.end();
-//        if (isPaused) {
-//            Pause pauseMenu = new Pause(main, spriteBatch, this); // Handle input for the pause menu
-//        } else {
-//            input(); // Handle input for the game
-//        }
+
         input();
     }
 
@@ -69,13 +65,9 @@ public class Level1 extends Levels {
                 if (isPaused) {
                     System.out.println("Game is paused");
                     Pause pauseMenu = new Pause(main, spriteBatch, this);
-                    pauseMenu.setVisible(true);
                     main.setScreen(pauseMenu);
-//                    pause();
                 }
-//                else {
-//                    System.out.println("Game is resumed");
-//                }
+
             }
 
 
