@@ -43,10 +43,8 @@ public class Levels extends ScreenAdapter {
         this.wood = new Texture("wood.png");
         this.stone = new Texture("stone.png");
         this.glass = new Texture("glass.png");
-        this.pause = new Texture("pause.png");
         this.tnt = new Texture("TNT.png");
-
-
+        this.pause = new Texture("pause.png");
     }
 
     @Override
@@ -89,7 +87,7 @@ public class Levels extends ScreenAdapter {
         wood.dispose();
         stone.dispose();
         glass.dispose();
-        pause.dispose();
         tnt.dispose();
+        pause.dispose();
     }
 }

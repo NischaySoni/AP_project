@@ -16,10 +16,8 @@ public class MainMenu implements Screen {
 
     public MainMenu(SpriteBatch spriteBatch) {
         this.spriteBatch = spriteBatch;
-//        backgroundTexture = new Texture("cover.png");
         backgroundTexture = new Texture("starting.jpg");
         playButtonTexture = new Texture("play.png");
-//        playButtonTexture = new Texture("play Button.png");
         exitButtonTexture = new Texture("exit.png");
     }
 
@@ -29,7 +27,7 @@ public class MainMenu implements Screen {
 
     @Override
     public void render(float delta) {
-        ScreenUtils.clear(Color.BLACK); // Clear the screen to black
+        ScreenUtils.clear(Color.BLACK);
         spriteBatch.begin();
 
         spriteBatch.draw(backgroundTexture, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
@@ -45,6 +43,9 @@ public class MainMenu implements Screen {
 
             if (mouseX >= 770 && mouseX <= 1170 && mouseY >= 420 && mouseY <= 620) {
                 ((Main) Gdx.app.getApplicationListener()).startGame();
+            }
+            if (mouseX >= 925 && mouseX <= 1025 && mouseY >= 200 && mouseY <= 300) {
+                Gdx.app.exit();
             }
         }
     }

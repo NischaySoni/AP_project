@@ -32,6 +32,10 @@ public class Level2 extends Levels {
         spriteBatch.draw(glass, 1200, 200,50,200);
         spriteBatch.draw(stone, 1500, 200, 50, 200);
         spriteBatch.draw(tnt, 1300, 450, 150, 70);
+
+        float pauseX = (Gdx.graphics.getWidth() - 50) / 2f;
+        float pauseY = Gdx.graphics.getHeight() - 70;
+        spriteBatch.draw(pause, pauseX, pauseY, 50, 50);
         spriteBatch.end();
         input();
     }

@@ -18,15 +18,10 @@ public class LevelScreen implements Screen {
     private final Texture level4Texture;
     private final Texture level5Texture;
     private final Main main;
-    private final float backButtonX;
-    private final float backButtonY;
-    private final float backButtonWidth = 400;
-    private final float backButtonHeight = 200;
 
     public LevelScreen(SpriteBatch spriteBatch, Main main) {
         this.main = main;
         this.spriteBatch = spriteBatch;
-//        gameBackgroundTexture = new Texture("level.jpg");
         gameBackgroundTexture = new Texture("Space.jpg");
         backButtonTexture = new Texture("BackButton.png");
         level1Texture = new Texture("LevelButton.png");
@@ -34,9 +29,6 @@ public class LevelScreen implements Screen {
         level3Texture = new Texture("LevelButton.png");
         level4Texture = new Texture("LevelButton.png");
         level5Texture = new Texture("LevelButton.png");
-
-        backButtonX = 20;
-        backButtonY = Gdx.graphics.getHeight() - backButtonHeight - 20;
     }
 
     @Override
@@ -48,7 +40,7 @@ public class LevelScreen implements Screen {
         ScreenUtils.clear(Color.BLACK);
         spriteBatch.begin();
         spriteBatch.draw(gameBackgroundTexture, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-        spriteBatch.draw(backButtonTexture, backButtonX, backButtonY, backButtonWidth, backButtonHeight);
+        spriteBatch.draw(backButtonTexture, 20, Gdx.graphics.getHeight() - 150, 250, 150);
         spriteBatch.draw(level1Texture, 300, 300, 300, 300);
         spriteBatch.draw(level2Texture, 500, 500, 300, 300);
         spriteBatch.draw(level3Texture, 700, 300, 300, 300);
@@ -64,8 +56,7 @@ public class LevelScreen implements Screen {
             float mouseX = Gdx.input.getX();
             float mouseY = Gdx.graphics.getHeight() - Gdx.input.getY();
 
-            if (mouseX >= backButtonX && mouseX <= backButtonX + backButtonWidth &&
-                mouseY >= backButtonY && mouseY <= backButtonY + backButtonHeight) {
+            if (mouseX >= 20 && mouseX <= 270 && mouseY >= Gdx.graphics.getHeight() - 150 && mouseY <= Gdx.graphics.getHeight()) {
                 System.out.println("Back button clicked!");
                 main.setScreen(new MainMenu(spriteBatch));
             } else if (mouseX >= 300 && mouseX <= 500 && mouseY >= 300 && mouseY <= 500) {
