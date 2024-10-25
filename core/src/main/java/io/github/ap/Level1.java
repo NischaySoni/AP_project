@@ -9,10 +9,12 @@ import com.badlogic.gdx.utils.ScreenUtils;
 import javax.lang.model.util.SimpleElementVisitor14;
 
 
+
 public class Level1 extends Levels {
 
     private boolean isPaused = false;
-//    private final Pause pauseMenu;
+
+
 
     public Level1(Main main, SpriteBatch spriteBatch) {
         super(main, spriteBatch);

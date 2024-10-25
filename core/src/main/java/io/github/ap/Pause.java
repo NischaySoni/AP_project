@@ -26,10 +26,10 @@ public class Pause implements Screen {
         this.spriteBatch = spriteBatch;
         this.currentLevel = currentLevel;
 
-        backgroundTexture = new Texture("Space.jpg");
+        backgroundTexture = new Texture("stop background.jpg");
         backButtonTexture = new Texture("ingameplay.png");
         restartTexture = new Texture("again.png");
-        playTexture = new Texture("menu.png");
+        playTexture = new Texture("menu1.png");
     }
 
     public void setVisible(boolean visible) {
@@ -52,7 +52,7 @@ public class Pause implements Screen {
 
         // Calculate button positions
         float centerX = (Gdx.graphics.getWidth() - buttonWidth) / 2;
-        float centerY = (Gdx.graphics.getHeight() - (3 * buttonHeight + 40)) / 2; // 40 for spacing between buttons
+        float centerY = (Gdx.graphics.getHeight() - (3 * buttonHeight + 40)) / 2;
 
         // Draw buttons
         spriteBatch.draw(backButtonTexture, centerX, centerY + 2 * (buttonHeight + 20), buttonWidth, buttonHeight);
@@ -70,15 +70,13 @@ public class Pause implements Screen {
                 float mouseX = Gdx.input.getX();
                 float mouseY = Gdx.input.getY();
 
-                // Button dimensions
+
                 float buttonWidth = 200;
                 float buttonHeight = 100;
 
-                // Calculate button positions
                 float centerX = (Gdx.graphics.getWidth() - buttonWidth) / 2;
                 float centerY = (Gdx.graphics.getHeight() - (3 * buttonHeight + 40)) / 2;
 
-                // Check if the back button is clicked
                 if (mouseX >= centerX && mouseX <= centerX + buttonWidth && mouseY >= centerY + 2 * (buttonHeight + 20) && mouseY <= centerY + 2 * (buttonHeight + 20) + buttonHeight) {
                     System.out.println("menu button clicked");
                     setVisible(false);
