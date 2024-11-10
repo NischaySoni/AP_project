@@ -19,6 +19,13 @@ public class LevelScreen implements Screen {
     private final Texture level5Texture;
     private final Main main;
 
+    private final int buttonSize = 300;
+    private final int hoverButtonSize = 350;
+    private final int backButtonWidth = 250;
+    private final int backButtonHeight = 150;
+    private final int hoverBackButtonWidth = 275;
+    private final int hoverBackButtonHeight = 175;
+
     public LevelScreen(SpriteBatch spriteBatch, Main main) {
         this.main = main;
         this.spriteBatch = spriteBatch;
@@ -40,15 +47,32 @@ public class LevelScreen implements Screen {
         ScreenUtils.clear(Color.BLACK);
         spriteBatch.begin();
         spriteBatch.draw(gameBackgroundTexture, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-        spriteBatch.draw(backButtonTexture, 20, Gdx.graphics.getHeight() - 150, 250, 150);
-        spriteBatch.draw(level1Texture, 300, 300, 300, 300);
-        spriteBatch.draw(level2Texture, 500, 500, 300, 300);
-        spriteBatch.draw(level3Texture, 700, 300, 300, 300);
-        spriteBatch.draw(level4Texture, 900, 500, 300, 300);
-        spriteBatch.draw(level5Texture, 1100, 300, 300, 300);
+
+        float mouseX = Gdx.input.getX();
+        float mouseY = Gdx.graphics.getHeight() - Gdx.input.getY();
+
+        drawButtonWithHover(mouseX, mouseY, 20, Gdx.graphics.getHeight() - 150, backButtonTexture, backButtonWidth, backButtonHeight, hoverBackButtonWidth, hoverBackButtonHeight);
+        drawButtonWithHover(mouseX, mouseY, 300, 300, level1Texture, buttonSize, buttonSize, hoverButtonSize, hoverButtonSize);
+        drawButtonWithHover(mouseX, mouseY, 500, 500, level2Texture, buttonSize, buttonSize, hoverButtonSize, hoverButtonSize);
+        drawButtonWithHover(mouseX, mouseY, 700, 300, level3Texture, buttonSize, buttonSize, hoverButtonSize, hoverButtonSize);
+        drawButtonWithHover(mouseX, mouseY, 900, 500, level4Texture, buttonSize, buttonSize, hoverButtonSize, hoverButtonSize);
+        drawButtonWithHover(mouseX, mouseY, 1100, 300, level5Texture, buttonSize, buttonSize, hoverButtonSize, hoverButtonSize);
+
         spriteBatch.end();
 
         input();
+    }
+
+    private void drawButtonWithHover(float mouseX, float mouseY, float x, float y, Texture texture, int defaultWidth, int defaultHeight, int hoverWidth, int hoverHeight) {
+        int drawWidth = defaultWidth;
+        int drawHeight = defaultHeight;
+
+        if (mouseX >= x && mouseX <= x + defaultWidth && mouseY >= y && mouseY <= y + defaultHeight) {
+            drawWidth = hoverWidth;
+            drawHeight = hoverHeight;
+        }
+
+        spriteBatch.draw(texture, x - (drawWidth - defaultWidth) / 2f, y - (drawHeight - defaultHeight) / 2f, drawWidth, drawHeight);
     }
 
     private void input() {
@@ -56,47 +80,42 @@ public class LevelScreen implements Screen {
             float mouseX = Gdx.input.getX();
             float mouseY = Gdx.graphics.getHeight() - Gdx.input.getY();
 
-            if (mouseX >= 20 && mouseX <= 270 && mouseY >= Gdx.graphics.getHeight() - 150 && mouseY <= Gdx.graphics.getHeight()) {
+            if (mouseX >= 20 && mouseX <= 20 + backButtonWidth && mouseY >= Gdx.graphics.getHeight() - 150 && mouseY <= Gdx.graphics.getHeight()) {
                 System.out.println("Back button clicked!");
                 main.setScreen(new MainMenu(spriteBatch));
-            } else if (mouseX >= 300 && mouseX <= 500 && mouseY >= 300 && mouseY <= 500) {
+            } else if (mouseX >= 300 && mouseX <= 600 && mouseY >= 300 && mouseY <= 600) {
                 System.out.println("Level 1 button clicked!");
                 main.setScreen(new Level1(main, spriteBatch));
-            } else if (mouseX >= 500 && mouseX <= 700 && mouseY >= 500 && mouseY <= 700) {
+            } else if (mouseX >= 500 && mouseX <= 800 && mouseY >= 500 && mouseY <= 800) {
                 System.out.println("Level 2 button clicked!");
                 main.setScreen(new Level2(main, spriteBatch));
-            } else if (mouseX >= 700 && mouseX <= 900 && mouseY >= 300 && mouseY <= 500) {
+            } else if (mouseX >= 700 && mouseX <= 1000 && mouseY >= 300 && mouseY <= 600) {
                 System.out.println("Level 3 button clicked!");
                 main.setScreen(new Level3(main, spriteBatch));
-            } else if (mouseX >= 900 && mouseX <= 1100 && mouseY >= 500 && mouseY <= 700) {
+            } else if (mouseX >= 900 && mouseX <= 1200 && mouseY >= 500 && mouseY <= 800) {
                 System.out.println("Level 4 button clicked!");
                 main.setScreen(new Level4(main, spriteBatch));
-            } else if (mouseX >= 1100 && mouseX <= 1300 && mouseY >= 300 && mouseY <= 500) {
+            } else if (mouseX >= 1100 && mouseX <= 1400 && mouseY >= 300 && mouseY <= 600) {
                 System.out.println("Level 5 button clicked!");
                 main.setScreen(new Level5(main, spriteBatch));
             }
         }
     }
 
-
     @Override
     public void resize(int width, int height) {
-
     }
 
     @Override
     public void pause() {
-
     }
 
     @Override
     public void resume() {
-
     }
 
     @Override
     public void hide() {
-
     }
 
     @Override

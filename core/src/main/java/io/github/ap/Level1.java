@@ -20,16 +20,14 @@ public class Level1 extends Levels {
     }
 
     @Override
-    public void show() {
-
-    }
+    public void show() {}
 
     @Override
     public void render(float delta) {
         ScreenUtils.clear(Color.BLACK);
         spriteBatch.begin();
+
         spriteBatch.draw(levelTexture, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-        spriteBatch.draw(backButtonTexture, 20, Gdx.graphics.getHeight() - 150, 250, 150);
         spriteBatch.draw(slingShotTexture, 400, 200, 150, 300);
         spriteBatch.draw(redTexture, 100, 200, 100, 100);
         spriteBatch.draw(chuckTexture, 200, 200, 100, 100);
@@ -37,13 +35,27 @@ public class Level1 extends Levels {
         spriteBatch.draw(bombTexture, 370, 400, 130, 130);
         spriteBatch.draw(kingPigTexture, 1300, 200, 160, 160);
         spriteBatch.draw(wood, 1020, 400, 700, 50);
-        spriteBatch.draw(glass, 1200, 200,50,200);
+        spriteBatch.draw(glass, 1200, 200, 50, 200);
         spriteBatch.draw(stone, 1500, 200, 50, 200);
         spriteBatch.draw(tnt, 1300, 450, 150, 70);
 
+        float backButtonX = 20;
+        float backButtonY = Gdx.graphics.getHeight() - 150;
+        float backButtonWidth = 250;
+        float backButtonHeight = 150;
+        if (isMouseOverButton(Gdx.input.getX(), Gdx.input.getY(), backButtonX, backButtonY, backButtonWidth, backButtonHeight)) {
+            spriteBatch.draw(backButtonTexture, backButtonX - 10, backButtonY - 10, backButtonWidth + 20, backButtonHeight + 20);
+        } else {
+            spriteBatch.draw(backButtonTexture, backButtonX, backButtonY, backButtonWidth, backButtonHeight);
+        }
+
         float pauseX = (Gdx.graphics.getWidth() - 50) / 2f;
         float pauseY = Gdx.graphics.getHeight() - 70;
-        spriteBatch.draw(pause, pauseX, pauseY, 50, 50);
+        if (isMouseOverButton(Gdx.input.getX(), Gdx.input.getY(), pauseX, pauseY, 50, 50)) {
+            spriteBatch.draw(pause, pauseX - 5, pauseY - 5, 60, 60);
+        } else {
+            spriteBatch.draw(pause, pauseX, pauseY, 50, 50);
+        }
 
         String text = "Score: 0";
         float textX = Gdx.graphics.getWidth() - font.getRegion().getRegionWidth() - 20;
@@ -67,36 +79,32 @@ public class Level1 extends Levels {
             float pauseX = (Gdx.graphics.getWidth() - 50) / 2f;
             float pauseY = Gdx.graphics.getHeight() - 70;
             if (mouseX >= pauseX && mouseX <= pauseX + 50 && mouseY >= pauseY && mouseY <= pauseY + 50) {
-                isPaused = !isPaused; // Toggle pause state
+                isPaused = !isPaused;
                 if (isPaused) {
                     System.out.println("Game is paused");
                     Pause pauseMenu = new Pause(main, spriteBatch, this);
                     main.setScreen(pauseMenu);
                 }
-
             }
-
-
         }
     }
 
-
-    @Override
-    public void resize(int width, int height) {
-
+    private boolean isMouseOverButton(float mouseX, float mouseY, float buttonX, float buttonY, float buttonWidth, float buttonHeight) {
+        float adjustedMouseY = Gdx.graphics.getHeight() - mouseY;
+        return mouseX >= buttonX && mouseX <= buttonX + buttonWidth && adjustedMouseY >= buttonY && adjustedMouseY <= buttonY + buttonHeight;
     }
 
     @Override
-    public void pause() {
-    }
+    public void resize(int width, int height) {}
 
     @Override
-    public void resume() {
-    }
+    public void pause() {}
 
     @Override
-    public void hide() {
-    }
+    public void resume() {}
+
+    @Override
+    public void hide() {}
 
     @Override
     public void dispose() {

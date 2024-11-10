@@ -18,7 +18,6 @@ public class Pause implements Screen {
     private final Texture restartTexture;
     private final Texture playTexture;
 
-
     private boolean isVisible = true;
 
     public Pause(Main main, SpriteBatch spriteBatch, Levels currentLevel) {
@@ -49,52 +48,60 @@ public class Pause implements Screen {
 
         float buttonWidth = 200;
         float buttonHeight = 100;
+        float hoverScale = 1.1f;
 
         float centerX = (Gdx.graphics.getWidth() - buttonWidth) / 2;
         float centerY = (Gdx.graphics.getHeight() - (3 * buttonHeight + 40)) / 2;
 
-        spriteBatch.draw(backButtonTexture, centerX, centerY + 2 * (buttonHeight + 20), buttonWidth, buttonHeight);
-        spriteBatch.draw(restartTexture, centerX, centerY + buttonHeight + 20, buttonWidth, buttonHeight);
-        spriteBatch.draw(playTexture, centerX, centerY, buttonWidth, buttonHeight);
+        float mouseX = Gdx.input.getX();
+        float mouseY = Gdx.graphics.getHeight() - Gdx.input.getY();
+
+        if (isMouseOverButton(mouseX, mouseY, centerX, centerY + 2 * (buttonHeight + 20), buttonWidth, buttonHeight)) {
+            spriteBatch.draw(backButtonTexture, centerX - (buttonWidth * (hoverScale - 1) / 2), centerY + 2 * (buttonHeight + 20) - (buttonHeight * (hoverScale - 1) / 2), buttonWidth * hoverScale, buttonHeight * hoverScale);
+        } else {
+            spriteBatch.draw(backButtonTexture, centerX, centerY + 2 * (buttonHeight + 20), buttonWidth, buttonHeight);
+        }
+
+        if (isMouseOverButton(mouseX, mouseY, centerX, centerY + buttonHeight + 20, buttonWidth, buttonHeight)) {
+            spriteBatch.draw(restartTexture, centerX - (buttonWidth * (hoverScale - 1) / 2), centerY + buttonHeight + 20 - (buttonHeight * (hoverScale - 1) / 2), buttonWidth * hoverScale, buttonHeight * hoverScale);
+        } else {
+            spriteBatch.draw(restartTexture, centerX, centerY + buttonHeight + 20, buttonWidth, buttonHeight);
+        }
+
+        if (isMouseOverButton(mouseX, mouseY, centerX, centerY, buttonWidth, buttonHeight)) {
+            spriteBatch.draw(playTexture, centerX - (buttonWidth * (hoverScale - 1) / 2), centerY - (buttonHeight * (hoverScale - 1) / 2), buttonWidth * hoverScale, buttonHeight * hoverScale);
+        } else {
+            spriteBatch.draw(playTexture, centerX, centerY, buttonWidth, buttonHeight);
+        }
 
         spriteBatch.end();
 
-        input();
+        input(mouseX, mouseY, centerX, centerY, buttonWidth, buttonHeight);
     }
 
-    public void input() {
+    private void input(float mouseX, float mouseY, float centerX, float centerY, float buttonWidth, float buttonHeight) {
         if (Gdx.input.isButtonJustPressed(Input.Buttons.LEFT)) {
-            if (Gdx.input.isButtonJustPressed(Input.Buttons.LEFT)) {
-                float mouseX = Gdx.input.getX();
-                float mouseY = Gdx.input.getY();
+            if (isMouseOverButton(mouseX, mouseY, centerX, centerY + 2 * (buttonHeight + 20), buttonWidth, buttonHeight)) {
+                System.out.println("Menu button clicked");
+                setVisible(false);
+                main.setScreen(new LevelScreen(spriteBatch, main));
+            }
 
+            if (isMouseOverButton(mouseX, mouseY, centerX, centerY + buttonHeight + 20, buttonWidth, buttonHeight)) {
+                System.out.println("Restart button clicked");
+                main.setScreen(currentLevel);
+            }
 
-                float buttonWidth = 200;
-                float buttonHeight = 100;
-
-                float centerX = (Gdx.graphics.getWidth() - buttonWidth) / 2;
-                float centerY = (Gdx.graphics.getHeight() - (3 * buttonHeight + 40)) / 2;
-
-                if (mouseX >= centerX && mouseX <= centerX + buttonWidth && mouseY >= centerY + 2 * (buttonHeight + 20) && mouseY <= centerY + 2 * (buttonHeight + 20) + buttonHeight) {
-                    System.out.println("menu button clicked");
-                    setVisible(false);
-                    Screen Levelscreen = new LevelScreen(spriteBatch, main);
-                    main.setScreen(Levelscreen);
-                }
-
-
-                if (mouseX >= centerX && mouseX <= centerX + buttonWidth && mouseY >= centerY + buttonHeight + 20 && mouseY <= centerY + buttonHeight + 20 + buttonHeight) {
-                    System.out.println("Restart button clicked");
-                    main.setScreen(currentLevel);
-                }
-
-                if (mouseX >= centerX && mouseX <= centerX + buttonWidth && mouseY >= centerY && mouseY <= centerY + buttonHeight) {
-                    System.out.println("Play button clicked");
-                    setVisible(false);
-                    main.setScreen(currentLevel);
-                }
+            if (isMouseOverButton(mouseX, mouseY, centerX, centerY, buttonWidth, buttonHeight)) {
+                System.out.println("Play button clicked");
+                setVisible(false);
+                main.setScreen(currentLevel);
             }
         }
+    }
+
+    private boolean isMouseOverButton(float mouseX, float mouseY, float x, float y, float width, float height) {
+        return mouseX >= x && mouseX <= x + width && mouseY >= y && mouseY <= y + height;
     }
 
     @Override
@@ -117,10 +124,3 @@ public class Pause implements Screen {
         playTexture.dispose();
     }
 }
-
-
-
-
-
-
-

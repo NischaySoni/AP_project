@@ -14,6 +14,16 @@ public class MainMenu implements Screen {
     private final Texture playButtonTexture;
     private final Texture exitButtonTexture;
 
+    private final int playButtonWidth = 500;
+    private final int playButtonHeight = 250;
+    private final int exitButtonWidth = 100;
+    private final int exitButtonHeight = 100;
+
+    private final int hoverPlayButtonWidth = 550;
+    private final int hoverPlayButtonHeight = 300;
+    private final int hoverExitButtonWidth = 120;
+    private final int hoverExitButtonHeight = 120;
+
     public MainMenu(SpriteBatch spriteBatch) {
         this.spriteBatch = spriteBatch;
         backgroundTexture = new Texture("starting.jpg");
@@ -31,20 +41,39 @@ public class MainMenu implements Screen {
         spriteBatch.begin();
 
         spriteBatch.draw(backgroundTexture, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-        spriteBatch.draw(playButtonTexture, 720, 420, 500, 250);
-        spriteBatch.draw(exitButtonTexture, 925, 200, 100, 100);
+
+        float mouseX = Gdx.input.getX();
+        float mouseY = Gdx.graphics.getHeight() - Gdx.input.getY();
+
+        int playButtonDrawWidth = playButtonWidth;
+        int playButtonDrawHeight = playButtonHeight;
+        if (mouseX >= 720 && mouseX <= 720 + playButtonWidth && mouseY >= 420 && mouseY <= 420 + playButtonHeight) {
+            playButtonDrawWidth = hoverPlayButtonWidth;
+            playButtonDrawHeight = hoverPlayButtonHeight;
+        }
+
+        int exitButtonDrawWidth = exitButtonWidth;
+        int exitButtonDrawHeight = exitButtonHeight;
+        if (mouseX >= 925 && mouseX <= 925 + exitButtonWidth && mouseY >= 200 && mouseY <= 200 + exitButtonHeight) {
+            exitButtonDrawWidth = hoverExitButtonWidth;
+            exitButtonDrawHeight = hoverExitButtonHeight;
+        }
+
+        spriteBatch.draw(playButtonTexture, 720 - (playButtonDrawWidth - playButtonWidth) / 2,
+            420 - (playButtonDrawHeight - playButtonHeight) / 2,
+            playButtonDrawWidth, playButtonDrawHeight);
+
+        spriteBatch.draw(exitButtonTexture, 925 - (exitButtonDrawWidth - exitButtonWidth) / 2,
+            200 - (exitButtonDrawHeight - exitButtonHeight) / 2,
+            exitButtonDrawWidth, exitButtonDrawHeight);
 
         spriteBatch.end();
 
-
         if (Gdx.input.isButtonJustPressed(Input.Buttons.LEFT)) {
-            float mouseX = Gdx.input.getX();
-            float mouseY = Gdx.graphics.getHeight() - Gdx.input.getY();
-
-            if (mouseX >= 770 && mouseX <= 1170 && mouseY >= 420 && mouseY <= 620) {
+            if (mouseX >= 720 && mouseX <= 720 + playButtonWidth && mouseY >= 420 && mouseY <= 420 + playButtonHeight) {
                 ((Main) Gdx.app.getApplicationListener()).startGame();
             }
-            if (mouseX >= 925 && mouseX <= 1025 && mouseY >= 200 && mouseY <= 300) {
+            if (mouseX >= 925 && mouseX <= 925 + exitButtonWidth && mouseY >= 200 && mouseY <= 200 + exitButtonHeight) {
                 Gdx.app.exit();
             }
         }
