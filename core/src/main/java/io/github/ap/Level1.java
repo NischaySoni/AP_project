@@ -15,6 +15,12 @@ public class Level1 extends Levels {
     private BlueBird blueBird;
     private BlackBird blackBird;
     private YellowBird yellowBird;
+    private SlingShot slingShot;
+    private KingPig kingPig;
+    private Glass glass;
+    private Wood wood;
+    private Stone stone;
+    private TNT tnt;
 
     public Level1(Main main, SpriteBatch spriteBatch) {
         super(main, spriteBatch);
@@ -25,6 +31,12 @@ public class Level1 extends Levels {
         blueBird = new BlueBird();
         blackBird = new BlackBird();
         yellowBird = new YellowBird();
+        slingShot = new SlingShot();
+        kingPig = new KingPig();
+        glass = new Glass();
+        wood = new Wood();
+        stone = new Stone();
+        tnt = new TNT();
     }
 
     @Override
@@ -58,10 +70,10 @@ public class Level1 extends Levels {
         spriteBatch.draw(bluesTexture, blueBird.getX(), blueBird.getY(), 70, 70);
         spriteBatch.draw(bombTexture, blackBird.getX(), blackBird.getY(), 130, 130);
         spriteBatch.draw(kingPigTexture, 1300, 200, 160, 160);
-        spriteBatch.draw(wood, 1020, 400, 700, 50);
-        spriteBatch.draw(glass, 1200, 200, 50, 200);
-        spriteBatch.draw(stone, 1500, 200, 50, 200);
-        spriteBatch.draw(tnt, 1300, 450, 150, 70);
+        spriteBatch.draw(woodTexture, 1020, 400, 700, 50);
+        spriteBatch.draw(glassTexture, 1200, 200, 50, 200);
+        spriteBatch.draw(stoneTexture, 1500, 200, 50, 200);
+        spriteBatch.draw(tntTexture, 1300, 450, 150, 70);
 
         float backButtonX = 20;
         float backButtonY = Gdx.graphics.getHeight() - 150;
