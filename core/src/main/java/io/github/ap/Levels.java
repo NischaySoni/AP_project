@@ -25,11 +25,10 @@ public class Levels extends ScreenAdapter {
 
 
 
-
     public Levels(Main main, SpriteBatch spriteBatch) {
         this.main = main;
         this.spriteBatch = spriteBatch;
-        this.levelTexture = new Texture("levelScreen1.jpg");
+        this.levelTexture = new Texture("levelScreen2.jpg");
         this.backButtonTexture = new Texture("BackButton.png");
         this.redTexture = new Texture("red.png");
         this.chuckTexture = new Texture("chuck.png");

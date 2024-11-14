@@ -11,12 +11,20 @@ public class Level1 extends Levels {
 
     private boolean isPaused = false;
     private BitmapFont font;
+    private RedBird redBird;
+    private BlueBird blueBird;
+    private BlackBird blackBird;
+    private YellowBird yellowBird;
 
     public Level1(Main main, SpriteBatch spriteBatch) {
         super(main, spriteBatch);
         font = new BitmapFont();
         font.setColor(Color.WHITE);
         font.getData().setScale(3);
+        redBird = new RedBird();
+        blueBird = new BlueBird();
+        blackBird = new BlackBird();
+        yellowBird = new YellowBird();
     }
 
     @Override
@@ -25,14 +33,30 @@ public class Level1 extends Levels {
     @Override
     public void render(float delta) {
         ScreenUtils.clear(Color.BLACK);
+        if (isPaused) {
+            return;
+        }
+
+        if (redBird.isLaunched()) {
+            redBird.update(delta);
+        }
+        if (blueBird.isLaunched()) {
+            blueBird.update(delta);
+        }
+        if (blackBird.isLaunched()) {
+            blackBird.update(delta);
+        }
+        if (yellowBird.isLaunched()) {
+            yellowBird.update(delta);
+        }
         spriteBatch.begin();
 
         spriteBatch.draw(levelTexture, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         spriteBatch.draw(slingShotTexture, 400, 200, 150, 300);
-        spriteBatch.draw(redTexture, 100, 200, 100, 100);
-        spriteBatch.draw(chuckTexture, 200, 200, 100, 100);
-        spriteBatch.draw(bluesTexture, 300, 200, 70, 70);
-        spriteBatch.draw(bombTexture, 370, 400, 130, 130);
+        spriteBatch.draw(redTexture, redBird.getX(), redBird.getY(), 100, 100);
+        spriteBatch.draw(chuckTexture, yellowBird.getX(), yellowBird.getY(), 100, 100);
+        spriteBatch.draw(bluesTexture, blueBird.getX(), blueBird.getY(), 70, 70);
+        spriteBatch.draw(bombTexture, blackBird.getX(), blackBird.getY(), 130, 130);
         spriteBatch.draw(kingPigTexture, 1300, 200, 160, 160);
         spriteBatch.draw(wood, 1020, 400, 700, 50);
         spriteBatch.draw(glass, 1200, 200, 50, 200);
@@ -85,6 +109,18 @@ public class Level1 extends Levels {
                     Pause pauseMenu = new Pause(main, spriteBatch, this);
                     main.setScreen(pauseMenu);
                 }
+            }
+            if (!redBird.isLaunched() && mouseX >= redBird.getX() && mouseX <= redBird.getX() + 100 && mouseY >= redBird.getY() && mouseY <= redBird.getY() + 100) {
+                redBird.launch();
+            }
+            if (!blueBird.isLaunched() && mouseX >= blueBird.getX() && mouseX <= blueBird.getX() + 100 && mouseY >= blueBird.getY() && mouseY <= blueBird.getY() + 100) {
+                blueBird.launch();
+            }
+            if (!blackBird.isLaunched() && mouseX >= blackBird.getX() && mouseX <= blackBird.getX() + 100 && mouseY >= blackBird.getY() && mouseY <= blackBird.getY() + 100) {
+                blackBird.launch();
+            }
+            if (!yellowBird.isLaunched() && mouseX >= yellowBird.getX() && mouseX <= yellowBird.getX() + 100 && mouseY >= yellowBird.getY() && mouseY <= yellowBird.getY() + 100) {
+                yellowBird.launch();
             }
         }
     }
