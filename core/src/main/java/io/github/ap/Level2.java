@@ -34,10 +34,10 @@ public class Level2 extends Levels {
         spriteBatch.draw(bluesTexture, 300, 200, 70, 70);
         spriteBatch.draw(bombTexture, 370, 400, 130, 130);
         spriteBatch.draw(kingPigTexture, 1300, 200, 160, 160);
-        spriteBatch.draw(wood, 1020, 400, 700, 50);
-        spriteBatch.draw(glass, 1200, 200, 50, 200);
-        spriteBatch.draw(stone, 1500, 200, 50, 200);
-        spriteBatch.draw(tnt, 1300, 450, 150, 70);
+        spriteBatch.draw(woodTexture, 1020, 400, 700, 50);
+        spriteBatch.draw(glassTexture, 1200, 200, 50, 200);
+        spriteBatch.draw(stoneTexture, 1500, 200, 50, 200);
+        spriteBatch.draw(tntTexture, 1300, 450, 150, 70);
 
         float backButtonX = 20;
         float backButtonY = Gdx.graphics.getHeight() - 150;

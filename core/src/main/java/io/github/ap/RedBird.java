@@ -17,7 +17,7 @@ public class RedBird {
     // Constants for initial position and velocity
     private static final float START_X = 300;
     private static final float START_Y = 200;
-    private static final float DEFAULT_VELOCITY_X = 300; // Adjust as needed
+    private static final float DEFAULT_VELOCITY_X = 400; // Adjust as needed
     private static final float DEFAULT_VELOCITY_Y = 500; // Adjust as needed
     private static final float GRAVITY = -9.8f;
 
@@ -74,4 +74,19 @@ public class RedBird {
     public boolean isLaunched() {
         return isLaunched;
     }
+
+    private boolean isColliding(float x1, float y1, float width1, float height1, float x2, float y2, float width2, float height2) {
+        return x1 < x2 + width2 &&
+            x1 + width1 > x2 &&
+            y1 < y2 + height2 &&
+            y1 + height1 > y2;
+    }
+
+
+    public boolean checkCollision(float objectX, float objectY, float objectWidth, float objectHeight) {
+        float birdWidth = 80; // Adjust based on bird size in the game
+        float birdHeight = 80;
+        return isColliding(x, y, birdWidth, birdHeight, objectX, objectY, objectWidth, objectHeight);
+    }
+
 }

@@ -32,11 +32,11 @@ public class Level1 extends Levels {
         blackBird = new BlackBird();
         yellowBird = new YellowBird();
         slingShot = new SlingShot();
-        kingPig = new KingPig();
-        glass = new Glass();
-        wood = new Wood();
-        stone = new Stone();
-        tnt = new TNT();
+        kingPig = new KingPig(1300, 200, 160, 160, 20);
+        glass = new Glass(1200, 200, 50, 200, 6);
+        wood = new Wood(1020, 400, 700, 50, 8);
+        stone = new Stone(1500, 200, 50, 200, 10);
+        tnt = new TNT(1300, 450, 150, 70, 1);
     }
 
     @Override
@@ -51,15 +51,111 @@ public class Level1 extends Levels {
 
         if (redBird.isLaunched()) {
             redBird.update(delta);
+            if (redBird.checkCollision(kingPig.getX(), kingPig.getY(), kingPig.getWidth(), kingPig.getHeight())) {
+                System.out.println("Red Bird hit the King Pig!");
+                kingPig.takeDamage();
+                redBird.reset();
+                // Handle collision Logic (damage, score increment, etc)
+            }
+            if (redBird.checkCollision(wood.getX(), wood.getY(), wood.getWidth(), wood.getHeight())) {
+                System.out.println("Red Bird hit the Wood!");
+                wood.takeDamage();
+                redBird.reset();
+                // Handle collision logic
+            }
+            if (redBird.checkCollision(glass.getX(), glass.getY(), glass.getWidth(), glass.getHeight())) {
+                System.out.println("Red Bird hit the Glass!");
+                glass.takeDamage();
+                redBird.reset();
+                // Handle collision logic
+            }
+            if (redBird.checkCollision(stone.getX(), stone.getY(), stone.getWidth(), stone.getHeight())) {
+                System.out.println("Red Bird hit the Stone!");
+                stone.takeDamage();
+                redBird.reset();
+                // Handle collision logic
+            }
         }
         if (blueBird.isLaunched()) {
             blueBird.update(delta);
+            if (blueBird.checkCollision(kingPig.getX(), kingPig.getY(), kingPig.getWidth(), kingPig.getHeight())){
+                System.out.println("Blue Bird hit the King Pig!");
+                kingPig.takeDamage();
+                blueBird.reset();
+                // Handle collision Logic (damage, score increment, etc)
+            }
+            if (blueBird.checkCollision(wood.getX(), wood.getY(), wood.getWidth(), wood.getHeight())) {
+                System.out.println("Blue Bird hit the Wood!");
+                wood.takeDamage();
+                blueBird.reset();
+                // Handle collision logic
+            }
+            if (blueBird.checkCollision(glass.getX(), glass.getY(), glass.getWidth(), glass.getHeight())) {
+                System.out.println("Blue Bird hit the Glass!");
+                glass.takeDamage();
+                blueBird.reset();
+                // Handle collision logic
+            }
+            if (blueBird.checkCollision(stone.getX(), stone.getY(), stone.getWidth(), stone.getHeight())) {
+                System.out.println("Blue Bird hit the Stone!");
+                stone.takeDamage();
+                blueBird.reset();
+                // Handle collision logic
+            }
         }
         if (blackBird.isLaunched()) {
             blackBird.update(delta);
+            if (blackBird.checkCollision(kingPig.getX(), kingPig.getY(), kingPig.getWidth(), kingPig.getHeight())) {
+                System.out.println("Black Bird hit the King Pig!");
+                kingPig.takeDamage();
+                blackBird.reset();
+                // Handle collision Logic (damage, score increment, etc)
+            }
+            if (blackBird.checkCollision(wood.getX(), wood.getY(), wood.getWidth(), wood.getHeight())) {
+                System.out.println("Black Bird hit the Wood!");
+                wood.takeDamage();
+                blackBird.reset();
+                // Handle collision logic
+            }
+            if (blackBird.checkCollision(glass.getX(), glass.getY(), glass.getWidth(), glass.getHeight())) {
+                System.out.println("Black Bird hit the Glass!");
+                glass.takeDamage();
+                blackBird.reset();
+                // Handle collision logic
+            }
+            if (blackBird.checkCollision(stone.getX(), stone.getY(), stone.getWidth(), stone.getHeight())) {
+                System.out.println("Black Bird hit the Stone!");
+                stone.takeDamage();
+                blackBird.reset();
+                // Handle collision logic
+            }
         }
         if (yellowBird.isLaunched()) {
             yellowBird.update(delta);
+            if (yellowBird.checkCollision(kingPig.getX(), kingPig.getY(), kingPig.getWidth(), kingPig.getHeight())) {
+                System.out.println("Yellow Bird hit the King Pig!");
+                kingPig.takeDamage();
+                yellowBird.reset();
+                // Handle collision Logic (damage, score increment, etc)
+            }
+            if (yellowBird.checkCollision(wood.getX(), wood.getY(), wood.getWidth(), wood.getHeight())) {
+                System.out.println("Yellow Bird hit the Wood!");
+                wood.takeDamage();
+                yellowBird.reset();
+                // Handle collision logic
+            }
+            if (yellowBird.checkCollision(glass.getX(), glass.getY(), glass.getWidth(), glass.getHeight())) {
+                System.out.println("Yellow Bird hit the Glass!");
+                glass.takeDamage();
+                yellowBird.reset();
+                // Handle collision logic
+            }
+            if (yellowBird.checkCollision(stone.getX(), stone.getY(), stone.getWidth(), stone.getHeight())) {
+                System.out.println("Yellow Bird hit the Stone!");
+                stone.takeDamage();
+                yellowBird.reset();
+                // Handle collision logic
+            }
         }
         spriteBatch.begin();
 
