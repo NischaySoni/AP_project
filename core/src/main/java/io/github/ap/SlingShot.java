@@ -13,9 +13,36 @@ public class SlingShot extends ApplicationAdapter implements InputProcessor {
     private ShapeRenderer shapeRenderer;
     private OrthographicCamera camera;
 
+    private final float x;
+    private final float y;
+    private final float width;
+    private final float height;
     private Vector2 startPoint1, endPoint1;
     private Vector2 startPoint2, endPoint2;
     private boolean isDragging1 = false, isDragging2 = false;
+
+    public SlingShot(float x, float y, float width, float height) {
+        this.x = x;
+        this.y = y;
+        this.width = width;
+        this.height = height;
+    }
+
+    public float getHeight() {
+        return height;
+    }
+
+    public float getWidth() {
+        return width;
+    }
+
+    public float getX() {
+        return x;
+    }
+
+    public float getY() {
+        return y;
+    }
 
     @Override
     public void create() {
@@ -106,23 +133,26 @@ public class SlingShot extends ApplicationAdapter implements InputProcessor {
         return false;
     }
 
-    // Unused InputProcessor methods
     @Override
     public boolean keyDown(int keycode) {
         return false;
     }
+
     @Override
     public boolean keyUp(int keycode) {
         return false;
     }
+
     @Override
     public boolean keyTyped(char character) {
         return false;
     }
+
     @Override
     public boolean mouseMoved(int screenX, int screenY) {
         return false;
     }
+
     @Override
     public boolean scrolled(float amountX, float amountY) {
         return false;
