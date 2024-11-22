@@ -1,8 +1,10 @@
 package io.github.ap;
 
+import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.ScreenUtils;
@@ -31,12 +33,13 @@ public class Level1 extends Levels {
         blueBird = new BlueBird();
         blackBird = new BlackBird();
         yellowBird = new YellowBird();
-        slingShot = new SlingShot();
+        slingShot = new SlingShot(400, 200, 150, 300);
         kingPig = new KingPig(1300, 200, 160, 160, 20);
         glass = new Glass(1200, 200, 50, 200, 6);
         wood = new Wood(1020, 400, 700, 50, 8);
         stone = new Stone(1500, 200, 50, 200, 10);
         tnt = new TNT(1300, 450, 150, 70, 1);
+        slingShot.create();
     }
 
     @Override
@@ -44,7 +47,9 @@ public class Level1 extends Levels {
 
     @Override
     public void render(float delta) {
-        ScreenUtils.clear(Color.BLACK);
+        ScreenUtils.clear(0, 0, 0, 1);
+        slingShot.render();
+
         if (isPaused) {
             return;
         }
@@ -160,7 +165,7 @@ public class Level1 extends Levels {
         spriteBatch.begin();
 
         spriteBatch.draw(levelTexture, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-        spriteBatch.draw(slingShotTexture, 400, 200, 150, 300);
+        spriteBatch.draw(slingShotTexture, slingShot.getX(), slingShot.getY(), slingShot.getWidth(), slingShot.getWidth());
         spriteBatch.draw(redTexture, redBird.getX(), redBird.getY(), 100, 100);
         spriteBatch.draw(chuckTexture, yellowBird.getX(), yellowBird.getY(), 100, 100);
         spriteBatch.draw(bluesTexture, blueBird.getX(), blueBird.getY(), 70, 70);
@@ -254,6 +259,6 @@ public class Level1 extends Levels {
     public void dispose() {
         super.dispose();
         font.dispose();
+        slingShot.dispose();
     }
 }
-// mai bhot smart baccha hu
