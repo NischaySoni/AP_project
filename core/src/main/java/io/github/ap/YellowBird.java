@@ -1,6 +1,6 @@
 package io.github.ap;
 
-public class YellowBird {
+public class YellowBird extends GameObject{
     // Position
     private float x;
     private float y;
@@ -23,6 +23,7 @@ public class YellowBird {
 
     public YellowBird() {
         // Initialize with default values
+        super(START_X,START_Y,10, 10,1,"YellowBird");
         reset();
     }
 

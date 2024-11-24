@@ -1,6 +1,6 @@
 package io.github.ap;
 
-public class BlueBird {
+public class BlueBird extends GameObject{
     // Position
     private float x;
     private float y;
@@ -23,6 +23,7 @@ public class BlueBird {
 
     public BlueBird() {
         // Initialize with default values
+        super(START_X,START_Y,10, 10,1,"BlueBird");
         reset();
     }
 

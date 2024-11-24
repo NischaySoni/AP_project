@@ -1,6 +1,6 @@
 package io.github.ap;
 
-public class BlackBird {
+public class BlackBird extends GameObject{
     // Position
     private float x;
     private float y;
@@ -23,6 +23,7 @@ public class BlackBird {
 
     public BlackBird() {
         // Initialize with default values
+        super(START_X,START_Y,10, 10,1,"BlackBird");
         reset();
     }
 
