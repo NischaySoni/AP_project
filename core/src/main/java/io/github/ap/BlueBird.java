@@ -83,8 +83,8 @@ public class BlueBird {
     }
 
     public boolean checkCollision(float objectX, float objectY, float objectWidth, float objectHeight) {
-        float birdWidth = 50; // Adjust based on bird size in the game
-        float birdHeight = 50;
+        float birdWidth = 10;
+        float birdHeight = 10;
         return isColliding(x, y, birdWidth, birdHeight, objectX, objectY, objectWidth, objectHeight);
     }
 }

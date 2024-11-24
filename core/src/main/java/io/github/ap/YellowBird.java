@@ -17,7 +17,7 @@ public class YellowBird {
     // Constants for initial position and velocity
     private static final float START_X = 200;
     private static final float START_Y = 200;
-    private static final float DEFAULT_VELOCITY_X = 400; // Adjust as needed
+    private static final float DEFAULT_VELOCITY_X = 500; // Adjust as needed
     private static final float DEFAULT_VELOCITY_Y = 500; // Adjust as needed
     private static final float GRAVITY = -9.8f;
 
@@ -83,8 +83,8 @@ public class YellowBird {
     }
 
     public boolean checkCollision(float objectX, float objectY, float objectWidth, float objectHeight) {
-        float birdWidth = 80; // Adjust based on bird size in the game
-        float birdHeight = 180;
+        float birdWidth = 10;
+        float birdHeight = 10;
         return isColliding(x, y, birdWidth, birdHeight, objectX, objectY, objectWidth, objectHeight);
     }
 }

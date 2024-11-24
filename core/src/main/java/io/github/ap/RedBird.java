@@ -84,8 +84,8 @@ public class RedBird {
 
 
     public boolean checkCollision(float objectX, float objectY, float objectWidth, float objectHeight) {
-        float birdWidth = 80; // Adjust based on bird size in the game
-        float birdHeight = 80;
+        float birdWidth = 10;
+        float birdHeight = 10;
         return isColliding(x, y, birdWidth, birdHeight, objectX, objectY, objectWidth, objectHeight);
     }
 
