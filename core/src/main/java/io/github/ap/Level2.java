@@ -38,6 +38,7 @@ public class Level2 extends Levels {
         spriteBatch.draw(glassTexture, 1200, 200, 50, 200);
         spriteBatch.draw(stoneTexture, 1500, 200, 50, 200);
         spriteBatch.draw(tntTexture, 1300, 450, 150, 70);
+        spriteBatch.draw(platformTexture, -2400, -100, 4500, 2350);
 
         float backButtonX = 20;
         float backButtonY = Gdx.graphics.getHeight() - 150;

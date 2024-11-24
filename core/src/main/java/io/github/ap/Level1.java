@@ -9,6 +9,8 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.ScreenUtils;
 
+import java.awt.event.KeyEvent;
+
 public class Level1 extends Levels {
 
     private boolean isPaused = false;
@@ -49,6 +51,9 @@ public class Level1 extends Levels {
     public void render(float delta) {
         ScreenUtils.clear(0, 0, 0, 1);
         slingShot.render();
+//        slingShot.keyUp(Input.Keys.UP);
+//        slingShot.keyDown(KeyEvent.VK_DOWN);
+
 
         if (isPaused) {
             return;
@@ -175,6 +180,7 @@ public class Level1 extends Levels {
         spriteBatch.draw(glassTexture, 1200, 200, 50, 200);
         spriteBatch.draw(stoneTexture, 1500, 200, 50, 200);
         spriteBatch.draw(tntTexture, 1300, 450, 150, 70);
+        spriteBatch.draw(platformTexture, -2400, -100, 4500, 2350);
 
         float backButtonX = 20;
         float backButtonY = Gdx.graphics.getHeight() - 150;

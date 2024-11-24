@@ -2,6 +2,7 @@ package io.github.ap;
 
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -140,8 +141,34 @@ public class SlingShot extends ApplicationAdapter implements InputProcessor {
 
     @Override
     public boolean keyUp(int keycode) {
-        return false;
+        switch (keycode) {
+            case Input.Keys.UP:
+                Gdx.app.log("Key Released", "UP");
+                break;
+            case Input.Keys.DOWN:
+                Gdx.app.log("Key Released", "DOWN");
+                break;
+            case Input.Keys.LEFT:
+                Gdx.app.log("Key Released", "LEFT");
+                break;
+            case Input.Keys.RIGHT:
+                Gdx.app.log("Key Released", "RIGHT");
+                break;
+            case Input.Keys.SPACE:
+                Gdx.app.log("Key Released", "SPACE");
+                break;
+            case Input.Keys.ENTER:
+                Gdx.app.log("Key Released", "ENTER");
+                break;
+            case Input.Keys.ESCAPE:
+                Gdx.app.log("Key Released", "ESCAPE");
+                break;
+            default:
+                Gdx.app.log("Key Released", "Unknown key with code: " + keycode);
+        }
+        return true;
     }
+
 
     @Override
     public boolean keyTyped(char character) {

@@ -21,8 +21,7 @@ public class Levels extends ScreenAdapter {
     protected final Texture glassTexture;
     protected final Texture tntTexture;
     protected final Texture pause;
-
-
+    protected final Texture platformTexture;
 
 
     public Levels(Main main, SpriteBatch spriteBatch) {
@@ -41,6 +40,7 @@ public class Levels extends ScreenAdapter {
         this.glassTexture = new Texture("glass.png");
         this.tntTexture = new Texture("TNT.png");
         this.pause = new Texture("pause.png");
+        this.platformTexture = new Texture("Platform.png");
     }
 
     @Override
