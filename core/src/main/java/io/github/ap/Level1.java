@@ -25,6 +25,8 @@ public class Level1 extends Levels {
     private Wood wood;
     private Stone stone;
     private TNT tnt;
+    private int score = 0; // Initial score is 0
+
 
     public Level1(Main main, SpriteBatch spriteBatch) {
         super(main, spriteBatch);
@@ -37,7 +39,7 @@ public class Level1 extends Levels {
         yellowBird = new YellowBird();
         kingPig = new KingPig(1300, 200, 160, 160, 20, "KingPig");
         glass = new Glass(1200, 200, 50, 200, 6, "Glass");
-        wood = new Wood(1020, 400, 700, 50, 8, "Wood");
+        wood = new Wood(1020, 400, 700, 50, 8, "Wood", woodTexture);
         stone = new Stone(1500, 200, 50, 200, 10, "Stone");
         tnt = new TNT(1300, 450, 150, 70, 1, "TNT");
     }
@@ -194,10 +196,10 @@ public class Level1 extends Levels {
             spriteBatch.draw(pause, pauseX, pauseY, 50, 50);
         }
 
-        String text = "Score: 0";
+        String scoreText = "Score: " + score;
         float textX = Gdx.graphics.getWidth() - font.getRegion().getRegionWidth() - 20;
         float textY = Gdx.graphics.getHeight() - 20;
-        font.draw(spriteBatch, text, textX, textY);
+        font.draw(spriteBatch, scoreText, textX, textY);
 
         spriteBatch.end();
 
@@ -205,6 +207,16 @@ public class Level1 extends Levels {
     }
 
     private void handleCollision(GameObject bird, GameObject target) {
+        // Increase score based on the object hit
+        if (target instanceof KingPig) {
+            score += 100;  // Increase score by 100 for hitting the KingPig
+        } else if (target instanceof Wood) {
+            score += 10;  // Increase score by 10 for hitting Wood
+        } else if (target instanceof Glass) {
+            score += 5;  // Increase score by 5 for hitting Glass
+        } else if (target instanceof Stone) {
+            score += 15;  // Increase score by 15 for hitting Stone
+        }
         // Reduce the target's health/durability
         target.takeDamage(bird.getDamage());
 
