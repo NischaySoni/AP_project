@@ -13,22 +13,28 @@ public class MainMenu implements Screen {
     private final Texture backgroundTexture;
     private final Texture playButtonTexture;
     private final Texture exitButtonTexture;
+    private final Texture saveButtonTexture;
 
     private final int playButtonWidth = 500;
     private final int playButtonHeight = 250;
     private final int exitButtonWidth = 100;
     private final int exitButtonHeight = 100;
+    private final int saveButtonWidth = 450;
+    private final int saveButtonHeight = 200;
 
     private final int hoverPlayButtonWidth = 550;
     private final int hoverPlayButtonHeight = 300;
     private final int hoverExitButtonWidth = 120;
     private final int hoverExitButtonHeight = 120;
+    private final int hoverSaveButtonWidth = 500;
+    private final int hoverSaveButtonHeight = 250;
 
     public MainMenu(SpriteBatch spriteBatch) {
         this.spriteBatch = spriteBatch;
         backgroundTexture = new Texture("starting.jpg");
         playButtonTexture = new Texture("play.png");
         exitButtonTexture = new Texture("exit.png");
+        saveButtonTexture = new Texture("saveButton.png");
     }
 
     @Override
@@ -59,6 +65,13 @@ public class MainMenu implements Screen {
             exitButtonDrawHeight = hoverExitButtonHeight;
         }
 
+        int saveButtonDrawWidth = saveButtonWidth;
+        int saveButtonDrawHeight = saveButtonHeight;
+        if (mouseX >= 740 && mouseX <= 740 + saveButtonWidth && mouseY >= 300 && mouseY <= 300 + saveButtonHeight) {
+            saveButtonDrawWidth = hoverSaveButtonWidth;
+            saveButtonDrawHeight = hoverSaveButtonHeight;
+        }
+
         spriteBatch.draw(playButtonTexture, 720 - (playButtonDrawWidth - playButtonWidth) / 2,
             420 - (playButtonDrawHeight - playButtonHeight) / 2,
             playButtonDrawWidth, playButtonDrawHeight);
@@ -66,6 +79,10 @@ public class MainMenu implements Screen {
         spriteBatch.draw(exitButtonTexture, 925 - (exitButtonDrawWidth - exitButtonWidth) / 2,
             200 - (exitButtonDrawHeight - exitButtonHeight) / 2,
             exitButtonDrawWidth, exitButtonDrawHeight);
+
+        spriteBatch.draw(saveButtonTexture, 740 - (saveButtonDrawWidth - saveButtonWidth) / 2,
+            300 - (saveButtonDrawHeight - saveButtonHeight) / 2,
+            saveButtonDrawWidth, saveButtonDrawHeight);
 
         spriteBatch.end();
 
@@ -75,6 +92,9 @@ public class MainMenu implements Screen {
             }
             if (mouseX >= 925 && mouseX <= 925 + exitButtonWidth && mouseY >= 200 && mouseY <= 200 + exitButtonHeight) {
                 Gdx.app.exit();
+            }
+            if (mouseX >= 740 && mouseX <= 740 + saveButtonWidth && mouseY >= 300 && mouseY <= 300 + saveButtonHeight) {
+                System.out.println("??");
             }
         }
     }
