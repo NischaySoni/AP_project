@@ -23,7 +23,7 @@ public class RedBird extends GameObject{
 
     public RedBird() {
         // Initialize with default values
-        super(START_X,START_Y,10, 10,3,"RedBird");
+        super(START_X,START_Y,100, 100,3,"RedBird");
         reset();
     }
 

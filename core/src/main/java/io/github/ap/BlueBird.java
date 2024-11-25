@@ -23,7 +23,7 @@ public class BlueBird extends GameObject{
 
     public BlueBird() {
         // Initialize with default values
-        super(START_X,START_Y,10, 10,2,"BlueBird");
+        super(START_X,START_Y,70, 70,2,"BlueBird");
         reset();
     }
 

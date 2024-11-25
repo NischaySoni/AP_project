@@ -46,7 +46,7 @@ public class Level1 extends Levels {
             kingPig = new KingPig(1300, 200, 160, 160, 4, "KingPig", kingPigTexture);
         }
         if (isGlass) {
-            glass = new Glass(1150, 200, 50, 200, 6, "Glass", glassTexture);
+            glass = new Glass(1150, 300, 50, 200, 6, "Glass", glassTexture);
         }
         if (isWood) {
             wood = new Wood(1020, 400, 700, 50, 8, "Wood", woodTexture);
@@ -72,31 +72,31 @@ public class Level1 extends Levels {
 
         if (redBird.isLaunched()) {
             redBird.update(delta);
-            if (redBird.checkCollision(kingPig.getX(), kingPig.getY(), kingPig.getWidth(), kingPig.getHeight())) {
+            if (isKingPig && redBird.checkCollision(kingPig.getX(), kingPig.getY(), kingPig.getWidth(), kingPig.getHeight())) {
                 System.out.println("Red Bird hit the King Pig!");
                 kingPig.takeDamage();
                 handleCollision(redBird, kingPig);
                 redBird.reset();
             }
-            if (redBird.checkCollision(wood.getX(), wood.getY(), wood.getWidth(), wood.getHeight())) {
+            if (isWood && redBird.checkCollision(wood.getX(), wood.getY(), wood.getWidth(), wood.getHeight())) {
                 System.out.println("Red Bird hit the Wood!");
                 wood.takeDamage();
                 handleCollision(redBird, wood);
                 redBird.reset();
             }
-            if (redBird.checkCollision(glass.getX(), glass.getY(), glass.getWidth(), glass.getHeight())) {
+            if (isGlass && redBird.checkCollision(glass.getX(), glass.getY(), glass.getWidth(), glass.getHeight())) {
                 System.out.println("Red Bird hit the Glass!");
                 glass.takeDamage();
                 handleCollision(redBird, glass);
                 redBird.reset();
             }
-            if (redBird.checkCollision(stone.getX(), stone.getY(), stone.getWidth(), stone.getHeight())) {
+            if (isStone && redBird.checkCollision(stone.getX(), stone.getY(), stone.getWidth(), stone.getHeight())) {
                 System.out.println("Red Bird hit the Stone!");
                 stone.takeDamage();
                 handleCollision(redBird, stone);
                 redBird.reset();
             }
-            if (redBird.checkCollision(tnt.getX(), tnt.getY(), tnt.getWidth(), tnt.getHeight())) {
+            if (isTNT && redBird.checkCollision(tnt.getX(), tnt.getY(), tnt.getWidth(), tnt.getHeight())) {
                 System.out.println("Red Bird hit the tnt!");
                 tnt.takeDamage();
                 handleCollision(redBird, tnt);
@@ -105,31 +105,31 @@ public class Level1 extends Levels {
         }
         if (blueBird.isLaunched()) {
             blueBird.update(delta);
-            if (blueBird.checkCollision(kingPig.getX(), kingPig.getY(), kingPig.getWidth(), kingPig.getHeight())){
+            if (isKingPig && blueBird.checkCollision(kingPig.getX(), kingPig.getY(), kingPig.getWidth(), kingPig.getHeight())){
                 System.out.println("Blue Bird hit the King Pig!");
                 kingPig.takeDamage();
                 handleCollision(blueBird, kingPig);
                 blueBird.reset();
             }
-            if (blueBird.checkCollision(wood.getX(), wood.getY(), wood.getWidth(), wood.getHeight())) {
+            if (isWood && blueBird.checkCollision(wood.getX(), wood.getY(), wood.getWidth(), wood.getHeight())) {
                 System.out.println("Blue Bird hit the Wood!");
                 wood.takeDamage();
                 handleCollision(blueBird, wood);
                 blueBird.reset();
             }
-            if (blueBird.checkCollision(glass.getX(), glass.getY(), glass.getWidth(), glass.getHeight())) {
+            if (isGlass && blueBird.checkCollision(glass.getX(), glass.getY(), glass.getWidth(), glass.getHeight())) {
                 System.out.println("Blue Bird hit the Glass!");
                 glass.takeDamage();
                 handleCollision(blueBird, glass);
                 blueBird.reset();
             }
-            if (blueBird.checkCollision(stone.getX(), stone.getY(), stone.getWidth(), stone.getHeight())) {
+            if (isStone && blueBird.checkCollision(stone.getX(), stone.getY(), stone.getWidth(), stone.getHeight())) {
                 System.out.println("Blue Bird hit the Stone!");
                 stone.takeDamage();
                 handleCollision(blueBird, stone);
                 blueBird.reset();
             }
-            if (blueBird.checkCollision(tnt.getX(), tnt.getY(), tnt.getWidth(), tnt.getHeight())) {
+            if (isTNT && blueBird.checkCollision(tnt.getX(), tnt.getY(), tnt.getWidth(), tnt.getHeight())) {
                 System.out.println("Blue Bird hit the tnt!");
                 tnt.takeDamage();
                 handleCollision(blueBird, tnt);
@@ -138,31 +138,31 @@ public class Level1 extends Levels {
         }
         if (blackBird.isLaunched()) {
             blackBird.update(delta);
-            if (blackBird.checkCollision(kingPig.getX(), kingPig.getY(), kingPig.getWidth(), kingPig.getHeight())) {
+            if (isKingPig && blackBird.checkCollision(kingPig.getX(), kingPig.getY(), kingPig.getWidth(), kingPig.getHeight())) {
                 System.out.println("Black Bird hit the King Pig!");
                 kingPig.takeDamage();
                 handleCollision(blackBird, kingPig);
                 blackBird.reset();
             }
-            if (blackBird.checkCollision(wood.getX(), wood.getY(), wood.getWidth(), wood.getHeight())) {
+            if (isWood && blackBird.checkCollision(wood.getX(), wood.getY(), wood.getWidth(), wood.getHeight())) {
                 System.out.println("Black Bird hit the Wood!");
                 wood.takeDamage();
                 handleCollision(blackBird, wood);
                 blackBird.reset();
             }
-            if (blackBird.checkCollision(glass.getX(), glass.getY(), glass.getWidth(), glass.getHeight())) {
+            if (isGlass && blackBird.checkCollision(glass.getX(), glass.getY(), glass.getWidth(), glass.getHeight())) {
                 System.out.println("Black Bird hit the Glass!");
                 glass.takeDamage();
                 handleCollision(blackBird, glass);
                 blackBird.reset();
             }
-            if (blackBird.checkCollision(stone.getX(), stone.getY(), stone.getWidth(), stone.getHeight())) {
+            if (isStone && blackBird.checkCollision(stone.getX(), stone.getY(), stone.getWidth(), stone.getHeight())) {
                 System.out.println("Black Bird hit the Stone!");
                 stone.takeDamage();
                 handleCollision(blackBird, stone);
                 blackBird.reset();
             }
-            if (blackBird.checkCollision(tnt.getX(), tnt.getY(), tnt.getWidth(), tnt.getHeight())) {
+            if (isTNT && blackBird.checkCollision(tnt.getX(), tnt.getY(), tnt.getWidth(), tnt.getHeight())) {
                 System.out.println("Black Bird hit the tnt!");
                 tnt.takeDamage();
                 handleCollision(blackBird, tnt);
@@ -171,31 +171,31 @@ public class Level1 extends Levels {
         }
         if (yellowBird.isLaunched()) {
             yellowBird.update(delta);
-            if (yellowBird.checkCollision(kingPig.getX(), kingPig.getY(), kingPig.getWidth(), kingPig.getHeight())) {
+            if (isKingPig && yellowBird.checkCollision(kingPig.getX(), kingPig.getY(), kingPig.getWidth(), kingPig.getHeight())) {
                 System.out.println("Yellow Bird hit the King Pig!");
                 kingPig.takeDamage();
                 handleCollision(yellowBird, kingPig);
                 yellowBird.reset();
             }
-            if (yellowBird.checkCollision(wood.getX(), wood.getY(), wood.getWidth(), wood.getHeight())) {
+            if (isWood && yellowBird.checkCollision(wood.getX(), wood.getY(), wood.getWidth(), wood.getHeight())) {
                 System.out.println("Yellow Bird hit the Wood!");
                 wood.takeDamage();
                 handleCollision(yellowBird, wood);
                 yellowBird.reset();
             }
-            if (yellowBird.checkCollision(glass.getX(), glass.getY(), glass.getWidth(), glass.getHeight())) {
+            if (isGlass && yellowBird.checkCollision(glass.getX(), glass.getY(), glass.getWidth(), glass.getHeight())) {
                 System.out.println("Yellow Bird hit the Glass!");
                 glass.takeDamage();
                 handleCollision(yellowBird, glass);
                 yellowBird.reset();
             }
-            if (yellowBird.checkCollision(stone.getX(), stone.getY(), stone.getWidth(), stone.getHeight())) {
+            if (isStone && yellowBird.checkCollision(stone.getX(), stone.getY(), stone.getWidth(), stone.getHeight())) {
                 System.out.println("Yellow Bird hit the Stone!");
                 stone.takeDamage();
                 handleCollision(yellowBird, stone);
                 yellowBird.reset();
             }
-            if (yellowBird.checkCollision(tnt.getX(), tnt.getY(), tnt.getWidth(), tnt.getHeight())) {
+            if (isTNT && yellowBird.checkCollision(tnt.getX(), tnt.getY(), tnt.getWidth(), tnt.getHeight())) {
                 System.out.println("Yellow Bird hit the tnt!");
                 tnt.takeDamage();
                 handleCollision(yellowBird, tnt);
@@ -259,11 +259,14 @@ public class Level1 extends Levels {
         // Increase score based on the object hit
         if (target instanceof KingPig) {
             score += 100;  // Increase score by 100 for hitting the KingPig
-        } else if (target instanceof Wood) {
+        }
+        if (target instanceof Wood) {
             score += 10;  // Increase score by 10 for hitting Wood
-        } else if (target instanceof Glass) {
+        }
+        if (target instanceof Glass) {
             score += 5;  // Increase score by 5 for hitting Glass
-        } else if (target instanceof Stone) {
+        }
+        if (target instanceof Stone) {
             score += 15;  // Increase score by 15 for hitting Stone
         }
         // Reduce the target's health/durability
