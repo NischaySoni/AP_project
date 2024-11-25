@@ -211,19 +211,19 @@ public class Level1 extends Levels {
         spriteBatch.draw(bluesTexture, blueBird.getX(), blueBird.getY(), 70, 70);
         spriteBatch.draw(bombTexture, blackBird.getX(), blackBird.getY(), 130, 130);
         if (isKingPig) {
-            spriteBatch.draw(kingPigTexture, 1300, 200, 160, 160);
+            spriteBatch.draw(kingPigTexture, kingPig.getX(), kingPig.getY(), kingPig.getWidth(), kingPig.getHeight());
         }
         if (isWood) {
-            spriteBatch.draw(woodTexture, 1020, 400, 700, 50);
+            spriteBatch.draw(woodTexture, wood.getX(), wood.getY(), wood.getWidth(), wood.getHeight());
         }
         if (isGlass) {
             spriteBatch.draw(glassTexture, glass.getX(), glass.getY(), glass.getWidth(), glass.getHeight());
         }
         if (isStone) {
-            spriteBatch.draw(stoneTexture, 1500, 200, 50, 200);
+            spriteBatch.draw(stoneTexture, stone.getX(), stone.getY(), stone.getWidth(), stone.getHeight());
         }
         if (isTNT) {
-            spriteBatch.draw(tntTexture, 1300, 450, 150, 70);
+            spriteBatch.draw(tntTexture, tnt.getX(), tnt.getY(), tnt.getWidth(), tnt.getHeight());
         }
         spriteBatch.draw(platformTexture, -2400, -100, 4500, 2350);
 
