@@ -1,16 +1,18 @@
 package io.github.ap;
 
-public class TNT extends GameObject{
+public class TNT extends GameObject {
     private float x, y, width, height;
     private int health;
+    private Object texture;
 
-    public TNT(float x, float y, float width, float height, int health, String name) {
+    public TNT(float x, float y, float width, float height, int health, String name, Object TNTTexture) {
         super(x, y, width, height, health, name);
         this.x = x;
         this.y = y;
         this.width = width;
         this.height = height;
         this.health = health;
+        this.texture = TNTTexture;
     }
 
     private boolean isColliding(float x1, float y1, float width1, float height1, float x2, float y2, float width2, float height2) {
@@ -32,8 +34,16 @@ public class TNT extends GameObject{
     public void takeDamage() {
         health--;
         if (health <= 0) {
-            System.out.println("Wood is destroyed!");
-            // Remove wood from the level
+            System.out.println("TNT is destroyed!");
+            triggerDestroyedEffect();
+            removeWoodTexture();
+        }
+    }
+
+    private void removeWoodTexture() {
+        if (texture != null) {
+            System.out.println("Removing TNT texture.");
+            texture = null;
         }
     }
 
@@ -44,6 +54,7 @@ public class TNT extends GameObject{
     public float getY() {
         return y;
     }
+
     public float getWidth() {
         return width;
     }
@@ -52,4 +63,3 @@ public class TNT extends GameObject{
         return height;
     }
 }
-

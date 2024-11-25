@@ -35,19 +35,18 @@ public class Wood extends GameObject {
         health--;
         if (health <= 0) {
             System.out.println("Wood is destroyed!");
-            // Remove wood from the level
             triggerDestroyedEffect();
-            removeWoodTexture();  // Call method to remove the texture
+            removeWoodTexture();
         }
     }
 
-    private void removeWoodTexture() {
+    public void removeWoodTexture() {
         if (texture != null) {
-            // Remove or set to null the texture (adjust to your specific rendering system)
             System.out.println("Removing wood texture.");
-            texture = null;  // or use a method to unload the texture if needed
+            texture = null;
         }
     }
+
 
     public float getX() {
         return x;

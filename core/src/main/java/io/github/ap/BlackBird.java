@@ -17,13 +17,13 @@ public class BlackBird extends GameObject{
     // Constants for initial position and velocity
     private static final float START_X = 370;
     private static final float START_Y = 400;
-    private static final float DEFAULT_VELOCITY_X = 500; // Adjust as needed
+    private static final float DEFAULT_VELOCITY_X = 450; // Adjust as needed
     private static final float DEFAULT_VELOCITY_Y = 500; // Adjust as needed
     private static final float GRAVITY = -9.8f;
 
     public BlackBird() {
         // Initialize with default values
-        super(START_X,START_Y,10, 10,1,"BlackBird");
+        super(START_X,START_Y,10, 10,5,"BlackBird");
         reset();
     }
 

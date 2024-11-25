@@ -17,13 +17,13 @@ public class BlueBird extends GameObject{
     // Constants for initial position and velocity
     private static final float START_X = 100;
     private static final float START_Y = 200;
-    private static final float DEFAULT_VELOCITY_X = 400; // Adjust as needed
+    private static final float DEFAULT_VELOCITY_X = 450; // Adjust as needed
     private static final float DEFAULT_VELOCITY_Y = 500; // Adjust as needed
     private static final float GRAVITY = -9.8f;
 
     public BlueBird() {
         // Initialize with default values
-        super(START_X,START_Y,10, 10,1,"BlueBird");
+        super(START_X,START_Y,10, 10,2,"BlueBird");
         reset();
     }
 

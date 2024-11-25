@@ -1,16 +1,18 @@
 package io.github.ap;
 
-public class KingPig extends GameObject{
+public class KingPig extends GameObject {
     private float x, y, width, height;
     private int health;
+    private Object texture;
 
-    public KingPig(float x, float y, float width, float height, int health, String name) {
+    public KingPig(float x, float y, float width, float height, int health, String name, Object KingPigTexture) {
         super(x, y, width, height, health, name);
         this.x = x;
         this.y = y;
         this.width = width;
         this.height = height;
         this.health = health;
+        this.texture = KingPigTexture;
     }
 
     private boolean isColliding(float x1, float y1, float width1, float height1, float x2, float y2, float width2, float height2) {
@@ -32,8 +34,16 @@ public class KingPig extends GameObject{
     public void takeDamage() {
         health--;
         if (health <= 0) {
-            System.out.println("Wood is destroyed!");
-            // Remove wood from the level
+            System.out.println("KingPig is destroyed!");
+            triggerDestroyedEffect();
+            removeWoodTexture();
+        }
+    }
+
+    private void removeWoodTexture() {
+        if (texture != null) {
+            System.out.println("Removing KingPig texture.");
+            texture = null;
         }
     }
 
@@ -44,6 +54,7 @@ public class KingPig extends GameObject{
     public float getY() {
         return y;
     }
+
     public float getWidth() {
         return width;
     }
@@ -52,4 +63,3 @@ public class KingPig extends GameObject{
         return height;
     }
 }
-

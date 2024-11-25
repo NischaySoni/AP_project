@@ -25,7 +25,12 @@ public class Level1 extends Levels {
     private Wood wood;
     private Stone stone;
     private TNT tnt;
-    private int score = 0; // Initial score is 0
+    private int score = 0;
+    private boolean isWood = true;
+    private boolean isStone = true;
+    private boolean isGlass = true;
+    private boolean isKingPig = true;
+    private boolean isTNT = true;
 
 
     public Level1(Main main, SpriteBatch spriteBatch) {
@@ -37,11 +42,21 @@ public class Level1 extends Levels {
         blueBird = new BlueBird();
         blackBird = new BlackBird();
         yellowBird = new YellowBird();
-        kingPig = new KingPig(1300, 200, 160, 160, 20, "KingPig");
-        glass = new Glass(1200, 200, 50, 200, 6, "Glass");
-        wood = new Wood(1020, 400, 700, 50, 8, "Wood", woodTexture);
-        stone = new Stone(1500, 200, 50, 200, 10, "Stone");
-        tnt = new TNT(1300, 450, 150, 70, 1, "TNT");
+        if (isKingPig) {
+            kingPig = new KingPig(1300, 200, 160, 160, 4, "KingPig", kingPigTexture);
+        }
+        if (isGlass) {
+            glass = new Glass(1150, 200, 50, 200, 6, "Glass", glassTexture);
+        }
+        if (isWood) {
+            wood = new Wood(1020, 400, 700, 50, 8, "Wood", woodTexture);
+        }
+        if (isStone) {
+            stone = new Stone(1500, 200, 50, 200, 10, "Stone", stoneTexture);
+        }
+        if (isTNT) {
+            tnt = new TNT(1300, 450, 150, 70, 1, "TNT", tntTexture);
+        }
     }
 
     @Override
@@ -81,6 +96,12 @@ public class Level1 extends Levels {
                 handleCollision(redBird, stone);
                 redBird.reset();
             }
+            if (redBird.checkCollision(tnt.getX(), tnt.getY(), tnt.getWidth(), tnt.getHeight())) {
+                System.out.println("Red Bird hit the tnt!");
+                tnt.takeDamage();
+                handleCollision(redBird, tnt);
+                redBird.reset();
+            }
         }
         if (blueBird.isLaunched()) {
             blueBird.update(delta);
@@ -106,6 +127,12 @@ public class Level1 extends Levels {
                 System.out.println("Blue Bird hit the Stone!");
                 stone.takeDamage();
                 handleCollision(blueBird, stone);
+                blueBird.reset();
+            }
+            if (blueBird.checkCollision(tnt.getX(), tnt.getY(), tnt.getWidth(), tnt.getHeight())) {
+                System.out.println("Blue Bird hit the tnt!");
+                tnt.takeDamage();
+                handleCollision(blueBird, tnt);
                 blueBird.reset();
             }
         }
@@ -135,6 +162,12 @@ public class Level1 extends Levels {
                 handleCollision(blackBird, stone);
                 blackBird.reset();
             }
+            if (blackBird.checkCollision(tnt.getX(), tnt.getY(), tnt.getWidth(), tnt.getHeight())) {
+                System.out.println("Black Bird hit the tnt!");
+                tnt.takeDamage();
+                handleCollision(blackBird, tnt);
+                blackBird.reset();
+            }
         }
         if (yellowBird.isLaunched()) {
             yellowBird.update(delta);
@@ -162,6 +195,12 @@ public class Level1 extends Levels {
                 handleCollision(yellowBird, stone);
                 yellowBird.reset();
             }
+            if (yellowBird.checkCollision(tnt.getX(), tnt.getY(), tnt.getWidth(), tnt.getHeight())) {
+                System.out.println("Yellow Bird hit the tnt!");
+                tnt.takeDamage();
+                handleCollision(yellowBird, tnt);
+                yellowBird.reset();
+            }
         }
         spriteBatch.begin();
 
@@ -171,11 +210,21 @@ public class Level1 extends Levels {
         spriteBatch.draw(chuckTexture, yellowBird.getX(), yellowBird.getY(), 100, 100);
         spriteBatch.draw(bluesTexture, blueBird.getX(), blueBird.getY(), 70, 70);
         spriteBatch.draw(bombTexture, blackBird.getX(), blackBird.getY(), 130, 130);
-        spriteBatch.draw(kingPigTexture, 1300, 200, 160, 160);
-        spriteBatch.draw(woodTexture, 1020, 400, 700, 50);
-        spriteBatch.draw(glassTexture, 1200, 200, 50, 200);
-        spriteBatch.draw(stoneTexture, 1500, 200, 50, 200);
-        spriteBatch.draw(tntTexture, 1300, 450, 150, 70);
+        if (isKingPig) {
+            spriteBatch.draw(kingPigTexture, 1300, 200, 160, 160);
+        }
+        if (isWood) {
+            spriteBatch.draw(woodTexture, 1020, 400, 700, 50);
+        }
+        if (isGlass) {
+            spriteBatch.draw(glassTexture, glass.getX(), glass.getY(), glass.getWidth(), glass.getHeight());
+        }
+        if (isStone) {
+            spriteBatch.draw(stoneTexture, 1500, 200, 50, 200);
+        }
+        if (isTNT) {
+            spriteBatch.draw(tntTexture, 1300, 450, 150, 70);
+        }
         spriteBatch.draw(platformTexture, -2400, -100, 4500, 2350);
 
         float backButtonX = 20;
@@ -224,11 +273,34 @@ public class Level1 extends Levels {
         //playSoundEffect("collision_sound.mp3");
 
         // Check if the target is destroyed
-        if (target.isDestroyed()) {
+        if (wood.isDestroyed()) {
             System.out.println(target.getName() + " has been destroyed!");
-            // Remove target or trigger its destroyed animation/effect
+            isWood = false;
             target.triggerDestroyedEffect();
-            target.removeGameObject(); // This could be a method to remove it from the game world
+            target.removeGameObject();
+        }
+        if (stone.isDestroyed()) {
+            System.out.println(target.getName() + " has been destroyed!");
+            isStone = false;
+            target.triggerDestroyedEffect();
+            target.removeGameObject();
+        }
+        if (glass.isDestroyed()) {
+            System.out.println(target.getName() + " has been destroyed!");
+            isGlass = false;
+            target.triggerDestroyedEffect();
+            target.removeGameObject();
+        }
+        if (tnt.isDestroyed()) {
+            System.out.println(target.getName() + " has been destroyed!");
+            isTNT = false;
+            target.triggerDestroyedEffect();
+            target.removeGameObject();
+        }if (kingPig.isDestroyed()) {
+            System.out.println(target.getName() + " has been destroyed!");
+            isKingPig = false;
+            target.triggerDestroyedEffect();
+            target.removeGameObject();
         }
 
         // Apply any specific logic for the bird
