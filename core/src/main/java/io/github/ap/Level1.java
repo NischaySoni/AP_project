@@ -54,7 +54,7 @@ public class Level1 extends Levels {
             wood = new Wood(1020, 400, 700, 50, 8, "Wood", woodTexture);
         }
         if (isStone) {
-            stone = new Stone(1500, 200, 50, 200, 10, "Stone", stoneTexture);
+            stone = new Stone(1300, 200, 50, 200, 10, "Stone", stoneTexture);
         }
         if (isTNT) {
             tnt = new TNT(1300, 450, 150, 70, 1, "TNT", tntTexture);

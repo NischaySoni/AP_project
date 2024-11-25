@@ -3,6 +3,7 @@ package io.github.ap;
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -14,6 +15,7 @@ import java.awt.event.KeyEvent;
 public class Level4 extends Levels {
 
     private boolean isPaused = false;
+    private Music music;
     private BitmapFont font;
     private RedBird redBird;
     private BlueBird blueBird;
@@ -52,7 +54,7 @@ public class Level4 extends Levels {
             wood = new Wood(1020, 400, 700, 50, 8, "Wood", woodTexture);
         }
         if (isStone) {
-            stone = new Stone(1500, 200, 50, 200, 10, "Stone", stoneTexture);
+            stone = new Stone(1300, 200, 50, 200, 10, "Stone", stoneTexture);
         }
         if (isTNT) {
             tnt = new TNT(1300, 450, 150, 70, 1, "TNT", tntTexture);
@@ -262,18 +264,31 @@ public class Level4 extends Levels {
         }
         if (target instanceof Wood) {
             score += 10;  // Increase score by 10 for hitting Wood
+            music = Gdx.audio.newMusic(Gdx.files.internal("wood.mp3"));
+            music.setVolume(0.5f);
+            music.play();
         }
         if (target instanceof Glass) {
             score += 5;  // Increase score by 5 for hitting Glass
+            music = Gdx.audio.newMusic(Gdx.files.internal("glass.mp3"));
+            music.setVolume(0.5f);
+            music.play();
         }
         if (target instanceof Stone) {
             score += 15;  // Increase score by 15 for hitting Stone
+            music = Gdx.audio.newMusic(Gdx.files.internal("stone.mp3"));
+            music.setVolume(0.5f);
+            music.play();
+        }
+        if (target instanceof TNT) {
+            score += 20;  // Increase score by 20 for hitting TNT
+            music = Gdx.audio.newMusic(Gdx.files.internal("tnt.mp3"));
+            music.setVolume(0.5f);
+            music.play();
         }
         // Reduce the target's health/durability
         target.takeDamage(bird.getDamage());
 
-        // Play collision sound
-        //playSoundEffect("collision_sound.mp3");
 
         // Check if the target is destroyed
         if (wood.isDestroyed()) {
@@ -299,14 +314,13 @@ public class Level4 extends Levels {
             isTNT = false;
             target.triggerDestroyedEffect();
             target.removeGameObject();
-        }if (kingPig.isDestroyed()) {
+        }
+        if (kingPig.isDestroyed()) {
             System.out.println(target.getName() + " has been destroyed!");
             isKingPig = false;
             target.triggerDestroyedEffect();
             target.removeGameObject();
         }
-
-        // Apply any specific logic for the bird
         bird.reset();
     }
 
