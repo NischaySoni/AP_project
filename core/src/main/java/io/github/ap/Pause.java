@@ -26,9 +26,9 @@ public class Pause implements Screen {
         this.currentLevel = currentLevel;
 
         backgroundTexture = new Texture("stop background.jpg");
-        backButtonTexture = new Texture("ingameplay.png");
-        restartTexture = new Texture("again.png");
-        playTexture = new Texture("menu1.png");
+        backButtonTexture = new Texture("ingameplay.png"); // play button
+        restartTexture = new Texture("again.png");      // restart button
+        playTexture = new Texture("menu1.png");          // menu button
     }
 
     public void setVisible(boolean visible) {
@@ -58,7 +58,8 @@ public class Pause implements Screen {
 
         if (isMouseOverButton(mouseX, mouseY, centerX, centerY + 2 * (buttonHeight + 20), buttonWidth, buttonHeight)) {
             spriteBatch.draw(backButtonTexture, centerX - (buttonWidth * (hoverScale - 1) / 2), centerY + 2 * (buttonHeight + 20) - (buttonHeight * (hoverScale - 1) / 2), buttonWidth * hoverScale, buttonHeight * hoverScale);
-        } else {
+        }
+        else {
             spriteBatch.draw(backButtonTexture, centerX, centerY + 2 * (buttonHeight + 20), buttonWidth, buttonHeight);
         }
 
@@ -82,9 +83,12 @@ public class Pause implements Screen {
     private void input(float mouseX, float mouseY, float centerX, float centerY, float buttonWidth, float buttonHeight) {
         if (Gdx.input.isButtonJustPressed(Input.Buttons.LEFT)) {
             if (isMouseOverButton(mouseX, mouseY, centerX, centerY + 2 * (buttonHeight + 20), buttonWidth, buttonHeight)) {
-                System.out.println("Menu button clicked");
+                System.out.println("play button clicked ");
+//                System.out.println("Menu button clicked");
                 setVisible(false);
-                main.setScreen(new LevelScreen(spriteBatch, main));
+
+                main.setScreen(currentLevel);
+//                main.setScreen(new LevelScreen(spriteBatch, main));
             }
 
             if (isMouseOverButton(mouseX, mouseY, centerX, centerY + buttonHeight + 20, buttonWidth, buttonHeight)) {
@@ -93,9 +97,9 @@ public class Pause implements Screen {
             }
 
             if (isMouseOverButton(mouseX, mouseY, centerX, centerY, buttonWidth, buttonHeight)) {
-                System.out.println("Play button clicked");
+                System.out.println("menu button was clicked");
                 setVisible(false);
-                main.setScreen(currentLevel);
+                main.setScreen(new LevelScreen(spriteBatch, main));
             }
         }
     }
