@@ -44,6 +44,14 @@ public class BlueBird extends GameObject {
         }
     }
 
+    public void multiply() {
+        // Create 3 new BlueBird fragments with varying velocities
+        fragments.clear(); // Clear any existing fragments before multiplying
+        fragments.add(new BlueBirdFragment(x, y, initialVelocityX - 100, initialVelocityY + 50));
+        fragments.add(new BlueBirdFragment(x, y, initialVelocityX, initialVelocityY));
+        fragments.add(new BlueBirdFragment(x, y, initialVelocityX + 100, initialVelocityY - 50));
+    }
+
     public boolean isLaunched() {
         return isLaunched;
     }

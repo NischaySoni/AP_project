@@ -104,13 +104,13 @@ public class Level1 extends Levels {
             }
         }
         if (blueBird.isLaunched()) {
-            BlueBirdFragment blueBirdFragment = new BlueBirdFragment(blueBird.getX(), blueBird.getY(), 500, 500);
+            //BlueBirdFragment blueBirdFragment = new BlueBirdFragment(blueBird.getX(), blueBird.getY(), 500, 500);
             blueBird.update(delta);
-            spriteBatch.draw(bluesTexture, blueBirdFragment.getX(), blueBirdFragment.getY(), 40, 40);
-
-            boolean isCollisionDetected = false;  // Flag to track if any collision happens
+            spriteBatch.draw(bluesTexture, blueBird.getX(), blueBird.getY(), 40, 40);  // Draw BlueBird
 
             for (BlueBirdFragment fragment : blueBird.getFragments()) {
+                spriteBatch.draw(bluesTexture, fragment.getX(), fragment.getY(), 40, 40);  // Draw fragments
+            boolean isCollisionDetected = false;  // Flag to track if any collision happens
                 // Check for collision with King Pig
                 if (isKingPig && fragment.isColliding(kingPig.getX(), kingPig.getY(), kingPig.getWidth(), kingPig.getHeight())) {
                     System.out.println("Blue Bird hit the King Pig!");
@@ -151,13 +151,13 @@ public class Level1 extends Levels {
                     handleCollision(fragment, tnt);
                     isCollisionDetected = true;
                 }
-            }
-
             // Reset BlueBird if any collision occurred
             if (isCollisionDetected) {
                 blueBird.reset();
             }
+            }
         }
+
 
         if (blackBird.isLaunched()) {
             blackBird.update(delta);

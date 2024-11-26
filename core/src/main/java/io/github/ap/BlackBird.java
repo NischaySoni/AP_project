@@ -1,33 +1,33 @@
 package io.github.ap;
 
-public class BlackBird extends GameObject{
-    // Position
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
+
+public class BlackBird extends GameObject {
     private float x;
     private float y;
-
-    // Physics properties
     private float initialVelocityX;
     private float initialVelocityY;
     private float gravity;
-
-    // Tracking time since launch
     private float timeSinceLaunch;
     private boolean isLaunched;
 
-    // Constants for initial position and velocity
+    // Constants
     private static final float START_X = 370;
     private static final float START_Y = 400;
-    private static final float DEFAULT_VELOCITY_X = 450; // Adjust as needed
-    private static final float DEFAULT_VELOCITY_Y = 500; // Adjust as needed
+    private static final float DEFAULT_VELOCITY_X = 450;
+    private static final float DEFAULT_VELOCITY_Y = 500;
     private static final float GRAVITY = -9.8f;
 
+    // Variable to control the collision range
+    private float collisionRange = 1;  // Normal collision range
+
     public BlackBird() {
-        // Initialize with default values
-        super(START_X,START_Y,130, 130,5,"BlackBird");
+        super(START_X, START_Y, 130, 130, 5, "BlackBird");
         reset();
     }
 
-    // Launch the bird with a specified velocity
+    // Launch the bird with specified velocity
     public void launch() {
         if (!isLaunched) {
             this.initialVelocityX = DEFAULT_VELOCITY_X;
@@ -37,7 +37,7 @@ public class BlackBird extends GameObject{
         }
     }
 
-    // Reset bird to its initial position
+    // Reset the bird's position
     public void reset() {
         this.x = START_X;
         this.y = START_Y;
@@ -47,19 +47,24 @@ public class BlackBird extends GameObject{
         this.initialVelocityY = 0;
     }
 
-    // Update the bird's position based on projectile motion
+    // Update bird's position using projectile motion
     public void update(float delta) {
         if (isLaunched) {
             timeSinceLaunch += delta;
 
-            // Calculate new position using kinematic equations
-            x += initialVelocityX * delta; // X position update
-            y += initialVelocityY * delta + 0.5f * GRAVITY * (timeSinceLaunch * timeSinceLaunch); // Y position update
-            initialVelocityY += GRAVITY * delta; // Gravity effect on vertical velocity
+            // Update position based on velocity and gravity
+            x += initialVelocityX * delta;
+            y += initialVelocityY * delta + 0.5f * GRAVITY * (timeSinceLaunch * timeSinceLaunch);
+            initialVelocityY += GRAVITY * delta;
 
-            // If the bird falls below the starting Y position, reset it
+            // If bird falls below the ground level, reset it
             if (y < 0) {
                 reset();
+            }
+
+            // Increase collision range if space bar is pressed
+            if (Gdx.input.isKeyPressed(Input.Keys.SPACE)) {
+                collisionRange = 5;  // Increase the collision range
             }
         }
     }
@@ -77,15 +82,17 @@ public class BlackBird extends GameObject{
     }
 
     private boolean isColliding(float x1, float y1, float width1, float height1, float x2, float y2, float width2, float height2) {
-        return x1 < x2 + width2 &&
+        return x1 < x2 + width2*collisionRange &&
             x1 + width1 > x2 &&
-            y1 < y2 + height2 &&
+            y1 < y2 + height2*collisionRange &&
             y1 + height1 > y2;
     }
 
     public boolean checkCollision(float objectX, float objectY, float objectWidth, float objectHeight) {
-        float birdWidth = 10;
-        float birdHeight = 10;
+        // Bird's width and height can also be affected by collisionRange
+        float birdWidth = 10 * collisionRange;
+        float birdHeight = 10 * collisionRange;
+
         return isColliding(x, y, birdWidth, birdHeight, objectX, objectY, objectWidth, objectHeight);
     }
 }
