@@ -3,9 +3,11 @@ package io.github.ap;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.utils.Json;
 import com.badlogic.gdx.utils.ScreenUtils;
 
 public class Pause implements Screen {
@@ -26,9 +28,9 @@ public class Pause implements Screen {
         this.currentLevel = currentLevel;
 
         backgroundTexture = new Texture("stop background.jpg");
-        backButtonTexture = new Texture("ingameplay.png"); // play button
-        restartTexture = new Texture("again.png");      // restart button
-        playTexture = new Texture("menu1.png");          // menu button
+        backButtonTexture = new Texture("ingameplay.png");
+        restartTexture = new Texture("again.png");
+        playTexture = new Texture("menu1.png");
     }
 
     public void setVisible(boolean visible) {
@@ -58,8 +60,7 @@ public class Pause implements Screen {
 
         if (isMouseOverButton(mouseX, mouseY, centerX, centerY + 2 * (buttonHeight + 20), buttonWidth, buttonHeight)) {
             spriteBatch.draw(backButtonTexture, centerX - (buttonWidth * (hoverScale - 1) / 2), centerY + 2 * (buttonHeight + 20) - (buttonHeight * (hoverScale - 1) / 2), buttonWidth * hoverScale, buttonHeight * hoverScale);
-        }
-        else {
+        } else {
             spriteBatch.draw(backButtonTexture, centerX, centerY + 2 * (buttonHeight + 20), buttonWidth, buttonHeight);
         }
 
@@ -80,15 +81,35 @@ public class Pause implements Screen {
         input(mouseX, mouseY, centerX, centerY, buttonWidth, buttonHeight);
     }
 
+    public GameState loadGame() {
+        try {
+            FileHandle file = Gdx.files.local("savedGame.json");
+            if (file.exists()) {
+                String gameStateJson = file.readString();
+                return new Json().fromJson(GameState.class, gameStateJson); // Convert JSON to GameState
+            } else {
+                System.out.println("No saved game found!");
+                return null;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+
     private void input(float mouseX, float mouseY, float centerX, float centerY, float buttonWidth, float buttonHeight) {
         if (Gdx.input.isButtonJustPressed(Input.Buttons.LEFT)) {
             if (isMouseOverButton(mouseX, mouseY, centerX, centerY + 2 * (buttonHeight + 20), buttonWidth, buttonHeight)) {
-                System.out.println("play button clicked ");
-//                System.out.println("Menu button clicked");
-                setVisible(false);
+                System.out.println("Resume button clicked");
 
-                main.setScreen(currentLevel);
-//                main.setScreen(new LevelScreen(spriteBatch, main));
+                GameState savedState = loadGame();
+                if (savedState != null) {
+                    main.setScreen(new LevelScreen(spriteBatch, main, savedState));
+                } else {
+                    System.out.println("No saved game available. Starting a new game.");
+                    main.setScreen(new LevelScreen(spriteBatch, main, savedState));
+                }
             }
 
             if (isMouseOverButton(mouseX, mouseY, centerX, centerY + buttonHeight + 20, buttonWidth, buttonHeight)) {
@@ -97,7 +118,7 @@ public class Pause implements Screen {
             }
 
             if (isMouseOverButton(mouseX, mouseY, centerX, centerY, buttonWidth, buttonHeight)) {
-                System.out.println("menu button was clicked");
+                System.out.println("Play button clicked");
                 setVisible(false);
                 main.setScreen(new LevelScreen(spriteBatch, main));
             }
