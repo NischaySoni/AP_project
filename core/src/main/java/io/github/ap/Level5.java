@@ -1,16 +1,12 @@
 package io.github.ap;
 
-import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.ScreenUtils;
-
-import java.awt.event.KeyEvent;
 
 public class Level5 extends Levels {
 
@@ -340,7 +336,7 @@ public class Level5 extends Levels {
                 isPaused = !isPaused;
                 if (isPaused) {
                     System.out.println("Game is paused");
-                    Pause pauseMenu = new Pause(main, spriteBatch, this);
+                    Pause pauseMenu = new Pause(main, spriteBatch, new Level5(main, spriteBatch));
                     main.setScreen(pauseMenu);
                 }
             }
