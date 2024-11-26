@@ -108,7 +108,7 @@ public class Pause implements Screen {
                     main.setScreen(new LevelScreen(spriteBatch, main, savedState));
                 } else {
                     System.out.println("No saved game available. Starting a new game.");
-                    main.setScreen(new LevelScreen(spriteBatch, main, savedState));
+                    main.setScreen(currentLevel);
                 }
             }
 
