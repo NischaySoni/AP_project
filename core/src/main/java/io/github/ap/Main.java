@@ -70,7 +70,7 @@ public class Main extends Game {
             Gdx.app.exit();
         }
         if (Gdx.input.isKeyJustPressed(Input.Keys.S)) { // Save the game
-            GameState gameState = new GameState();
+            GameState gameState = new GameState(loadGame().getName(), loadGame().getHealth());
             //gameState.setScore(currentScore);
             gameState.setMusicVolume(music.getVolume());
             saveGame(gameState);

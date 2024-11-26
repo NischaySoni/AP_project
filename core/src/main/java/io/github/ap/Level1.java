@@ -64,6 +64,8 @@ public class Level1 extends Levels {
     public void render(float delta) {
         ScreenUtils.clear(0, 0, 0, 1);
 
+        spriteBatch.begin();
+
         if (isPaused) {
             return;
         }
@@ -102,38 +104,61 @@ public class Level1 extends Levels {
             }
         }
         if (blueBird.isLaunched()) {
+            BlueBirdFragment blueBirdFragment = new BlueBirdFragment(blueBird.getX(), blueBird.getY(), 500, 500);
             blueBird.update(delta);
-            if (isKingPig && blueBird.checkCollision(kingPig.getX(), kingPig.getY(), kingPig.getWidth(), kingPig.getHeight())){
-                System.out.println("Blue Bird hit the King Pig!");
-                kingPig.takeDamage();
-                handleCollision(blueBird, kingPig);
-                blueBird.reset();
+            spriteBatch.draw(bluesTexture, blueBirdFragment.getX(), blueBirdFragment.getY(), 40, 40);
+
+            boolean isCollisionDetected = false;  // Flag to track if any collision happens
+
+            for (BlueBirdFragment fragment : blueBird.getFragments()) {
+                // Check for collision with King Pig
+                if (isKingPig && fragment.isColliding(kingPig.getX(), kingPig.getY(), kingPig.getWidth(), kingPig.getHeight())) {
+                    System.out.println("Blue Bird hit the King Pig!");
+                    kingPig.takeDamage();
+                    handleCollision(fragment, kingPig);
+                    isCollisionDetected = true;  // Mark that a collision has occurred
+                }
+
+                // Check for collision with Wood
+                if (isWood && fragment.isColliding(wood.getX(), wood.getY(), wood.getWidth(), wood.getHeight())) {
+                    System.out.println("Blue Bird hit the Wood!");
+                    wood.takeDamage();
+                    handleCollision(fragment, wood);
+                    isCollisionDetected = true;
+                }
+
+                // Check for collision with Glass
+                if (isGlass && fragment.isColliding(glass.getX(), glass.getY(), glass.getWidth(), glass.getHeight())) {
+                    System.out.println("Blue Bird hit the Glass!");
+                    glass.takeDamage();
+                    glass.takeDamage();  // Double damage for glass
+                    handleCollision(fragment, glass);
+                    isCollisionDetected = true;
+                }
+
+                // Check for collision with Stone
+                if (isStone && fragment.isColliding(stone.getX(), stone.getY(), stone.getWidth(), stone.getHeight())) {
+                    System.out.println("Blue Bird hit the Stone!");
+                    stone.takeDamage();
+                    handleCollision(fragment, stone);
+                    isCollisionDetected = true;
+                }
+
+                // Check for collision with TNT
+                if (isTNT && fragment.isColliding(tnt.getX(), tnt.getY(), tnt.getWidth(), tnt.getHeight())) {
+                    System.out.println("Blue Bird hit the TNT!");
+                    tnt.takeDamage();
+                    handleCollision(fragment, tnt);
+                    isCollisionDetected = true;
+                }
             }
-            if (isWood && blueBird.checkCollision(wood.getX(), wood.getY(), wood.getWidth(), wood.getHeight())) {
-                System.out.println("Blue Bird hit the Wood!");
-                wood.takeDamage();
-                handleCollision(blueBird, wood);
-                blueBird.reset();
-            }
-            if (isGlass && blueBird.checkCollision(glass.getX(), glass.getY(), glass.getWidth(), glass.getHeight())) {
-                System.out.println("Blue Bird hit the Glass!");
-                glass.takeDamage();
-                handleCollision(blueBird, glass);
-                blueBird.reset();
-            }
-            if (isStone && blueBird.checkCollision(stone.getX(), stone.getY(), stone.getWidth(), stone.getHeight())) {
-                System.out.println("Blue Bird hit the Stone!");
-                stone.takeDamage();
-                handleCollision(blueBird, stone);
-                blueBird.reset();
-            }
-            if (isTNT && blueBird.checkCollision(tnt.getX(), tnt.getY(), tnt.getWidth(), tnt.getHeight())) {
-                System.out.println("Blue Bird hit the tnt!");
-                tnt.takeDamage();
-                handleCollision(blueBird, tnt);
+
+            // Reset BlueBird if any collision occurred
+            if (isCollisionDetected) {
                 blueBird.reset();
             }
         }
+
         if (blackBird.isLaunched()) {
             blackBird.update(delta);
             if (isKingPig && blackBird.checkCollision(kingPig.getX(), kingPig.getY(), kingPig.getWidth(), kingPig.getHeight())) {
@@ -168,6 +193,11 @@ public class Level1 extends Levels {
             }
         }
         if (yellowBird.isLaunched()) {
+            if (Gdx.input.isKeyPressed(Input.Keys.SPACE)) {
+                yellowBird.activateSpeedBoost(); // Activate speed boost
+            } else {
+                yellowBird.deactivateSpeedBoost(); // Deactivate speed boost when spacebar is released
+            }
             yellowBird.update(delta);
             if (isKingPig && yellowBird.checkCollision(kingPig.getX(), kingPig.getY(), kingPig.getWidth(), kingPig.getHeight())) {
                 System.out.println("Yellow Bird hit the King Pig!");
@@ -178,6 +208,9 @@ public class Level1 extends Levels {
             if (isWood && yellowBird.checkCollision(wood.getX(), wood.getY(), wood.getWidth(), wood.getHeight())) {
                 System.out.println("Yellow Bird hit the Wood!");
                 wood.takeDamage();
+                if (yellowBird.isSpeedBoosted()) {
+                    wood.takeDamage(); // Deal double damage
+                }
                 handleCollision(yellowBird, wood);
                 yellowBird.reset();
             }
@@ -200,7 +233,6 @@ public class Level1 extends Levels {
                 yellowBird.reset();
             }
         }
-        spriteBatch.begin();
 
         spriteBatch.draw(levelTexture, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         spriteBatch.draw(slingShotTexture, 400, 200, 150, 300);

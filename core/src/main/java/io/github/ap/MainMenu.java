@@ -8,6 +8,11 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.ScreenUtils;
 
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+
 public class MainMenu implements Screen {
     private final SpriteBatch spriteBatch;
     private final Texture backgroundTexture;
@@ -94,8 +99,32 @@ public class MainMenu implements Screen {
                 Gdx.app.exit();
             }
             if (mouseX >= 740 && mouseX <= 740 + saveButtonWidth && mouseY >= 400 && mouseY <= 400 + saveButtonHeight) {
-                ((Main) Gdx.app.getApplicationListener()).saveGame(new GameState());
+                ((Main) Gdx.app.getApplicationListener()).saveGame(new GameState(loadGame().getName(), loadGame().getHealth()));
             }
+        }
+    }
+
+    public void saveGame(GameState gameState) {
+        try (FileOutputStream fileOut = new FileOutputStream("game_state.sav");
+             ObjectOutputStream out = new ObjectOutputStream(fileOut)) {
+            out.writeObject(gameState);
+            System.out.println("Game state saved successfully!");
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.err.println("Failed to save the game state.");
+        }
+    }
+
+    public GameState loadGame() {
+        try (FileInputStream fileIn = new FileInputStream("game_state.sav");
+             ObjectInputStream in = new ObjectInputStream(fileIn)) {
+            GameState gameState = (GameState) in.readObject();
+            System.out.println("Game state loaded successfully!");
+            return gameState;
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.err.println("Failed to load the game state.");
+            return null;
         }
     }
 

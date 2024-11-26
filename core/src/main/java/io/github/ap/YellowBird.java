@@ -1,6 +1,6 @@
 package io.github.ap;
 
-public class YellowBird extends GameObject{
+public class YellowBird extends GameObject {
     // Position
     private float x;
     private float y;
@@ -13,6 +13,7 @@ public class YellowBird extends GameObject{
     // Tracking time since launch
     private float timeSinceLaunch;
     private boolean isLaunched;
+    private boolean isSpeedBoosted; // New flag for speed boost
 
     // Constants for initial position and velocity
     private static final float START_X = 200;
@@ -23,7 +24,7 @@ public class YellowBird extends GameObject{
 
     public YellowBird() {
         // Initialize with default values
-        super(START_X,START_Y,100, 100,3,"YellowBird");
+        super(START_X, START_Y, 100, 100, 3, "YellowBird");
         reset();
     }
 
@@ -45,12 +46,19 @@ public class YellowBird extends GameObject{
         this.timeSinceLaunch = 0;
         this.initialVelocityX = 0;
         this.initialVelocityY = 0;
+        this.isSpeedBoosted = false; // Reset speed boost
     }
 
     // Update the bird's position based on projectile motion
     public void update(float delta) {
         if (isLaunched) {
             timeSinceLaunch += delta;
+
+            // If speed boost is active, increase velocity
+            if (isSpeedBoosted) {
+                initialVelocityX = DEFAULT_VELOCITY_X * 1.5f; // Increase speed by 1.5x
+                initialVelocityY = DEFAULT_VELOCITY_Y * 1.5f; // Increase speed by 1.5x
+            }
 
             // Calculate new position using kinematic equations
             x += initialVelocityX * delta; // X position update
@@ -76,6 +84,10 @@ public class YellowBird extends GameObject{
         return isLaunched;
     }
 
+    public boolean isSpeedBoosted() {
+        return isSpeedBoosted;
+    }
+
     private boolean isColliding(float x1, float y1, float width1, float height1, float x2, float y2, float width2, float height2) {
         return x1 < x2 + width2 &&
             x1 + width1 > x2 &&
@@ -87,5 +99,15 @@ public class YellowBird extends GameObject{
         float birdWidth = 10;
         float birdHeight = 10;
         return isColliding(x, y, birdWidth, birdHeight, objectX, objectY, objectWidth, objectHeight);
+    }
+
+    // Method to activate speed boost (spacebar detection)
+    public void activateSpeedBoost() {
+        this.isSpeedBoosted = true;
+    }
+
+    // Method to deactivate speed boost (spacebar release detection)
+    public void deactivateSpeedBoost() {
+        this.isSpeedBoosted = false;
     }
 }

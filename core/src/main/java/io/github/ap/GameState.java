@@ -1,46 +1,60 @@
 package io.github.ap;
 
 import java.io.Serializable;
-import java.util.List;
 
-public class GameState implements Serializable {
-    private static final long serialVersionUID = 1L; // For version control of serialized classes
+class GameState implements Serializable {
+    private static final long serialVersionUID = 1L;
 
-    private int score;
-    private int level;
-    private List<String> inventory; // Example for additional state
-    private float musicVolume;
+    private String name;
+    private int health;
 
-    // Add getters and setters for these fields
-    public int getScore() {
-        return score;
+    public GameState(String name, int health) {
+        this.name = name;
+        this.health = health;
     }
 
-    public void setScore(int score) {
-        this.score = score;
+    public String getName() { return name; }
+    public void setName(String name) { this.name = name; }
+
+    public int getHealth() { return health; }
+    public void setHealth(int health) { this.health = health; }
+
+    @Override
+    public String toString() {
+        return name + " (Health: " + health + ")";
     }
 
-    public int getLevel() {
-        return level;
-    }
-
-    public void setLevel(int level) {
-        this.level = level;
-    }
-
-    public List<String> getInventory() {
-        return inventory;
-    }
-
-    public void setInventory(List<String> inventory) {
-        this.inventory = inventory;
+    public void setMusicVolume(float volume) {
     }
 
     public float getMusicVolume() {
-        return musicVolume;
+        return 0;
     }
+}
 
-    public void setMusicVolume(float musicVolume) {
-        this.musicVolume = musicVolume;
+// Bird class
+class Bird extends GameState {
+    private static final long serialVersionUID = 1L;
+
+    public Bird(String name, int health) {
+        super(name, health);
+    }
+}
+
+// Structure class
+class Structure extends GameState {
+    private static final long serialVersionUID = 1L;
+
+    public Structure(String name, int health) {
+        super(name, health);
+    }
+}
+
+// Pig class
+class Pig extends GameState {
+    private static final long serialVersionUID = 1L;
+
+    public Pig(String name, int health) {
+        super(name, health);
     }
 }
