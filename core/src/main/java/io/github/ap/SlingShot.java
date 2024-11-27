@@ -148,5 +148,3 @@ public class SlingShot extends ApplicationAdapter implements InputProcessor {
     @Override
     public boolean scrolled(float amountX, float amountY) { return false; }
 }
-
-

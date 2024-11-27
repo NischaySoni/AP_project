@@ -1,6 +1,8 @@
 package io.github.ap;
 
-public class RedBird extends GameObject{
+import com.badlogic.gdx.graphics.Texture;
+
+public class MyRed extends GameObject {
     // Position
     private float x;
     private float y;
@@ -17,21 +19,23 @@ public class RedBird extends GameObject{
     // Constants for initial position and velocity
     private static final float START_X = 300;
     private static final float START_Y = 200;
-    private static final float DEFAULT_VELOCITY_X = 400; // Adjust as needed
-    private static final float DEFAULT_VELOCITY_Y = 500; // Adjust as needed
     private static final float GRAVITY = -9.8f;
 
-    public RedBird() {
+    // Bird texture
+    private Texture birdTexture;
+
+    public MyRed() {
         // Initialize with default values
-        super(START_X,START_Y,100, 100,3,"RedBird");
+        super(START_X, START_Y, 100, 100, 3, "RedBird");
+        this.birdTexture = new Texture("red.png");  // Load the bird texture
         reset();
     }
 
     // Launch the bird with a specified velocity
-    public void launch() {
+    public void launch(float velocityX, float velocityY) {
         if (!isLaunched) {
-            this.initialVelocityX = DEFAULT_VELOCITY_X;
-            this.initialVelocityY = DEFAULT_VELOCITY_Y;
+            this.initialVelocityX = velocityX;
+            this.initialVelocityY = velocityY;
             this.isLaunched = true;
             this.timeSinceLaunch = 0;
         }
@@ -53,9 +57,9 @@ public class RedBird extends GameObject{
             timeSinceLaunch += delta;
 
             // Calculate new position using kinematic equations
-            x += initialVelocityX * delta; // X position update
-            y += initialVelocityY * delta + 0.5f * GRAVITY * (timeSinceLaunch * timeSinceLaunch); // Y position update
-            initialVelocityY += GRAVITY * delta; // Gravity effect on vertical velocity
+            x += initialVelocityX * delta;  // X position update
+            y += initialVelocityY * delta + 0.5f * GRAVITY * (timeSinceLaunch * timeSinceLaunch);  // Y position update
+            initialVelocityY += GRAVITY * delta;  // Gravity effect on vertical velocity
 
             // If the bird falls below the starting Y position, reset it
             if (y < 0) {
@@ -76,6 +80,11 @@ public class RedBird extends GameObject{
         return isLaunched;
     }
 
+    // Dispose of the bird's texture
+    public void dispose() {
+        birdTexture.dispose();
+    }
+
     private boolean isColliding(float x1, float y1, float width1, float height1, float x2, float y2, float width2, float height2) {
         return x1 < x2 + width2 &&
             x1 + width1 > x2 &&
@@ -83,13 +92,14 @@ public class RedBird extends GameObject{
             y1 + height1 > y2;
     }
 
-
     public boolean checkCollision(float objectX, float objectY, float objectWidth, float objectHeight) {
         float birdWidth = 10;
         float birdHeight = 10;
         return isColliding(x, y, birdWidth, birdHeight, objectX, objectY, objectWidth, objectHeight);
     }
 
-
-
+    // Get the bird texture for drawing
+    public Texture getBirdTexture() {
+        return birdTexture;
+    }
 }

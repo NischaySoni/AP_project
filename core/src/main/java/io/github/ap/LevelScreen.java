@@ -147,7 +147,8 @@ public class LevelScreen implements Screen {
             if (mouseX >= 20 && mouseX <= 20 + backButtonWidth && mouseY >= Gdx.graphics.getHeight() - 150 && mouseY <= Gdx.graphics.getHeight()) {
                 System.out.println("Back button clicked!");
                 main.setScreen(new MainMenu(spriteBatch));
-            } else if (mouseX >= 400 && mouseX <= 600 && mouseY >= 300 && mouseY <= 600) {
+            }
+            else if (mouseX >= 400 && mouseX <= 600 && mouseY >= 300 && mouseY <= 600) {
                 System.out.println("Level 1 button clicked!");
                 main.setScreen(new Level1(main, spriteBatch));
             } else if (mouseX >= 600 && mouseX <= 800 && mouseY >= 500 && mouseY <= 800) {
@@ -159,7 +160,8 @@ public class LevelScreen implements Screen {
             } else if (mouseX >= 1000 && mouseX <= 1200 && mouseY >= 500 && mouseY <= 800) {
                 System.out.println("Level 4 button clicked!");
                 main.setScreen(new Level4(main, spriteBatch));
-            } else if (mouseX >= 1200 && mouseX <= 1400 && mouseY >= 300 && mouseY <= 600) {
+            }
+            else if (mouseX >= 1200 && mouseX <= 1400 && mouseY >= 300 && mouseY <= 600) {
                 System.out.println("Level 5 button clicked!");
                 main.setScreen(new Level5(main, spriteBatch));
             }

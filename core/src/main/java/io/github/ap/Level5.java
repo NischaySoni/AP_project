@@ -16,6 +16,9 @@ public class Level5 extends Levels {
     private Texture slingShotTexture;  // Texture for slingshot band
     private float slingshotX, slingshotY;
 
+    // The MyRed bird
+    private MyRed myRed;
+
     public Level5(Main main, SpriteBatch spriteBatch) {
         super(main, spriteBatch);
     }
@@ -44,6 +47,9 @@ public class Level5 extends Levels {
 
         startPoint2 = new Vector2(slingshotX + slingShotTexture.getWidth(), slingshotTopY); // Slingshot anchor point 2 (right side of texture, top)
         endPoint2 = new Vector2(startPoint2); // Initially the same as start
+
+        // Initialize MyRed bird object
+        myRed = new MyRed();
     }
 
     @Override
@@ -64,6 +70,12 @@ public class Level5 extends Levels {
 
         // Draw the dynamic slingshot textures (bands) on top of the static one
         drawSlingshotTextures();
+
+        // Update and draw the MyRed bird
+        myRed.update(delta);
+        spriteBatch.begin();
+        spriteBatch.draw(myRed.getBirdTexture(), myRed.getX(), myRed.getY()); // Draw the bird
+        spriteBatch.end();
     }
 
     private void drawStaticSlingshot() {
@@ -127,6 +139,7 @@ public class Level5 extends Levels {
         // Dispose of the ShapeRenderer and textures when the screen is hidden
         shapeRenderer.dispose();
         slingShotTexture.dispose();
+        myRed.dispose(); // Dispose of bird's texture
     }
 
     // InputProcessor for handling the slingshot dragging behavior
@@ -171,6 +184,14 @@ public class Level5 extends Levels {
             if (button == 0) {
                 isDragging1 = false;
                 isDragging2 = false;
+
+                // Launch the bird based on the drag distance
+                Vector2 dragVector = new Vector2(endPoint1.x - startPoint1.x, endPoint1.y - startPoint1.y);
+                float velocityX = dragVector.x * 5;  // Adjust multiplier for speed
+                float velocityY = dragVector.y * 5;  // Adjust multiplier for speed
+
+                // Launch the bird
+                myRed.launch(velocityX, velocityY);
             }
             return true;
         }
