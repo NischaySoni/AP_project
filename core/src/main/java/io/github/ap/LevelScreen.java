@@ -25,8 +25,6 @@ public class LevelScreen implements Screen {
     private final Texture level5Texture;
     private final Main main;
     private final BitmapFont font;
-    private GameState gameState;
-
     private final int buttonSize = 300;
     private final int hoverButtonSize = 350;
     private final int backButtonWidth = 250;
@@ -37,47 +35,6 @@ public class LevelScreen implements Screen {
     public LevelScreen(SpriteBatch spriteBatch, Main main) {
         this.main = main;
         this.spriteBatch = spriteBatch;
-        this.gameState = new GameState(loadGame().getName(), loadGame().getHealth());
-        gameBackgroundTexture = new Texture("Space.jpg");
-        backButtonTexture = new Texture("BackButton.png");
-        level1Texture = new Texture("LevelButton.png");
-        level2Texture = new Texture("LevelButton.png");
-        level3Texture = new Texture("LevelButton.png");
-        level4Texture = new Texture("LevelButton.png");
-        level5Texture = new Texture("LevelButton.png");
-        font = new BitmapFont();
-        font.setColor(Color.BLACK);
-        font.getData().setScale(3);
-    }
-
-    public void saveGame(GameState gameState) {
-        try (FileOutputStream fileOut = new FileOutputStream("game_state.sav");
-             ObjectOutputStream out = new ObjectOutputStream(fileOut)) {
-            out.writeObject(gameState);
-            System.out.println("Game state saved successfully!");
-        } catch (Exception e) {
-            e.printStackTrace();
-            System.err.println("Failed to save the game state.");
-        }
-    }
-
-    public GameState loadGame() {
-        try (FileInputStream fileIn = new FileInputStream("game_state.sav");
-             ObjectInputStream in = new ObjectInputStream(fileIn)) {
-            GameState gameState = (GameState) in.readObject();
-            System.out.println("Game state loaded successfully!");
-            return gameState;
-        } catch (Exception e) {
-            e.printStackTrace();
-            System.err.println("Failed to load the game state.");
-            return null;
-        }
-    }
-
-    public LevelScreen(SpriteBatch spriteBatch, Main main, GameState savedState) {
-        this.spriteBatch = spriteBatch;
-        this.main = main;
-        this.gameState = savedState;
         gameBackgroundTexture = new Texture("Space.jpg");
         backButtonTexture = new Texture("BackButton.png");
         level1Texture = new Texture("LevelButton.png");
