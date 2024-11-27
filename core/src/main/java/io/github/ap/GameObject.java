@@ -4,7 +4,6 @@ public abstract class GameObject {
     private float x, y, width, height;
     private int health; // Durability or health points
     private String name;
-
     public GameObject(float x, float y, float width, float height, int health, String name) {
         this.x = x;
         this.y = y;
@@ -51,9 +50,13 @@ public abstract class GameObject {
         System.out.println(name + " removed from the game.");
     }
 
+
     // Reset the object to its initial state
     public void reset() {
         this.health = 100; // Example: reset health to full
         System.out.println(name + " has been reset to its initial state.");
     }
+
+
 }
+

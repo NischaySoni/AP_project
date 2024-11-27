@@ -90,4 +90,9 @@ public class RedBird extends GameObject{
         return isColliding(x, y, birdWidth, birdHeight, objectX, objectY, objectWidth, objectHeight);
     }
 
+
+
 }
+
+
+
