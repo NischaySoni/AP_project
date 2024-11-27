@@ -85,6 +85,7 @@ public class Pause implements Screen {
         if (Gdx.input.isButtonJustPressed(Input.Buttons.LEFT)) {
             if (isMouseOverButton(mouseX, mouseY, centerX, centerY + 2 * (buttonHeight + 20), buttonWidth, buttonHeight)) {
                 System.out.println("Resume button clicked");
+                main.setScreen(currentLevel);
             }
 
             if (isMouseOverButton(mouseX, mouseY, centerX, centerY + buttonHeight + 20, buttonWidth, buttonHeight)) {
