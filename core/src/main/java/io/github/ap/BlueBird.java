@@ -8,8 +8,8 @@ public class BlueBird extends GameObject{
     private float y;
 
     // Physics properties
-    private float initialVelocityX;
-    private float initialVelocityY;
+    public float initialVelocityX;
+    public float initialVelocityY;
     private float gravity;
 
     // Tracking time since launch
