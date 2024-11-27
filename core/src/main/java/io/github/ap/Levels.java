@@ -16,6 +16,8 @@ public class Levels extends ScreenAdapter {
     protected final Texture bombTexture;
     protected final Texture slingShotTexture;
     protected final Texture kingPigTexture;
+    protected final Texture pig1Texture;
+    protected final Texture pig2Texture;
     protected final Texture woodTexture;
     protected final Texture stoneTexture;
     protected final Texture glassTexture;
@@ -35,6 +37,8 @@ public class Levels extends ScreenAdapter {
         this.bombTexture = new Texture("bomb.png");
         this.slingShotTexture = new Texture("slingShot.png");
         this.kingPigTexture = new Texture("kingPig.png");
+        this.pig1Texture = new Texture("pig1.png");
+        this.pig2Texture = new Texture("pig2.png");
         this.woodTexture = new Texture("wood.png");
         this.stoneTexture = new Texture("stone.png");
         this.glassTexture = new Texture("glass.png");
@@ -80,10 +84,13 @@ public class Levels extends ScreenAdapter {
         bombTexture.dispose();
         slingShotTexture.dispose();
         kingPigTexture.dispose();
+        pig1Texture.dispose();
+        pig2Texture.dispose();
         woodTexture.dispose();
         stoneTexture.dispose();
         glassTexture.dispose();
         tntTexture.dispose();
         pause.dispose();
+        platformTexture.dispose();
     }
 }

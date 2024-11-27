@@ -19,6 +19,8 @@ public class Level1 extends Levels {
     private YellowBird yellowBird;
     private SlingShot slingShot;
     private KingPig kingPig;
+    private Pig1 pig1;
+    private Pig2 pig2;
     private Glass glass;
     private Wood wood;
     private Stone stone;
@@ -28,6 +30,8 @@ public class Level1 extends Levels {
     private boolean isStone = true;
     private boolean isGlass = true;
     private boolean isKingPig = true;
+    private boolean isPig1 = true;
+    private boolean isPig2 = true;
     private boolean isTNT = true;
 
 
@@ -42,6 +46,12 @@ public class Level1 extends Levels {
         yellowBird = new YellowBird();
         if (isKingPig) {
             kingPig = new KingPig(1300, 200, 160, 160, 4, "KingPig", kingPigTexture);
+        }
+        if (isPig1) {
+            pig1 = new Pig1(1300, 500, 130, 130, 3, "Pig1", pig1Texture);
+        }
+        if (isPig2) {
+            pig2 = new Pig2(1100, 200, 130, 130, 3, "Pig2", pig2Texture);
         }
         if (isGlass) {
             glass = new Glass(1150, 300, 50, 200, 6, "Glass", glassTexture);
@@ -76,6 +86,18 @@ public class Level1 extends Levels {
                 System.out.println("Red Bird hit the King Pig!");
                 kingPig.takeDamage();
                 handleCollision(redBird, kingPig);
+                redBird.reset();
+            }
+            if (isPig1 && redBird.checkCollision(pig1.getX(), pig1.getY(), pig1.getWidth(), pig1.getHeight())) {
+                System.out.println("Red Bird hit the King Pig!");
+                pig1.takeDamage();
+                handleCollision(redBird, pig1);
+                redBird.reset();
+            }
+            if (isPig2 && redBird.checkCollision(pig2.getX(), pig2.getY(), pig2.getWidth(), pig2.getHeight())) {
+                System.out.println("Red Bird hit the King Pig!");
+                pig2.takeDamage();
+                handleCollision(redBird, pig2);
                 redBird.reset();
             }
             if (isWood && redBird.checkCollision(wood.getX(), wood.getY(), wood.getWidth(), wood.getHeight())) {
@@ -118,6 +140,18 @@ public class Level1 extends Levels {
                     handleCollision(fragment, kingPig);
                     isCollisionDetected = true;  // Mark that a collision has occurred
                 }
+                if (isPig1 && blueBird.checkCollision(pig1.getX(), pig1.getY(), pig1.getWidth(), pig1.getHeight())) {
+                    System.out.println("Blue Bird hit the King Pig!");
+                    pig1.takeDamage();
+                    handleCollision(blueBird, pig1);
+                    blueBird.reset();
+                }
+                if (isPig2 && blueBird.checkCollision(pig2.getX(), pig2.getY(), pig2.getWidth(), pig2.getHeight())) {
+                    System.out.println("Blue Bird hit the King Pig!");
+                    pig2.takeDamage();
+                    handleCollision(blueBird, pig2);
+                    blueBird.reset();
+                }
 
                 // Check for collision with Wood
                 if (isWood && fragment.isColliding(wood.getX(), wood.getY(), wood.getWidth(), wood.getHeight())) {
@@ -151,10 +185,10 @@ public class Level1 extends Levels {
                     handleCollision(fragment, tnt);
                     isCollisionDetected = true;
                 }
-            // Reset BlueBird if any collision occurred
-            if (isCollisionDetected) {
-                blueBird.reset();
-            }
+                // Reset BlueBird if any collision occurred
+                if (isCollisionDetected) {
+                    blueBird.reset();
+                }
             }
         }
 
@@ -165,6 +199,18 @@ public class Level1 extends Levels {
                 System.out.println("Black Bird hit the King Pig!");
                 kingPig.takeDamage();
                 handleCollision(blackBird, kingPig);
+                blackBird.reset();
+            }
+            if (isPig1 && blackBird.checkCollision(pig1.getX(), pig1.getY(), pig1.getWidth(), pig1.getHeight())) {
+                System.out.println("Black Bird hit the King Pig!");
+                pig1.takeDamage();
+                handleCollision(blackBird, pig1);
+                blackBird.reset();
+            }
+            if (isPig2 && blackBird.checkCollision(pig2.getX(), pig2.getY(), pig2.getWidth(), pig2.getHeight())) {
+                System.out.println("Black Bird hit the King Pig!");
+                pig2.takeDamage();
+                handleCollision(blackBird, pig2);
                 blackBird.reset();
             }
             if (isWood && blackBird.checkCollision(wood.getX(), wood.getY(), wood.getWidth(), wood.getHeight())) {
@@ -205,6 +251,18 @@ public class Level1 extends Levels {
                 handleCollision(yellowBird, kingPig);
                 yellowBird.reset();
             }
+            if (isPig1 && yellowBird.checkCollision(pig1.getX(), pig1.getY(), pig1.getWidth(), pig1.getHeight())) {
+                System.out.println("Yellow Bird hit the King Pig!");
+                pig1.takeDamage();
+                handleCollision(yellowBird, pig1);
+                yellowBird.reset();
+            }
+            if (isPig2 && yellowBird.checkCollision(pig2.getX(), pig2.getY(), pig2.getWidth(), pig2.getHeight())) {
+                System.out.println("Yellow Bird hit the King Pig!");
+                pig2.takeDamage();
+                handleCollision(yellowBird, pig2);
+                yellowBird.reset();
+            }
             if (isWood && yellowBird.checkCollision(wood.getX(), wood.getY(), wood.getWidth(), wood.getHeight())) {
                 System.out.println("Yellow Bird hit the Wood!");
                 wood.takeDamage();
@@ -242,6 +300,12 @@ public class Level1 extends Levels {
         spriteBatch.draw(bombTexture, blackBird.getX(), blackBird.getY(), 130, 130);
         if (isKingPig) {
             spriteBatch.draw(kingPigTexture, kingPig.getX(), kingPig.getY(), kingPig.getWidth(), kingPig.getHeight());
+        }
+        if (isPig1) {
+            spriteBatch.draw(pig1Texture, pig1.getX(), pig1.getY(), pig1.getWidth(), pig1.getHeight());
+        }
+        if (isPig2) {
+            spriteBatch.draw(pig2Texture, pig2.getX(), pig2.getY(), pig2.getWidth(), pig2.getHeight());
         }
         if (isWood) {
             spriteBatch.draw(woodTexture, wood.getX(), wood.getY(), wood.getWidth(), wood.getHeight());
@@ -289,6 +353,12 @@ public class Level1 extends Levels {
         // Increase score based on the object hit
         if (target instanceof KingPig) {
             score += 100;  // Increase score by 100 for hitting the KingPig
+        }
+        if (target instanceof Pig1) {
+            score += 70;  // Increase score by 70 for hitting the Pig1
+        }
+        if (target instanceof KingPig) {
+            score += 70;  // Increase score by 70 for hitting the Pig2
         }
         if (target instanceof Wood) {
             score += 10;  // Increase score by 10 for hitting Wood
@@ -346,6 +416,18 @@ public class Level1 extends Levels {
         if (kingPig.isDestroyed()) {
             System.out.println(target.getName() + " has been destroyed!");
             isKingPig = false;
+            target.triggerDestroyedEffect();
+            target.removeGameObject();
+        }
+        if (pig1.isDestroyed()) {
+            System.out.println(target.getName() + " has been destroyed!");
+            isPig1 = false;
+            target.triggerDestroyedEffect();
+            target.removeGameObject();
+        }
+        if (pig2.isDestroyed()) {
+            System.out.println(target.getName() + " has been destroyed!");
+            isPig2 = false;
             target.triggerDestroyedEffect();
             target.removeGameObject();
         }
