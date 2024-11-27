@@ -15,8 +15,8 @@ public class BlackBird extends GameObject {
     // Constants
     private static final float START_X = 370;
     private static final float START_Y = 400;
-    private static final float DEFAULT_VELOCITY_X = 450;
-    private static final float DEFAULT_VELOCITY_Y = 500;
+//    private static final float DEFAULT_VELOCITY_X = 450;
+//    private static final float DEFAULT_VELOCITY_Y = 500;
     private static final float GRAVITY = -9.8f;
 
     // Variable to control the collision range
@@ -28,10 +28,10 @@ public class BlackBird extends GameObject {
     }
 
     // Launch the bird with specified velocity
-    public void launch() {
+    public void launch(float velocityX, float velocityY) {
         if (!isLaunched) {
-            this.initialVelocityX = DEFAULT_VELOCITY_X;
-            this.initialVelocityY = DEFAULT_VELOCITY_Y;
+            this.initialVelocityX = velocityX;
+            this.initialVelocityY = velocityY;
             this.isLaunched = true;
             this.timeSinceLaunch = 0;
         }
