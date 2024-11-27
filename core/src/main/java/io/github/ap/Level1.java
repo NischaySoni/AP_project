@@ -431,7 +431,7 @@ public class Level1 extends Levels {
         if (target instanceof Pig1) {
             score += 70;  // Increase score by 70 for hitting the Pig1
         }
-        if (target instanceof KingPig) {
+        if (target instanceof Pig2) {
             score += 70;  // Increase score by 70 for hitting the Pig2
         }
         if (target instanceof Wood) {
