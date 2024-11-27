@@ -29,10 +29,10 @@ public class YellowBird extends GameObject {
     }
 
     // Launch the bird with a specified velocity
-    public void launch() {
+    public void launch(float velocityX, float velocityY) {
         if (!isLaunched) {
-            this.initialVelocityX = DEFAULT_VELOCITY_X;
-            this.initialVelocityY = DEFAULT_VELOCITY_Y;
+            this.initialVelocityX = velocityX;
+            this.initialVelocityY = velocityY;
             this.isLaunched = true;
             this.timeSinceLaunch = 0;
         }
