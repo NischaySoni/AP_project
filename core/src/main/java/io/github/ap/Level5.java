@@ -1,380 +1,199 @@
 package io.github.ap;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
-import com.badlogic.gdx.audio.Music;
-import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.ScreenUtils;
 
 public class Level5 extends Levels {
+    private ShapeRenderer shapeRenderer;
+    private Vector2 startPoint1, endPoint1;
+    private Vector2 startPoint2, endPoint2;
+    private boolean isDragging1, isDragging2;
 
-    private boolean isPaused = false;
-    private Music music;
-    private BitmapFont font;
-    private RedBird redBird;
-    private BlueBird blueBird;
-    private BlackBird blackBird;
-    private YellowBird yellowBird;
-    private SlingShot slingShot;
-    private KingPig kingPig;
-    private Glass glass;
-    private Wood wood;
-    private Stone stone;
-    private TNT tnt;
-    private int score = 0;
-    private boolean isWood = true;
-    private boolean isStone = true;
-    private boolean isGlass = true;
-    private boolean isKingPig = true;
-    private boolean isTNT = true;
-
+    private Texture slingShotTexture;  // Texture for slingshot band
+    private float slingshotX, slingshotY;
 
     public Level5(Main main, SpriteBatch spriteBatch) {
         super(main, spriteBatch);
-        font = new BitmapFont();
-        font.setColor(Color.WHITE);
-        font.getData().setScale(3);
-        redBird = new RedBird();
-        blueBird = new BlueBird();
-        blackBird = new BlackBird();
-        yellowBird = new YellowBird();
-        if (isKingPig) {
-            kingPig = new KingPig(1300, 200, 160, 160, 4, "KingPig", kingPigTexture);
-        }
-        if (isGlass) {
-            glass = new Glass(1150, 300, 50, 200, 6, "Glass", glassTexture);
-        }
-        if (isWood) {
-            wood = new Wood(1020, 400, 700, 50, 8, "Wood", woodTexture);
-        }
-        if (isStone) {
-            stone = new Stone(1300, 200, 50, 200, 10, "Stone", stoneTexture);
-        }
-        if (isTNT) {
-            tnt = new TNT(1300, 450, 150, 70, 1, "TNT", tntTexture);
-        }
     }
 
     @Override
-    public void show() {}
+    public void show() {
+        // Initialize ShapeRenderer for drawing lines
+        shapeRenderer = new ShapeRenderer();
+
+        // Load the slingshot texture
+        slingShotTexture = new Texture("slingShot.png");
+
+        // Set input processor to handle mouse input for slingshot
+        Gdx.input.setInputProcessor(new SlingShotInputProcessor());
+
+        // Position for slingshot texture
+        slingshotX = Gdx.graphics.getWidth() / 5f;  // Adjust X to move it to the left (1/5th of the screen width)
+        slingshotY = Gdx.graphics.getHeight() / 4f;  // Adjust Y to move it lower (1/4th of the screen height)
+
+        // Calculate the top position of the slingshot texture
+        float slingshotTopY = slingshotY + slingShotTexture.getHeight() / 2f;  // Top of the texture
+
+        // Initialize the start and end points of the slingshot lines to the top of the slingshot
+        startPoint1 = new Vector2(slingshotX, slingshotTopY); // Slingshot anchor point 1 (top of texture)
+        endPoint1 = new Vector2(startPoint1); // Initially the same as start
+
+        startPoint2 = new Vector2(slingshotX + slingShotTexture.getWidth(), slingshotTopY); // Slingshot anchor point 2 (right side of texture, top)
+        endPoint2 = new Vector2(startPoint2); // Initially the same as start
+    }
 
     @Override
     public void render(float delta) {
+        // Clear the screen and draw the level background
         ScreenUtils.clear(0, 0, 0, 1);
 
-        if (isPaused) {
-            return;
-        }
-
-        if (redBird.isLaunched()) {
-            redBird.update(delta);
-            if (isKingPig && redBird.checkCollision(kingPig.getX(), kingPig.getY(), kingPig.getWidth(), kingPig.getHeight())) {
-                System.out.println("Red Bird hit the King Pig!");
-                kingPig.takeDamage();
-                handleCollision(redBird, kingPig);
-                redBird.reset();
-            }
-            if (isWood && redBird.checkCollision(wood.getX(), wood.getY(), wood.getWidth(), wood.getHeight())) {
-                System.out.println("Red Bird hit the Wood!");
-                wood.takeDamage();
-                handleCollision(redBird, wood);
-                redBird.reset();
-            }
-            if (isGlass && redBird.checkCollision(glass.getX(), glass.getY(), glass.getWidth(), glass.getHeight())) {
-                System.out.println("Red Bird hit the Glass!");
-                glass.takeDamage();
-                handleCollision(redBird, glass);
-                redBird.reset();
-            }
-            if (isStone && redBird.checkCollision(stone.getX(), stone.getY(), stone.getWidth(), stone.getHeight())) {
-                System.out.println("Red Bird hit the Stone!");
-                stone.takeDamage();
-                handleCollision(redBird, stone);
-                redBird.reset();
-            }
-            if (isTNT && redBird.checkCollision(tnt.getX(), tnt.getY(), tnt.getWidth(), tnt.getHeight())) {
-                System.out.println("Red Bird hit the tnt!");
-                tnt.takeDamage();
-                handleCollision(redBird, tnt);
-                redBird.reset();
-            }
-        }
-        if (blueBird.isLaunched()) {
-            blueBird.update(delta);
-            if (isKingPig && blueBird.checkCollision(kingPig.getX(), kingPig.getY(), kingPig.getWidth(), kingPig.getHeight())){
-                System.out.println("Blue Bird hit the King Pig!");
-                kingPig.takeDamage();
-                handleCollision(blueBird, kingPig);
-                blueBird.reset();
-            }
-            if (isWood && blueBird.checkCollision(wood.getX(), wood.getY(), wood.getWidth(), wood.getHeight())) {
-                System.out.println("Blue Bird hit the Wood!");
-                wood.takeDamage();
-                handleCollision(blueBird, wood);
-                blueBird.reset();
-            }
-            if (isGlass && blueBird.checkCollision(glass.getX(), glass.getY(), glass.getWidth(), glass.getHeight())) {
-                System.out.println("Blue Bird hit the Glass!");
-                glass.takeDamage();
-                handleCollision(blueBird, glass);
-                blueBird.reset();
-            }
-            if (isStone && blueBird.checkCollision(stone.getX(), stone.getY(), stone.getWidth(), stone.getHeight())) {
-                System.out.println("Blue Bird hit the Stone!");
-                stone.takeDamage();
-                handleCollision(blueBird, stone);
-                blueBird.reset();
-            }
-            if (isTNT && blueBird.checkCollision(tnt.getX(), tnt.getY(), tnt.getWidth(), tnt.getHeight())) {
-                System.out.println("Blue Bird hit the tnt!");
-                tnt.takeDamage();
-                handleCollision(blueBird, tnt);
-                blueBird.reset();
-            }
-        }
-        if (blackBird.isLaunched()) {
-            blackBird.update(delta);
-            if (isKingPig && blackBird.checkCollision(kingPig.getX(), kingPig.getY(), kingPig.getWidth(), kingPig.getHeight())) {
-                System.out.println("Black Bird hit the King Pig!");
-                kingPig.takeDamage();
-                handleCollision(blackBird, kingPig);
-                blackBird.reset();
-            }
-            if (isWood && blackBird.checkCollision(wood.getX(), wood.getY(), wood.getWidth(), wood.getHeight())) {
-                System.out.println("Black Bird hit the Wood!");
-                wood.takeDamage();
-                handleCollision(blackBird, wood);
-                blackBird.reset();
-            }
-            if (isGlass && blackBird.checkCollision(glass.getX(), glass.getY(), glass.getWidth(), glass.getHeight())) {
-                System.out.println("Black Bird hit the Glass!");
-                glass.takeDamage();
-                handleCollision(blackBird, glass);
-                blackBird.reset();
-            }
-            if (isStone && blackBird.checkCollision(stone.getX(), stone.getY(), stone.getWidth(), stone.getHeight())) {
-                System.out.println("Black Bird hit the Stone!");
-                stone.takeDamage();
-                handleCollision(blackBird, stone);
-                blackBird.reset();
-            }
-            if (isTNT && blackBird.checkCollision(tnt.getX(), tnt.getY(), tnt.getWidth(), tnt.getHeight())) {
-                System.out.println("Black Bird hit the tnt!");
-                tnt.takeDamage();
-                handleCollision(blackBird, tnt);
-                blackBird.reset();
-            }
-        }
-        if (yellowBird.isLaunched()) {
-            yellowBird.update(delta);
-            if (isKingPig && yellowBird.checkCollision(kingPig.getX(), kingPig.getY(), kingPig.getWidth(), kingPig.getHeight())) {
-                System.out.println("Yellow Bird hit the King Pig!");
-                kingPig.takeDamage();
-                handleCollision(yellowBird, kingPig);
-                yellowBird.reset();
-            }
-            if (isWood && yellowBird.checkCollision(wood.getX(), wood.getY(), wood.getWidth(), wood.getHeight())) {
-                System.out.println("Yellow Bird hit the Wood!");
-                wood.takeDamage();
-                handleCollision(yellowBird, wood);
-                yellowBird.reset();
-            }
-            if (isGlass && yellowBird.checkCollision(glass.getX(), glass.getY(), glass.getWidth(), glass.getHeight())) {
-                System.out.println("Yellow Bird hit the Glass!");
-                glass.takeDamage();
-                handleCollision(yellowBird, glass);
-                yellowBird.reset();
-            }
-            if (isStone && yellowBird.checkCollision(stone.getX(), stone.getY(), stone.getWidth(), stone.getHeight())) {
-                System.out.println("Yellow Bird hit the Stone!");
-                stone.takeDamage();
-                handleCollision(yellowBird, stone);
-                yellowBird.reset();
-            }
-            if (isTNT && yellowBird.checkCollision(tnt.getX(), tnt.getY(), tnt.getWidth(), tnt.getHeight())) {
-                System.out.println("Yellow Bird hit the tnt!");
-                tnt.takeDamage();
-                handleCollision(yellowBird, tnt);
-                yellowBird.reset();
-            }
-        }
+        // Draw the level background image
         spriteBatch.begin();
-
         spriteBatch.draw(levelTexture, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-        spriteBatch.draw(slingShotTexture, 400, 200, 150, 300);
-        spriteBatch.draw(redTexture, redBird.getX(), redBird.getY(), 100, 100);
-        spriteBatch.draw(chuckTexture, yellowBird.getX(), yellowBird.getY(), 100, 100);
-        spriteBatch.draw(bluesTexture, blueBird.getX(), blueBird.getY(), 70, 70);
-        spriteBatch.draw(bombTexture, blackBird.getX(), blackBird.getY(), 130, 130);
-        if (isKingPig) {
-            spriteBatch.draw(kingPigTexture, kingPig.getX(), kingPig.getY(), kingPig.getWidth(), kingPig.getHeight());
-        }
-        if (isWood) {
-            spriteBatch.draw(woodTexture, wood.getX(), wood.getY(), wood.getWidth(), wood.getHeight());
-        }
-        if (isGlass) {
-            spriteBatch.draw(glassTexture, glass.getX(), glass.getY(), glass.getWidth(), glass.getHeight());
-        }
-        if (isStone) {
-            spriteBatch.draw(stoneTexture, stone.getX(), stone.getY(), stone.getWidth(), stone.getHeight());
-        }
-        if (isTNT) {
-            spriteBatch.draw(tntTexture, tnt.getX(), tnt.getY(), tnt.getWidth(), tnt.getHeight());
-        }
-        spriteBatch.draw(platformTexture, -2400, -100, 4500, 2350);
-
-        float backButtonX = 20;
-        float backButtonY = Gdx.graphics.getHeight() - 150;
-        float backButtonWidth = 250;
-        float backButtonHeight = 150;
-        if (isMouseOverButton(Gdx.input.getX(), Gdx.input.getY(), backButtonX, backButtonY, backButtonWidth, backButtonHeight)) {
-            spriteBatch.draw(backButtonTexture, backButtonX - 10, backButtonY - 10, backButtonWidth + 20, backButtonHeight + 20);
-        } else {
-            spriteBatch.draw(backButtonTexture, backButtonX, backButtonY, backButtonWidth, backButtonHeight);
-        }
-
-        float pauseX = (Gdx.graphics.getWidth() - 50) / 2f;
-        float pauseY = Gdx.graphics.getHeight() - 70;
-        if (isMouseOverButton(Gdx.input.getX(), Gdx.input.getY(), pauseX, pauseY, 50, 50)) {
-            spriteBatch.draw(pause, pauseX - 5, pauseY - 5, 60, 60);
-        } else {
-            spriteBatch.draw(pause, pauseX, pauseY, 50, 50);
-        }
-
-        String scoreText = "Score: " + score;
-        float textX = Gdx.graphics.getWidth() - font.getRegion().getRegionWidth() - 20;
-        float textY = Gdx.graphics.getHeight() - 20;
-        font.draw(spriteBatch, scoreText, textX, textY);
-
         spriteBatch.end();
 
-        input();
+        // Draw the static slingshot texture (this is your stationary slingshot band)
+        drawStaticSlingshot();
+
+        // Draw the slingshot lines using ShapeRenderer
+        drawSlingshotLines();
+
+        // Draw the dynamic slingshot textures (bands) on top of the static one
+        drawSlingshotTextures();
     }
 
-    private void handleCollision(GameObject bird, GameObject target) {
-        // Increase score based on the object hit
-        if (target instanceof KingPig) {
-            score += 100;  // Increase score by 100 for hitting the KingPig
-        }
-        if (target instanceof Wood) {
-            score += 10;  // Increase score by 10 for hitting Wood
-            music = Gdx.audio.newMusic(Gdx.files.internal("wood.mp3"));
-            music.setVolume(0.5f);
-            music.play();
-        }
-        if (target instanceof Glass) {
-            score += 5;  // Increase score by 5 for hitting Glass
-            music = Gdx.audio.newMusic(Gdx.files.internal("glass.mp3"));
-            music.setVolume(0.5f);
-            music.play();
-        }
-        if (target instanceof Stone) {
-            score += 15;  // Increase score by 15 for hitting Stone
-            music = Gdx.audio.newMusic(Gdx.files.internal("stone.mp3"));
-            music.setVolume(0.5f);
-            music.play();
-        }
-        if (target instanceof TNT) {
-            score += 20;  // Increase score by 20 for hitting TNT
-            music = Gdx.audio.newMusic(Gdx.files.internal("tnt.mp3"));
-            music.setVolume(0.5f);
-            music.play();
-        }
-        // Reduce the target's health/durability
-        target.takeDamage(bird.getDamage());
-
-
-        // Check if the target is destroyed
-        if (wood.isDestroyed()) {
-            System.out.println(target.getName() + " has been destroyed!");
-            isWood = false;
-            target.triggerDestroyedEffect();
-            target.removeGameObject();
-        }
-        if (stone.isDestroyed()) {
-            System.out.println(target.getName() + " has been destroyed!");
-            isStone = false;
-            target.triggerDestroyedEffect();
-            target.removeGameObject();
-        }
-        if (glass.isDestroyed()) {
-            System.out.println(target.getName() + " has been destroyed!");
-            isGlass = false;
-            target.triggerDestroyedEffect();
-            target.removeGameObject();
-        }
-        if (tnt.isDestroyed()) {
-            System.out.println(target.getName() + " has been destroyed!");
-            isTNT = false;
-            target.triggerDestroyedEffect();
-            target.removeGameObject();
-        }
-        if (kingPig.isDestroyed()) {
-            System.out.println(target.getName() + " has been destroyed!");
-            isKingPig = false;
-            target.triggerDestroyedEffect();
-            target.removeGameObject();
-        }
-        bird.reset();
+    private void drawStaticSlingshot() {
+        // Draw the static slingshot image at the given position
+        spriteBatch.begin();
+        spriteBatch.draw(slingShotTexture, slingshotX - slingShotTexture.getWidth() / 2, slingshotY - slingShotTexture.getHeight() / 2);
+        spriteBatch.end();
     }
 
+    private void drawSlingshotLines() {
+        shapeRenderer.setProjectionMatrix(main.viewport.getCamera().combined);
+        shapeRenderer.begin(ShapeRenderer.ShapeType.Line);
 
-    private void input() {
-        if (Gdx.input.isButtonJustPressed(Input.Buttons.LEFT)) {
-            float mouseX = Gdx.input.getX();
-            float mouseY = Gdx.graphics.getHeight() - Gdx.input.getY();
-
-            if (mouseX >= 20 && mouseX <= 270 && mouseY >= Gdx.graphics.getHeight() - 150 && mouseY <= Gdx.graphics.getHeight()) {
-                main.setScreen(new LevelScreen(spriteBatch, main));
-            }
-
-            float pauseX = (Gdx.graphics.getWidth() - 50) / 2f;
-            float pauseY = Gdx.graphics.getHeight() - 70;
-            if (mouseX >= pauseX && mouseX <= pauseX + 50 && mouseY >= pauseY && mouseY <= pauseY + 50) {
-                isPaused = !isPaused;
-                if (isPaused) {
-                    System.out.println("Game is paused");
-                    Pause pauseMenu = new Pause(main, spriteBatch, new Level5(main, spriteBatch));
-                    main.setScreen(pauseMenu);
-                }
-            }
-            if (!redBird.isLaunched() && mouseX >= redBird.getX() && mouseX <= redBird.getX() + 100 && mouseY >= redBird.getY() && mouseY <= redBird.getY() + 100) {
-                redBird.launch();
-            }
-            if (!blueBird.isLaunched() && mouseX >= blueBird.getX() && mouseX <= blueBird.getX() + 100 && mouseY >= blueBird.getY() && mouseY <= blueBird.getY() + 100) {
-                blueBird.launch();
-            }
-            if (!blackBird.isLaunched() && mouseX >= blackBird.getX() && mouseX <= blackBird.getX() + 100 && mouseY >= blackBird.getY() && mouseY <= blackBird.getY() + 100) {
-                blackBird.launch();
-            }
-            if (!yellowBird.isLaunched() && mouseX >= yellowBird.getX() && mouseX <= yellowBird.getX() + 100 && mouseY >= yellowBird.getY() && mouseY <= yellowBird.getY() + 100) {
-                yellowBird.launch();
-            }
+        // Draw the first line if dragging
+        if (isDragging1) {
+            shapeRenderer.line(startPoint1.x, startPoint1.y, endPoint1.x, endPoint1.y);
         }
+
+        // Draw the second line if dragging
+        if (isDragging2) {
+            shapeRenderer.line(startPoint2.x, startPoint2.y, endPoint2.x, endPoint2.y);
+        }
+
+        shapeRenderer.end();
     }
 
-    private boolean isMouseOverButton(float mouseX, float mouseY, float buttonX, float buttonY, float buttonWidth, float buttonHeight) {
-        float adjustedMouseY = Gdx.graphics.getHeight() - mouseY;
-        return mouseX >= buttonX && mouseX <= buttonX + buttonWidth && adjustedMouseY >= buttonY && adjustedMouseY <= buttonY + buttonHeight;
+    private void drawSlingshotTextures() {
+        spriteBatch.begin();
+
+        // Draw first slingshot band texture (from startPoint1 to endPoint1)
+        if (isDragging1) {
+            float angle1 = (float) Math.atan2(endPoint1.y - startPoint1.y, endPoint1.x - startPoint1.x); // Angle for rotation
+            float distance1 = startPoint1.dst(endPoint1); // Distance between the points (length of the band)
+
+            // Draw the first texture stretched along the angle, applying rotation and scaling
+            spriteBatch.draw(slingShotTexture, startPoint1.x, startPoint1.y,
+                0, slingShotTexture.getHeight() / 2,
+                distance1, slingShotTexture.getHeight(),
+                1, 1
+            );
+        }
+
+        // Draw second slingshot band texture (from startPoint2 to endPoint2)
+        if (isDragging2) {
+            float angle2 = (float) Math.atan2(endPoint2.y - startPoint2.y, endPoint2.x - startPoint2.x); // Angle for rotation
+            float distance2 = startPoint2.dst(endPoint2); // Distance between the points (length of the band)
+
+            // Draw the second texture stretched along the angle, applying rotation and scaling
+            spriteBatch.draw(slingShotTexture, startPoint2.x, startPoint2.y,
+                0, slingShotTexture.getHeight() / 2,
+                distance2, slingShotTexture.getHeight(),
+                1, 1
+            );
+        }
+
+        spriteBatch.end();
     }
 
     @Override
-    public void resize(int width, int height) {}
+    public void hide() {
+        // Dispose of the ShapeRenderer and textures when the screen is hidden
+        shapeRenderer.dispose();
+        slingShotTexture.dispose();
+    }
 
-    @Override
-    public void pause() {}
+    // InputProcessor for handling the slingshot dragging behavior
+    private class SlingShotInputProcessor implements com.badlogic.gdx.InputProcessor {
+        @Override
+        public boolean touchDown(int screenX, int screenY, int pointer, int button) {
+            if (button == 0) {
+                // Convert screen coordinates to world coordinates
+                Vector2 mousePos = new Vector2(screenX, Gdx.graphics.getHeight() - screenY); // Invert Y axis
 
-    @Override
-    public void resume() {}
+                // Start dragging both lines
+                isDragging1 = true;
+                isDragging2 = true;
 
-    @Override
-    public void hide() {}
+                // Update the end points to where the mouse is clicked
+                endPoint1.set(mousePos);
+                endPoint2.set(mousePos);
+            }
+            return true;
+        }
 
-    @Override
-    public void dispose() {
-        super.dispose();
-        font.dispose();
+        @Override
+        public boolean touchDragged(int screenX, int screenY, int pointer) {
+            Vector2 mousePos = new Vector2(screenX, Gdx.graphics.getHeight() - screenY); // Invert Y axis
+
+            // If dragging the first line, update its end point
+            if (isDragging1) {
+                endPoint1.set(mousePos);
+            }
+
+            // If dragging the second line, update its end point
+            if (isDragging2) {
+                endPoint2.set(mousePos);
+            }
+
+            return true;
+        }
+
+        @Override
+        public boolean touchUp(int screenX, int screenY, int pointer, int button) {
+            // Stop dragging the first or second line when the left mouse button is released
+            if (button == 0) {
+                isDragging1 = false;
+                isDragging2 = false;
+            }
+            return true;
+        }
+
+        @Override
+        public boolean touchCancelled(int i, int i1, int i2, int i3) {
+            return false;
+        }
+
+        // Unused InputProcessor methods (but they must be implemented)
+        @Override
+        public boolean keyDown(int keycode) { return false; }
+
+        @Override
+        public boolean keyUp(int keycode) { return false; }
+
+        @Override
+        public boolean keyTyped(char character) { return false; }
+
+        @Override
+        public boolean mouseMoved(int screenX, int screenY) { return false; }
+
+        @Override
+        public boolean scrolled(float amountX, float amountY) { return false; }
     }
 }

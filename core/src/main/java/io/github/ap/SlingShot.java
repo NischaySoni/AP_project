@@ -1,91 +1,152 @@
 package io.github.ap;
 
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+
+import com.badlogic.gdx.ApplicationAdapter;
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.InputProcessor;
+import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.utils.ScreenUtils;
 
-import java.util.LinkedList;
-import java.util.Queue;
+public class SlingShot extends ApplicationAdapter implements InputProcessor {
+    private ShapeRenderer shapeRenderer;
+    private OrthographicCamera camera;
 
-public class SlingShot {
-    private Vector2 position; // Position of the slingshot
-    private Texture slingTexture; // Texture for the slingshot
-    private Queue<Texture> birdQueue; // Queue for bird textures to be launched
-    private Texture currentBirdTexture; // Texture of the currently loaded bird
-    private Vector2 currentBirdVelocity; // Velocity of the current bird
-    private boolean isPulledBack; // Whether the slingshot is pulled back
-    private Vector2 launchPosition; // Position where bird launches from
-    private Vector2 pullBackPosition; // Position when the slingshot is pulled back
+    // First line: start and end points
+    private Vector2 startPoint1;
+    private Vector2 endPoint1;
+    private boolean isDragging1 = false;
 
-    private static final float PULLBACK_DISTANCE = 50; // Maximum distance the slingshot can be pulled back
+    // Second line: start and end points
+    private Vector2 startPoint2;
+    private Vector2 endPoint2;
+    private boolean isDragging2 = false;
 
-    public SlingShot(Texture slingTexture, float x, float y, Queue<Texture> birdTextures) {
-        this.position = new Vector2(x, y);
-        this.slingTexture = slingTexture;
-        this.birdQueue = new LinkedList<>(birdTextures);
-        birdTextures.add(new Texture("redBird"));
-        birdTextures.add(new Texture("blueBird"));
-        birdTextures.add(new Texture("blackBird"));
-        birdTextures.add(new Texture("yellowBird"));
-        this.currentBirdTexture = birdQueue.poll(); // Get the first bird texture
-        this.isPulledBack = false;
-        this.launchPosition = new Vector2(x + 30, y + 60); // Adjust based on sling design
-        this.pullBackPosition = new Vector2();
-        this.currentBirdVelocity = new Vector2(0, 0); // Initial velocity is zero
+    @Override
+    public void create() {
+        // Initialize ShapeRenderer for drawing the lines
+        shapeRenderer = new ShapeRenderer();
+        camera = new OrthographicCamera();
+        camera.setToOrtho(false, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+
+        // Set initial start points for both lines
+        startPoint1 = new Vector2(Gdx.graphics.getWidth() / 3f, Gdx.graphics.getHeight() / 2f); // First point
+        endPoint1 = new Vector2(startPoint1); // Initially the same as start
+
+        startPoint2 = new Vector2(2 * Gdx.graphics.getWidth() / 3f, Gdx.graphics.getHeight() / 2f); // Second point
+        endPoint2 = new Vector2(startPoint2); // Initially the same as start
+
+        // Set input processor to handle mouse input
+        Gdx.input.setInputProcessor(this);
     }
 
-    // Render the slingshot and the current bird
-    public void render(SpriteBatch spriteBatch) {
-        spriteBatch.draw(slingTexture, position.x, position.y, 100, 150);
+    @Override
+    public void render() {
+        // Clear the screen
+        ScreenUtils.clear(0, 0, 0, 1);
+        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
-        if (currentBirdTexture != null) {
-            float birdX = isPulledBack ? pullBackPosition.x : launchPosition.x;
-            float birdY = isPulledBack ? pullBackPosition.y : launchPosition.y;
-            spriteBatch.draw(currentBirdTexture, birdX, birdY, 50, 50); // Drawing the bird with its texture
-        }
-    }
+        // Update camera
+        camera.update();
 
-    // Handle input for pulling and launching the bird
-    public void handleInput(float mouseX, float mouseY, boolean isPressed, boolean isReleased) {
-        if (currentBirdTexture == null) return;
+        // Set line thickness using OpenGL
+        Gdx.gl.glLineWidth(10); // Set line thickness to 10
 
-        if (isPressed) {
-            // Calculate pull-back position within the allowed range
-            float dx = mouseX - launchPosition.x;
-            float dy = mouseY - launchPosition.y;
-            float distance = (float) Math.sqrt(dx * dx + dy * dy);
-            if (distance > PULLBACK_DISTANCE) {
-                float ratio = PULLBACK_DISTANCE / distance;
-                dx *= ratio;
-                dy *= ratio;
-            }
-            pullBackPosition.set(launchPosition.x + dx, launchPosition.y + dy);
-            isPulledBack = true;
+        // Begin ShapeRenderer drawing in line mode
+        shapeRenderer.setProjectionMatrix(camera.combined);
+        shapeRenderer.begin(ShapeRenderer.ShapeType.Line);
+
+        // Draw the first line if dragging
+        if (isDragging1) {
+            shapeRenderer.line(startPoint1.x, startPoint1.y, endPoint1.x, endPoint1.y);
         }
 
-        if (isReleased && isPulledBack) {
-            // Launch the bird with velocity based on pull-back
-            float velocityX = launchPosition.x - pullBackPosition.x;
-            float velocityY = launchPosition.y - pullBackPosition.y;
-            currentBirdVelocity.set(velocityX, velocityY); // Set bird's velocity based on the pull-back
-
-            // After launching, switch to the next bird in the queue
-            currentBirdTexture = birdQueue.poll(); // Load the next bird texture
-            isPulledBack = false;
+        // Draw the second line if dragging
+        if (isDragging2) {
+            shapeRenderer.line(startPoint2.x, startPoint2.y, endPoint2.x, endPoint2.y);
         }
+
+        shapeRenderer.end();
+
+        // Reset the line width back to 1 for other renderings
+        Gdx.gl.glLineWidth(1);
     }
 
-    // Get the current bird's texture
-    public Texture getCurrentBirdTexture() {
-        return currentBirdTexture;
+    @Override
+    public void dispose() {
+        // Clean up resources
+        shapeRenderer.dispose();
     }
 
-    // Get the velocity of the current bird
-    public Vector2 getCurrentBirdVelocity() {
-        return currentBirdVelocity;
+    // InputProcessor methods
+
+    @Override
+    public boolean touchDown(int screenX, int screenY, int pointer, int button) {
+        if (button == 0) {
+            // Convert screen coordinates to world coordinates
+            Vector2 mousePos = new Vector2(screenX, Gdx.graphics.getHeight() - screenY); // Invert Y axis
+
+            // Start dragging both lines
+            isDragging1 = true;
+            isDragging2 = true;
+
+            // Update the end points to where the mouse is clicked
+            endPoint1.set(mousePos);
+            endPoint2.set(mousePos);
+        }
+        return true;
     }
 
-    public boolean hasBirdsLeft() {
-        return currentBirdTexture != null || !birdQueue.isEmpty();
+    @Override
+    public boolean touchDragged(int screenX, int screenY, int pointer) {
+        Vector2 mousePos = new Vector2(screenX, Gdx.graphics.getHeight() - screenY); // Invert Y axis
+
+        // If dragging the first line, update its end point
+        if (isDragging1) {
+            endPoint1.set(mousePos);
+        }
+
+        // If dragging the second line, update its end point
+        if (isDragging2) {
+            endPoint2.set(mousePos);
+        }
+
+        return true;
     }
+
+    @Override
+    public boolean touchUp(int screenX, int screenY, int pointer, int button) {
+        // Stop dragging the first or second line when the left mouse button is released
+        if (button == 0) {
+            isDragging1 = false;
+            isDragging2 = false;
+        }
+        return true;
+    }
+
+    @Override
+    public boolean touchCancelled(int i, int i1, int i2, int i3) {
+        return false;
+    }
+
+    // Unused InputProcessor methods (but they must be implemented)
+
+    @Override
+    public boolean keyDown(int keycode) { return false; }
+
+    @Override
+    public boolean keyUp(int keycode) { return false; }
+
+    @Override
+    public boolean keyTyped(char character) { return false; }
+
+    @Override
+    public boolean mouseMoved(int screenX, int screenY) { return false; }
+
+    @Override
+    public boolean scrolled(float amountX, float amountY) { return false; }
 }
+
+

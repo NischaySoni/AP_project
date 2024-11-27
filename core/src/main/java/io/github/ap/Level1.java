@@ -6,6 +6,7 @@ import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.ScreenUtils;
 
 public class Level1 extends Levels {
@@ -29,6 +30,9 @@ public class Level1 extends Levels {
     private boolean isGlass = true;
     private boolean isKingPig = true;
     private boolean isTNT = true;
+
+
+
 
 
     public Level1(Main main, SpriteBatch spriteBatch) {
@@ -410,3 +414,8 @@ public class Level1 extends Levels {
         font.dispose();
     }
 }
+
+
+
+
+
