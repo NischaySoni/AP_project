@@ -17,7 +17,7 @@ public class RedBird extends GameObject{
     private boolean isLaunched;
 
     // Constants for initial position and velocity
-    private static final float START_X = 300;
+    private static final float START_X = 20;
     private static final float START_Y = 200;
     //private static final float DEFAULT_VELOCITY_X = 400; // Adjust as needed
     //private static final float DEFAULT_VELOCITY_Y = 500; // Adjust as needed
@@ -76,6 +76,15 @@ public class RedBird extends GameObject{
     public float getY() {
         return y;
     }
+
+    public void setX(float START_X){
+        this.x = START_X;
+    }
+
+    public void setY(float START_Y){
+        this.y = START_Y;
+    }
+
 
     public boolean isLaunched() {
         return isLaunched;

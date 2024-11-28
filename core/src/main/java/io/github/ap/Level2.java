@@ -586,15 +586,47 @@ public class Level2 extends Levels {
             switch (keycode) {
                 case Input.Keys.NUM_1:
                     currentBird = BirdType.RED;
+                    redBird.setX(370);
+                    redBird.setY(400);
+                    blackBird.setX(300);
+                    blackBird.setY(200);
+                    yellowBird.setX(200);
+                    yellowBird.setY(200);
+                    blueBird.setX(100);
+                    blueBird.setY(200);
                     break;
                 case Input.Keys.NUM_2:
-                    currentBird = BirdType.YELLOW;
+                    currentBird = BirdType.BLACK;
+                    blackBird.setX(370);
+                    blackBird.setY(400);
+                    yellowBird.setX(200);
+                    yellowBird.setY(200);
+                    blueBird.setX(100);
+                    blueBird.setY(200);
+                    redBird.setX(20);
+                    redBird.setY(200);
                     break;
                 case Input.Keys.NUM_3:
-                    currentBird = BirdType.BLACK;
+                    currentBird = BirdType.YELLOW;
+                    yellowBird.setX(370);
+                    yellowBird.setY(400);
+                    blueBird.setX(100);
+                    blueBird.setY(200);
+                    redBird.setX(20);
+                    redBird.setY(200);
+                    blackBird.setX(300);
+                    blackBird.setY(200);
                     break;
                 case Input.Keys.NUM_4:
                     currentBird = BirdType.BLUE;
+                    blueBird.setX(370);
+                    blueBird.setY(400);
+                    redBird.setX(20);
+                    redBird.setY(200);
+                    blackBird.setX(300);
+                    blackBird.setY(200);
+                    yellowBird.setX(200);
+                    yellowBird.setY(200);
                     break;
             }
             return true;

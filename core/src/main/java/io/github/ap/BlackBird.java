@@ -13,8 +13,8 @@ public class BlackBird extends GameObject {
     private boolean isLaunched;
 
     // Constants
-    private static final float START_X = 370;
-    private static final float START_Y = 400;
+    private static final float START_X = 300;
+    private static final float START_Y = 200;
 //    private static final float DEFAULT_VELOCITY_X = 450;
 //    private static final float DEFAULT_VELOCITY_Y = 500;
     private static final float GRAVITY = -9.8f;
@@ -75,6 +75,14 @@ public class BlackBird extends GameObject {
 
     public float getY() {
         return y;
+    }
+
+    public void setX(float START_X){
+        this.x = START_X;
+    }
+
+    public void setY(float START_Y){
+        this.y = START_Y;
     }
 
     public boolean isLaunched() {

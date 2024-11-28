@@ -77,6 +77,14 @@ public class BlueBird extends GameObject{
         return y;
     }
 
+    public void setX(float START_X){
+        this.x = START_X;
+    }
+
+    public void setY(float START_Y){
+        this.y = START_Y;
+    }
+
     public boolean isLaunched() {
         return isLaunched;
     }
