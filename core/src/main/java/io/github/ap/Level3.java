@@ -426,86 +426,63 @@ public class Level3 extends Levels {
     private void handleCollision(GameObject bird, GameObject target) {
         // Increase score based on the object hit
         if (target instanceof KingPig) {
-            score += 100;  // Increase score by 100 for hitting the KingPig
+            score += 100;
         }
         if (target instanceof Pig1) {
-            score += 70;  // Increase score by 70 for hitting the Pig1
+            score += 70;
         }
         if (target instanceof Pig2) {
-            score += 70;  // Increase score by 70 for hitting the Pig2
+            score += 70;
         }
         if (target instanceof Wood) {
-            score += 10;  // Increase score by 10 for hitting Wood
+            score += 10;
             music = Gdx.audio.newMusic(Gdx.files.internal("wood.mp3"));
             music.setVolume(0.5f);
             music.play();
         }
         if (target instanceof Glass) {
-            score += 5;  // Increase score by 5 for hitting Glass
+            score += 5;
             music = Gdx.audio.newMusic(Gdx.files.internal("glass.mp3"));
             music.setVolume(0.5f);
             music.play();
         }
         if (target instanceof Stone) {
-            score += 15;  // Increase score by 15 for hitting Stone
+            score += 15;
             music = Gdx.audio.newMusic(Gdx.files.internal("stone.mp3"));
             music.setVolume(0.5f);
             music.play();
         }
         if (target instanceof TNT) {
-            score += 20;  // Increase score by 20 for hitting TNT
+            score += 20;
             music = Gdx.audio.newMusic(Gdx.files.internal("tnt.mp3"));
             music.setVolume(0.5f);
             music.play();
         }
+
         // Reduce the target's health/durability
         target.takeDamage(bird.getDamage());
 
+        if (target.isDestroyed()) {
+            System.out.println(target.getName() + " has been destroyed!");
+            if (target instanceof Wood) isWood = false;
+            if (target instanceof Stone) isStone = false;
+            if (target instanceof Glass) isGlass = false;
+            if (target instanceof TNT) isTNT = false;
+            if (target instanceof KingPig) isKingPig = false;
+            if (target instanceof Pig1) isPig1 = false;
+            if (target instanceof Pig2) isPig2 = false;
 
-        // Check if the target is destroyed
-        if (wood.isDestroyed()) {
-            System.out.println(target.getName() + " has been destroyed!");
-            isWood = false;
             target.triggerDestroyedEffect();
             target.removeGameObject();
         }
-        if (stone.isDestroyed()) {
-            System.out.println(target.getName() + " has been destroyed!");
-            isStone = false;
-            target.triggerDestroyedEffect();
-            target.removeGameObject();
-        }
-        if (glass.isDestroyed()) {
-            System.out.println(target.getName() + " has been destroyed!");
-            isGlass = false;
-            target.triggerDestroyedEffect();
-            target.removeGameObject();
-        }
-        if (tnt.isDestroyed()) {
-            System.out.println(target.getName() + " has been destroyed!");
-            isTNT = false;
-            target.triggerDestroyedEffect();
-            target.removeGameObject();
-        }
-        if (kingPig.isDestroyed()) {
-            System.out.println(target.getName() + " has been destroyed!");
-            isKingPig = false;
-            target.triggerDestroyedEffect();
-            target.removeGameObject();
-        }
-        if (pig1.isDestroyed()) {
-            System.out.println(target.getName() + " has been destroyed!");
-            isPig1 = false;
-            target.triggerDestroyedEffect();
-            target.removeGameObject();
-        }
-        if (pig2.isDestroyed()) {
-            System.out.println(target.getName() + " has been destroyed!");
-            isPig2 = false;
-            target.triggerDestroyedEffect();
-            target.removeGameObject();
-        }
+
         bird.reset();
+
+        if (!isWood && !isStone && !isGlass && !isTNT && !isKingPig && !isPig1 && !isPig2) {
+            System.out.println("You won the game!");
+            WinningScreen winningScreen = new WinningScreen(main, new Level3(main, spriteBatch));
+            main.setScreen(winningScreen);
+        }
     }
 
     // InputProcessor for handling the slingshot dragging behavior
