@@ -251,147 +251,55 @@ public class Level4 extends Levels {
                     newBirds.get(0).launch(blueBird.getX() - 50, blueBird.getY() + 50);
                     spriteBatch.draw(newBirds.get(0).getBirdTexture(), blueBird.getX() + 100, blueBird.getY() + 100, blueBird.getWidth(), blueBird.getHeight());
                     newBirds.add(new BlueBird());
-                    newBirds.get(1).launch(blueBird.getX(), blueBird.getY());
-                    spriteBatch.draw(newBirds.get(1).getBirdTexture(), blueBird.getX(), blueBird.getY(), blueBird.getWidth(), blueBird.getHeight());
-                    newBirds.add(new BlueBird());
-                    newBirds.get(2).launch(blueBird.getX() + 50, blueBird.getY() + 50);
-                    spriteBatch.draw(newBirds.get(2).getBirdTexture(), blueBird.getX() - 100, blueBird.getY() - 100, blueBird.getWidth(), blueBird.getHeight());
+                    newBirds.get(1).launch(blueBird.getX() + 50, blueBird.getY() + 50);
+                    spriteBatch.draw(newBirds.get(1).getBirdTexture(), blueBird.getX() - 100, blueBird.getY() - 100, blueBird.getWidth(), blueBird.getHeight());
 
-                    if (isKingPig && newBirds.get(0).checkCollision(kingPig.getX(), kingPig.getY(), kingPig.getWidth(), kingPig.getHeight())) {
+                    if (isKingPig && blueBird.checkCollision(kingPig.getX(), kingPig.getY(), kingPig.getWidth(), kingPig.getHeight())) {
                         System.out.println("Blue Bird hit the King Pig!");
                         kingPig.takeDamage();
-                        handleCollision(newBirds.get(0), kingPig);
-                        newBirds.get(0).reset();
+                        handleCollision(blueBird, kingPig);
+                        blueBird.reset();
                     }
-                    if (isPig1 && newBirds.get(0).checkCollision(pig1.getX(), pig1.getY(), pig1.getWidth(), pig1.getHeight())) {
+                    if (isPig1 && blueBird.checkCollision(pig1.getX(), pig1.getY(), pig1.getWidth(), pig1.getHeight())) {
                         System.out.println("Blue Bird hit the King Pig!");
                         pig1.takeDamage();
-                        handleCollision(newBirds.get(0), pig1);
-                        newBirds.get(0).reset();
+                        handleCollision(blueBird, pig1);
+                        blueBird.reset();
                     }
-                    if (isPig2 && newBirds.get(0).checkCollision(pig2.getX(), pig2.getY(), pig2.getWidth(), pig2.getHeight())) {
+                    if (isPig2 && blueBird.checkCollision(pig2.getX(), pig2.getY(), pig2.getWidth(), pig2.getHeight())) {
                         System.out.println("Blue Bird hit the King Pig!");
                         pig2.takeDamage();
-                        handleCollision(newBirds.get(0), pig2);
-                        newBirds.get(0).reset();
+                        handleCollision(blueBird, pig2);
+                        blueBird.reset();
                     }
-                    if (isWood && newBirds.get(0).checkCollision(wood.getX(), wood.getY(), wood.getWidth(), wood.getHeight())) {
+                    if (isWood && blueBird.checkCollision(wood.getX(), wood.getY(), wood.getWidth(), wood.getHeight())) {
                         System.out.println("Blue Bird hit the Wood!");
                         wood.takeDamage();
-                        handleCollision(newBirds.get(0), wood);
-                        newBirds.get(0).reset();
+                        handleCollision(blueBird, wood);
+                        blueBird.reset();
                     }
-                    if (isGlass && newBirds.get(0).checkCollision(glass.getX(), glass.getY(), glass.getWidth(), glass.getHeight())) {
+                    if (isGlass && blueBird.checkCollision(glass.getX(), glass.getY(), glass.getWidth(), glass.getHeight())) {
                         System.out.println("Blue Bird hit the Glass!");
                         glass.takeDamage();
                         glass.takeDamage();
                         glass.takeDamage();
-                        handleCollision(newBirds.get(0), glass);
-                        newBirds.get(0).reset();
+                        handleCollision(blueBird, glass);
+                        blueBird.reset();
                     }
-                    if (isStone && newBirds.get(0).checkCollision(stone.getX(), stone.getY(), stone.getWidth(), stone.getHeight())) {
+                    if (isStone && blueBird.checkCollision(stone.getX(), stone.getY(), stone.getWidth(), stone.getHeight())) {
                         System.out.println("Blue Bird hit the Stone!");
                         stone.takeDamage();
-                        handleCollision(newBirds.get(0), stone);
-                        newBirds.get(0).reset();
+                        handleCollision(blueBird, stone);
+                        blueBird.reset();
                     }
-                    if (isTNT && newBirds.get(0).checkCollision(tnt.getX(), tnt.getY(), tnt.getWidth(), tnt.getHeight())) {
+                    if (isTNT && blueBird.checkCollision(tnt.getX(), tnt.getY(), tnt.getWidth(), tnt.getHeight())) {
                         System.out.println("Blue Bird hit the TNT!");
                         tnt.takeDamage();
-                        handleCollision(newBirds.get(0), tnt);
-                        newBirds.get(0).reset();
-                    }
-                    if (isKingPig && newBirds.get(1).checkCollision(kingPig.getX(), kingPig.getY(), kingPig.getWidth(), kingPig.getHeight())) {
-                        System.out.println("Blue Bird hit the King Pig!");
-                        kingPig.takeDamage();
-                        handleCollision(newBirds.get(1), kingPig);
-                        newBirds.get(1).reset();
-                    }
-                    if (isPig1 && newBirds.get(1).checkCollision(pig1.getX(), pig1.getY(), pig1.getWidth(), pig1.getHeight())) {
-                        System.out.println("Blue Bird hit the King Pig!");
-                        pig1.takeDamage();
-                        handleCollision(newBirds.get(1), pig1);
-                        newBirds.get(1).reset();
-                    }
-                    if (isPig2 && newBirds.get(1).checkCollision(pig2.getX(), pig2.getY(), pig2.getWidth(), pig2.getHeight())) {
-                        System.out.println("Blue Bird hit the King Pig!");
-                        pig2.takeDamage();
-                        handleCollision(newBirds.get(1), pig2);
-                        newBirds.get(1).reset();
-                    }
-                    if (isWood && newBirds.get(1).checkCollision(wood.getX(), wood.getY(), wood.getWidth(), wood.getHeight())) {
-                        System.out.println("Blue Bird hit the Wood!");
-                        wood.takeDamage();
-                        handleCollision(newBirds.get(1), wood);
-                        newBirds.get(1).reset();
-                    }
-                    if (isGlass && newBirds.get(1).checkCollision(glass.getX(), glass.getY(), glass.getWidth(), glass.getHeight())) {
-                        System.out.println("Blue Bird hit the Glass!");
-                        glass.takeDamage();
-                        glass.takeDamage();
-                        glass.takeDamage();
-                        handleCollision(newBirds.get(1), glass);
-                        newBirds.get(1).reset();
-                    }
-                    if (isStone && newBirds.get(1).checkCollision(stone.getX(), stone.getY(), stone.getWidth(), stone.getHeight())) {
-                        System.out.println("Blue Bird hit the Stone!");
-                        stone.takeDamage();
-                        handleCollision(newBirds.get(1), stone);
-                        newBirds.get(1).reset();
-                    }
-                    if (isTNT && newBirds.get(1).checkCollision(tnt.getX(), tnt.getY(), tnt.getWidth(), tnt.getHeight())) {
-                        System.out.println("Blue Bird hit the TNT!");
-                        tnt.takeDamage();
-                        handleCollision(newBirds.get(1), tnt);
-                        newBirds.get(1).reset();
-                    }
-                    if (isKingPig && newBirds.get(2).checkCollision(kingPig.getX(), kingPig.getY(), kingPig.getWidth(), kingPig.getHeight())) {
-                        System.out.println("Blue Bird hit the King Pig!");
-                        kingPig.takeDamage();
-                        handleCollision(newBirds.get(2), kingPig);
-                        newBirds.get(2).reset();
-                    }
-                    if (isPig1 && newBirds.get(2).checkCollision(pig1.getX(), pig1.getY(), pig1.getWidth(), pig1.getHeight())) {
-                        System.out.println("Blue Bird hit the King Pig!");
-                        pig1.takeDamage();
-                        handleCollision(newBirds.get(2), pig1);
-                        newBirds.get(2).reset();
-                    }
-                    if (isPig2 && newBirds.get(2).checkCollision(pig2.getX(), pig2.getY(), pig2.getWidth(), pig2.getHeight())) {
-                        System.out.println("Blue Bird hit the King Pig!");
-                        pig2.takeDamage();
-                        handleCollision(newBirds.get(2), pig2);
-                        newBirds.get(2).reset();
-                    }
-                    if (isWood && newBirds.get(2).checkCollision(wood.getX(), wood.getY(), wood.getWidth(), wood.getHeight())) {
-                        System.out.println("Blue Bird hit the Wood!");
-                        wood.takeDamage();
-                        handleCollision(newBirds.get(2), wood);
-                        newBirds.get(2).reset();
-                    }
-                    if (isGlass && newBirds.get(2).checkCollision(glass.getX(), glass.getY(), glass.getWidth(), glass.getHeight())) {
-                        System.out.println("Blue Bird hit the Glass!");
-                        glass.takeDamage();
-                        glass.takeDamage();
-                        glass.takeDamage();
-                        handleCollision(newBirds.get(2), glass);
-                        newBirds.get(2).reset();
-                    }
-                    if (isStone && newBirds.get(2).checkCollision(stone.getX(), stone.getY(), stone.getWidth(), stone.getHeight())) {
-                        System.out.println("Blue Bird hit the Stone!");
-                        stone.takeDamage();
-                        handleCollision(newBirds.get(2), stone);
-                        newBirds.get(2).reset();
-                    }
-                    if (isTNT && newBirds.get(2).checkCollision(tnt.getX(), tnt.getY(), tnt.getWidth(), tnt.getHeight())) {
-                        System.out.println("Blue Bird hit the TNT!");
-                        tnt.takeDamage();
-                        handleCollision(newBirds.get(2), tnt);
-                        newBirds.get(2).reset();
+                        handleCollision(blueBird, tnt);
+                        blueBird.reset();
                     }
                     blueBirds.remove(newBirds.get(0));
                     blueBirds.remove(newBirds.get(1));
-                    blueBirds.remove(newBirds.get(2));
                 }
             spriteBatch.end();
         }
@@ -607,7 +515,7 @@ public class Level4 extends Levels {
 
         bird.reset();
 
-        if (!isWood && !isStone && !isGlass && !isTNT && !isKingPig && !isPig1 && !isPig2) {
+        if (!isKingPig && !isPig1 && !isPig2) {
             System.out.println("You won the game!");
             WinningScreen winningScreen = new WinningScreen(main, new Level4(main, spriteBatch));
             main.setScreen(winningScreen);
@@ -767,7 +675,7 @@ public class Level4 extends Levels {
                 isPaused = !isPaused;
                 if (isPaused) {
                     System.out.println("Game is paused");
-                    Pause pauseMenu = new Pause(main, spriteBatch, new Level4(main, spriteBatch));
+                    Pause pauseMenu = new Pause(main, spriteBatch, new Level1(main, spriteBatch));
                     main.setScreen(pauseMenu);
                 }
             }

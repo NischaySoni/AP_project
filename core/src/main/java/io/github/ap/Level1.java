@@ -478,7 +478,7 @@ public class Level1 extends Levels {
 
         bird.reset();
 
-        if (!isWood && !isStone && !isGlass && !isTNT && !isKingPig && !isPig1 && !isPig2) {
+        if (!isKingPig && !isPig1 && !isPig2) {
             System.out.println("You won the game!");
             WinningScreen winningScreen = new WinningScreen(main, new Level1(main, spriteBatch));
             main.setScreen(winningScreen);

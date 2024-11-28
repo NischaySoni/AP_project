@@ -478,7 +478,7 @@ public class Level3 extends Levels {
 
         bird.reset();
 
-        if (!isWood && !isStone && !isGlass && !isTNT && !isKingPig && !isPig1 && !isPig2) {
+        if (!isKingPig && !isPig1 && !isPig2) {
             System.out.println("You won the game!");
             WinningScreen winningScreen = new WinningScreen(main, new Level3(main, spriteBatch));
             main.setScreen(winningScreen);
@@ -638,7 +638,7 @@ public class Level3 extends Levels {
                 isPaused = !isPaused;
                 if (isPaused) {
                     System.out.println("Game is paused");
-                    Pause pauseMenu = new Pause(main, spriteBatch, new Level3(main, spriteBatch));
+                    Pause pauseMenu = new Pause(main, spriteBatch, new Level1(main, spriteBatch));
                     main.setScreen(pauseMenu);
                 }
             }
