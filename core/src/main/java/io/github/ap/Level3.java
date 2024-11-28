@@ -638,7 +638,7 @@ public class Level3 extends Levels {
                 isPaused = !isPaused;
                 if (isPaused) {
                     System.out.println("Game is paused");
-                    Pause pauseMenu = new Pause(main, spriteBatch, new Level1(main, spriteBatch));
+                    Pause pauseMenu = new Pause(main, spriteBatch, new Level3(main, spriteBatch));
                     main.setScreen(pauseMenu);
                 }
             }
