@@ -101,6 +101,16 @@ public class MainMenu implements Screen {
         }
     }
 
+    public short checkLogin(){
+        float mouseX = Gdx.input.getX();
+        float mouseY = Gdx.graphics.getHeight() - Gdx.input.getY();
+        if (mouseX >= 720 && mouseX <= 720 + playButtonWidth && mouseY >= 520 && mouseY <= 520 + playButtonHeight) {
+            ((Main) Gdx.app.getApplicationListener()).startGame();
+            return 0;
+        }
+        return -1;
+    }
+
     @Override
     public void resize(int width, int height) {
     }
